@@ -1,0 +1,912 @@
+/* Recorded environments and episodes. Load after the page identity styles. */
+.room-atlas,
+.episode-workbench {
+  --recording-frame: #192231;
+  --recording-soft: #f0f3f8;
+}
+
+.room-atlas {
+  --recording-frame: #fff;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.atlas-stage,
+.atlas-directory,
+.episode-feature,
+.episode-view,
+.episode-browser {
+  min-width: 0;
+}
+.atlas-media,
+.episode-media {
+  position: relative;
+  overflow: hidden;
+  background: var(--recording-frame);
+}
+.atlas-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 520px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  cursor: grab;
+  user-select: none;
+}
+.atlas-media:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.atlas-media.is-dragging {
+  cursor: grabbing;
+}
+.atlas-media #room-canvas,
+.atlas-media #room-poster {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.atlas-media #room-poster {
+  object-fit: contain;
+  pointer-events: none;
+}
+.atlas-media #room-canvas {
+  touch-action: none;
+}
+.atlas-media #room-canvas[hidden],
+.atlas-media #room-poster[hidden],
+.room-status[hidden],
+#room-retry[hidden] {
+  display: none;
+}
+.room-view-badge {
+  position: absolute;
+  top: 15px;
+  left: 16px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+  background: rgb(255 255 255 / 90%);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  pointer-events: none;
+}
+.room-status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 35px 20px;
+  color: var(--muted);
+  background: rgb(255 255 255 / 88%);
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+  cursor: default;
+}
+.room-loading-spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: room-loading 1s linear infinite;
+}
+.room-status[data-state="error"] .room-loading-spinner {
+  display: none;
+}
+#room-retry {
+  min-height: 36px;
+  padding: 7px 15px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+#room-retry:hover {
+  background: var(--recording-soft);
+}
+@keyframes room-loading {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.atlas-interaction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.room-touch-hint {
+  display: none;
+}
+.atlas-view-tools {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 4px;
+}
+.atlas-view-tools button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  font-size: 18px;
+}
+.atlas-view-tools button:hover {
+  background: var(--recording-soft);
+}
+.atlas-view-tools .room-text-tool {
+  font-size: 11px;
+  font-weight: 600;
+}
+.atlas-view-tools .room-text-tool[aria-pressed="true"] {
+  color: var(--accent);
+  background: var(--recording-soft);
+}
+.atlas-view-tools output {
+  min-width: 38px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.atlas-caption {
+  padding: 23px 0 0;
+}
+.atlas-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+.atlas-heading > .small-label {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.atlas-heading h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+.atlas-description {
+  max-width: 680px;
+  margin: 11px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.atlas-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.atlas-footer > span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.atlas-footer .text-link {
+  flex-shrink: 0;
+  min-height: 35px;
+  font-size: 12px;
+}
+.atlas-directory {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.atlas-directory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 1px 0 13px;
+}
+.atlas-directory-header .small-label {
+  color: var(--ink);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+}
+.atlas-directory-header > span:last-child {
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+.atlas-category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+.atlas-category {
+  min-height: 33px;
+  padding: 6px 11px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  transition:
+    color 140ms ease,
+    background-color 140ms ease;
+}
+.atlas-category[aria-pressed="true"] {
+  background: #e5ebfd;
+  color: #244bbb;
+  font-weight: 600;
+}
+.atlas-scenes {
+  display: flex;
+  gap: 10px;
+  padding: 4px 0 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: #c5ccdc transparent;
+  overscroll-behavior-x: contain;
+}
+.atlas-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 0 0 150px;
+  width: 150px;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  scroll-snap-align: start;
+  transition: background-color 140ms ease;
+}
+.atlas-scene > img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  border: 1px solid #e3e7ec;
+  border-radius: 4px;
+  background: var(--recording-frame);
+}
+.atlas-scene > span {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+  padding: 0 2px 3px;
+}
+.atlas-scene strong {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.4;
+}
+.atlas-scene small {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+.atlas-scene[aria-pressed="true"] {
+  background: #e9eefb;
+  box-shadow: inset 0 -2px var(--accent);
+}
+.atlas-scene[aria-pressed="true"] strong {
+  color: #244bbb;
+  font-weight: 650;
+}
+
+.episode-workbench {
+  margin-top: 8px;
+}
+.episode-feature {
+  margin-top: 29px;
+  padding-top: 23px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 110px;
+}
+.episode-heading {
+  max-width: 920px;
+  margin-bottom: 23px;
+}
+.episode-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-bottom: 11px;
+}
+.episode-badges > span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.episode-badges > .kind {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #e8edfa;
+  color: #244bbb;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.episode-heading h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(23px, 2.1vw, 29px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+.episode-heading > p {
+  max-width: 840px;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+.episode-views {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: end;
+  padding: 17px 18px 18px;
+  border-radius: 14px;
+  background: var(--recording-frame);
+}
+.episode-view {
+  margin: 0;
+}
+.episode-view figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  min-height: 24px;
+  margin-bottom: 6px;
+  color: #b3bece;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.episode-view figcaption .small-label {
+  color: #ecf0f8;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.episode-view figcaption > span:last-child {
+  text-align: right;
+}
+.episode-media {
+  border-radius: 6px;
+  aspect-ratio: 16 / 9;
+  background: #101724;
+}
+.episode-ego .episode-media {
+  aspect-ratio: 4 / 3;
+}
+.episode-media video {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  background: #101724;
+}
+.episode-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 0 0;
+}
+.episode-controls .button {
+  min-width: 102px;
+  min-height: 40px;
+  padding: 9px 18px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.episode-controls .button-primary {
+  background: var(--accent);
+}
+.episode-controls .icon-button {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  color: var(--muted);
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+}
+#episode-seek {
+  flex: 1 1 120px;
+  min-width: 0;
+  height: 30px;
+  margin: 0 4px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+#episode-time {
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.episode-speed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.episode-speed select {
+  min-height: 36px;
+  min-width: 66px;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink);
+  background: white;
+  font-size: 11px;
+}
+.episode-footnote {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.episode-footnote > small {
+  display: block;
+  font-size: 10px;
+}
+.episode-footnote > p {
+  margin-top: 5px;
+  color: #244bbb;
+  font-size: 11px;
+}
+.episode-footnote > p:empty {
+  display: none;
+}
+.episode-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 19px;
+}
+.recording-search {
+  display: flex;
+  align-items: center;
+  flex: 1 1 260px;
+  gap: 10px;
+  min-width: 0;
+  min-height: 42px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: white;
+}
+.recording-search svg {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.recording-search input {
+  min-width: 0;
+  width: 100%;
+  padding: 9px 0;
+  border: 0;
+  outline: 0;
+  color: var(--ink);
+  background: transparent;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.recording-search:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px #315ee71a;
+}
+.episode-toolbar select {
+  min-width: 132px;
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  background: white;
+  font-size: 12px;
+  line-height: 1.5;
+}
+#episode-count {
+  min-width: 93px;
+  margin-left: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.episode-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 20px 15px;
+}
+.episode-card {
+  display: block;
+  min-width: 0;
+  padding: 0;
+  border-radius: 7px;
+  background: transparent;
+  text-align: left;
+}
+.episode-thumbnail {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  background: var(--recording-frame);
+}
+.episode-thumbnail img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: opacity 140ms ease;
+}
+.episode-thumbnail > span {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  color: white;
+  background: #101724d9;
+  font-size: 9px;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+.episode-card-info {
+  display: grid;
+  gap: 5px;
+  padding: 10px 1px 4px;
+}
+.episode-card-info small {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.4;
+}
+.episode-card-info strong {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 550;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.episode-card[aria-pressed="true"] .episode-thumbnail {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.episode-card[aria-pressed="true"] .episode-card-info strong {
+  color: #244bbb;
+  font-weight: 650;
+}
+.episode-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 23px;
+}
+.episode-pagination > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink);
+  background: white;
+  font-size: 13px;
+}
+.episode-pagination > button:disabled {
+  opacity: 0.4;
+}
+#episode-page {
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+#episode-empty {
+  padding: 35px 16px;
+  border-radius: 8px;
+  color: var(--muted);
+  background: var(--recording-soft);
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .atlas-category:hover:not([aria-pressed="true"]),
+  .atlas-scene:hover:not([aria-pressed="true"]) {
+    background: #eceff5;
+    color: var(--ink);
+  }
+  .episode-card:hover .episode-thumbnail img {
+    opacity: 0.85;
+  }
+  .episode-card:hover .episode-card-info strong {
+    color: #244bbb;
+  }
+  .episode-controls .button-primary:hover {
+    background: #244bbb;
+  }
+  .episode-controls .icon-button:hover,
+  .episode-pagination > button:not(:disabled):hover {
+    background: #e9eefb;
+    color: #244bbb;
+  }
+}
+
+@media (max-width: 1100px) {
+  .episode-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px 18px;
+  }
+  .episode-card-info strong {
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+  }
+  .episode-card-info small {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .room-atlas {
+    gap: 18px;
+  }
+  .atlas-directory {
+    padding-bottom: 15px;
+  }
+  .atlas-category-nav {
+    gap: 6px;
+    margin-bottom: 13px;
+  }
+  .atlas-category {
+    min-height: 36px;
+    padding: 7px 13px;
+  }
+  .atlas-scene {
+    flex-basis: 140px;
+    width: 140px;
+    padding: 7px;
+  }
+  .episode-views {
+    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+    gap: 13px;
+    padding: 13px;
+  }
+  .episode-view figcaption {
+    min-height: 29px;
+    flex-wrap: wrap;
+    gap: 3px 8px;
+  }
+  .episode-view figcaption > span:last-child {
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .atlas-media {
+    aspect-ratio: 4 / 3;
+  }
+  .atlas-interaction {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .atlas-view-tools {
+    margin-left: auto;
+  }
+  .room-view-badge {
+    top: 10px;
+    left: 10px;
+  }
+  .atlas-media,
+  .episode-views {
+    border-radius: 10px;
+  }
+  .atlas-caption {
+    padding-top: 18px;
+  }
+  .atlas-heading {
+    display: block;
+  }
+  .atlas-heading > .small-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  .atlas-heading h3 {
+    font-size: 22px;
+  }
+  .atlas-description {
+    margin-top: 9px;
+    font-size: 13px;
+  }
+  .atlas-footer {
+    flex-wrap: wrap;
+    gap: 7px 14px;
+    margin-top: 16px;
+    padding-top: 12px;
+  }
+  .atlas-footer .text-link {
+    min-height: 34px;
+  }
+  .atlas-directory-header {
+    padding-bottom: 10px;
+  }
+  .episode-heading {
+    margin-bottom: 18px;
+  }
+  .episode-heading > p {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .episode-views {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 12px;
+  }
+  .episode-view figcaption {
+    min-height: 0;
+    flex-wrap: nowrap;
+    margin-bottom: 8px;
+  }
+  .episode-view figcaption > span:last-child {
+    text-align: right;
+  }
+  .episode-ego {
+    width: 90%;
+    max-width: 300px;
+  }
+  .episode-controls {
+    gap: 9px;
+    padding-top: 13px;
+  }
+  #episode-seek {
+    order: 4;
+    flex-basis: 100%;
+    height: 27px;
+    margin: 0;
+  }
+  #episode-time {
+    margin-left: auto;
+    font-size: 10px;
+  }
+  .episode-speed {
+    order: 5;
+    font-size: 10px;
+  }
+  .episode-speed select {
+    min-height: 34px;
+  }
+  .episode-footnote {
+    margin-top: 8px;
+  }
+  .episode-feature {
+    margin-top: 23px;
+    padding-top: 19px;
+  }
+  .episode-toolbar {
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .recording-search {
+    flex-basis: 100%;
+  }
+  .episode-toolbar select {
+    flex: 1 1 115px;
+    min-width: 0;
+    max-width: 100%;
+    padding-left: 10px;
+    font-size: 11px;
+  }
+  #episode-count {
+    width: 100%;
+    margin: 3px 0 0;
+    font-size: 10px;
+    text-align: left;
+  }
+  .episode-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 12px;
+  }
+  .episode-card-info {
+    gap: 5px;
+    padding-top: 9px;
+  }
+  .episode-card-info strong {
+    font-size: 11px;
+    -webkit-line-clamp: 3;
+  }
+  .episode-card-info small {
+    font-size: 9px;
+  }
+  .episode-pagination {
+    gap: 18px;
+    margin-top: 19px;
+  }
+}
+
+@media (pointer: coarse) {
+  .room-touch-hint {
+    display: inline;
+  }
+  .atlas-view-tools button {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .room-loading-spinner {
+    animation: none;
+  }
+  .atlas-category,
+  .atlas-scene,
+  .episode-thumbnail img {
+    transition: none;
+  }
+}
+
+@media print {
+  .room-atlas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .atlas-directory,
+  .episode-controls,
+  .episode-toolbar,
+  .episode-pagination {
+    display: none;
+  }
+  .episode-views,
+  .atlas-stage {
+    break-inside: avoid;
+  }
+  .episode-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

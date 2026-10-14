@@ -1,0 +1,229 @@
+/* The page rhythm is shared by chapters; compact disclosures stay secondary. */
+:root {
+  --chapter-space: 72px;
+  --chapter-heading-gap: 28px;
+  --affiliation-marker: #707988;
+}
+
+.section {
+  padding-block: var(--chapter-space);
+}
+.section-top {
+  margin-bottom: var(--chapter-heading-gap);
+  gap: 36px;
+}
+.section-aside,
+.section-top .section-aside,
+.section-lead {
+  line-height: 1.65;
+}
+.overview-intro {
+  gap: 64px;
+}
+.contribution-grid {
+  margin-top: 28px;
+}
+.contribution-card {
+  padding: 24px;
+}
+.contribution-card h3 {
+  margin-block: 14px 9px;
+}
+.contribution-link {
+  padding-top: 18px;
+}
+.interfaces-section {
+  padding-block: 28px 0;
+}
+.results-section {
+  padding-top: 64px;
+}
+.deployment-section {
+  padding-block: 0 64px;
+}
+.team-section {
+  padding-top: 0;
+}
+
+.hero-intro {
+  text-align: left;
+  padding-block: 42px 28px;
+}
+.hero-kicker,
+.hero-actions {
+  justify-content: flex-start;
+}
+.hero h1 {
+  max-width: none;
+  margin: 18px 0 20px;
+  text-align: left;
+  text-wrap: pretty;
+}
+.paper-byline {
+  margin: 0;
+  max-width: none;
+  text-align: left;
+}
+.paper-byline .authors {
+  gap: 5px 16px;
+  font-weight: 500;
+  line-height: 1.9;
+}
+.paper-byline .authors > span {
+  white-space: nowrap;
+}
+.paper-byline sup:not(.author-marker) {
+  color: var(--affiliation-marker);
+  font-size: 10px;
+  font-weight: 400;
+}
+.paper-byline .authors sup.author-marker {
+  position: relative;
+  top: 2px;
+  margin-left: 4px;
+  color: var(--accent);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 0;
+}
+.paper-byline .authors sup.corresponding-marker {
+  font-size: 20px;
+  top: 1px;
+}
+.paper-byline .affiliations {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  gap: 12px 18px;
+}
+.paper-byline .affiliations > span {
+  gap: 5px;
+}
+.paper-byline .affiliations img {
+  height: 44px;
+  max-width: 124px;
+}
+.paper-byline .affiliations > span > span {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.paper-byline .author-notes {
+  justify-content: flex-start;
+  margin-top: 10px;
+  gap: 4px 18px;
+  font-size: 11px;
+}
+.equal-note {
+  color: var(--muted);
+}
+.note-marker {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 17px;
+  line-height: 1;
+  margin-right: 3px;
+  vertical-align: -2px;
+}
+.hero-actions {
+  margin-top: 18px;
+}
+.stats-row {
+  margin-top: 26px;
+  padding-block: 24px;
+}
+.stat-value > .count-number,
+.corpus-number > .count-number,
+.embodiment-specs strong > .count-number {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  text-align: right;
+}
+/* Keep decimal units steady while the numeral grows. */
+.stat-value > .count-number[data-count="51.5"] {
+  min-width: 3.9ch;
+}
+.stat-value > .sr-only {
+  padding: 0;
+}
+
+@media (min-width: 701px) and (max-width: 1000px) {
+  .paper-byline .affiliations {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: 12px;
+  }
+  .paper-byline .affiliations img {
+    height: 40px;
+  }
+  .paper-byline .authors {
+    font-size: 13px;
+    column-gap: 12px;
+  }
+  .overview-intro {
+    gap: 36px;
+  }
+}
+@media (max-width: 700px) {
+  :root {
+    --chapter-space: 52px;
+    --chapter-heading-gap: 24px;
+  }
+  .hero-intro {
+    padding-block: 30px 24px;
+  }
+  .hero h1 {
+    margin-block: 16px 18px;
+    font-size: clamp(26px, 5.4vw, 34px);
+  }
+  .paper-byline .authors {
+    gap: 5px 16px;
+    font-size: 13px;
+  }
+  .paper-byline .authors sup.author-marker {
+    font-size: 22px;
+  }
+  .paper-byline .authors sup.corresponding-marker {
+    font-size: 19px;
+  }
+  .paper-byline .affiliations {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 14px;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+  .paper-byline .affiliations img {
+    height: 38px;
+    max-width: 108px;
+  }
+  .paper-byline .author-notes {
+    gap: 4px 12px;
+    font-size: 10px;
+    margin-top: 10px;
+  }
+  .hero-actions {
+    margin-top: 16px;
+    gap: 8px;
+  }
+  .hero-actions .button {
+    padding-inline: 11px;
+  }
+  .overview-intro {
+    gap: 22px;
+  }
+  .contribution-card {
+    padding: 22px;
+  }
+  .interfaces-section {
+    padding-top: 24px;
+  }
+  .results-section {
+    padding-top: 48px;
+  }
+  .deployment-section {
+    padding-bottom: 48px;
+  }
+}

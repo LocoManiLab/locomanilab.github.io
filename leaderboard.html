@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8fafc" />
+    <meta
+      name="description"
+      content="LocoManiLab: a unified testbed for data, policies, controllers, and deployment in humanoid loco-manipulation. Explore 235 tasks across five everyday environments."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Leaderboard · LocoManiLab" />
+    <meta
+      property="og:description"
+      content="A unified testbed for data, policies, controllers, and deployment in humanoid loco-manipulation."
+    />
+    <meta property="og:image" content="https://locomanilab.github.io/media/social-preview.jpg" />
+    <meta property="og:url" content="https://locomanilab.github.io/leaderboard.html" />
+    <link rel="canonical" href="https://locomanilab.github.io/leaderboard.html" />
+    <meta
+      property="og:image:alt"
+      content="LocoManiLab — a humanoid research testbed with furnished simulated worlds."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Leaderboard · LocoManiLab</title>
+    <link rel="icon" href="./brand/locomanilab-logo.png" type="image/png" />
+    <link rel="stylesheet" href="./fonts/fonts.css?v=20261009-type" />
+    <link rel="stylesheet" href="./src/style.css?v=20261009-type" />
+    <link rel="stylesheet" href="./src/sections.css" />
+    <link rel="stylesheet" href="./src/experience.css" />
+    <link rel="stylesheet" href="./src/experiments.css" />
+    <link rel="stylesheet" href="./src/editorial.css" />
+    <link rel="stylesheet" href="./src/benchmark.css?v=20261009-identity" />
+    <link rel="stylesheet" href="./src/typography.css" />
+    <link rel="stylesheet" href="./src/stack.css?v=20261009-stack-final" />
+    <link rel="stylesheet" href="./src/polish.css?v=20261009-rhythm" />
+    <link rel="stylesheet" href="./src/identity.css?v=20261009-identity" />
+    <link rel="stylesheet" href="./src/controller-radar.css?v=20261009-radar" />
+    <link rel="stylesheet" href="./src/recordings.css?v=20261012-interactive" />
+    <link
+      rel="stylesheet"
+      href="./src/policy-rollouts.css?v=20261012-rollouts"
+    />
+    <link rel="stylesheet" href="./src/dataset-dr.css?v=20261013-paired-dr" />
+    <link rel="stylesheet" href="./src/hero-wall.css?v=20261013-wall" />
+    <link rel="stylesheet" href="./src/academic.css?v=20261013-logo" />
+    <link
+      rel="preload"
+      href="./fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="./fonts/source-serif-4-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="stylesheet"
+      href="./src/research-theme.css?v=20261013-design-final"
+    />
+    <link
+      rel="stylesheet"
+      href="./src/research-secondary.css?v=20261013-design-final"
+    />
+  </head>
+  <body class="secondary-page leaderboard-page" id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="./index.html" aria-label="LocoManiLab home">
+          <img
+            class="brand-logo"
+            src="./brand/locomanilab-logo.png"
+            width="2137"
+            height="736"
+            alt="LocoManiLab"
+          />
+        </a>
+        <button
+          class="menu-toggle icon-button"
+          type="button"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          <span></span><span></span>
+        </button>
+        <nav id="main-nav" aria-label="Main navigation">
+          <a class="nav-home" href="./index.html">Home</a>
+          <a
+            class="nav-paper"
+            href="./paper/locomanilab-manuscript.pdf"
+            target="_blank"
+            rel="noopener"
+            >Paper</a
+          >
+          <a
+            class="nav-leaderboard"
+            aria-current="page"
+            href="./leaderboard.html"
+            >Leaderboard</a
+          >
+          <span class="nav-code" aria-disabled="true"
+            >Code <small>Coming soon</small></span
+          >
+          <a class="nav-community" href="./community.html">Community</a>
+        </nav>
+      </div>
+      <div class="reading-progress" aria-hidden="true"><span></span></div>
+    </header>
+
+    <main id="main">
+      <section
+        class="results-section section wrap"
+        id="results"
+        aria-labelledby="results-title"
+      >
+        <div class="section-top">
+          <div>
+            <p class="eyebrow">RESULTS</p>
+            <h1 id="results-title">Leaderboard</h1>
+          </div>
+          <p class="section-aside">
+            Policy success rates, domain randomization, data-source ablations,
+            and controller measurements.
+            <a class="text-link" href="#policy-rollouts"
+              >Policy rollouts <span aria-hidden="true">↗</span></a
+            >
+          </p>
+        </div>
+
+        <div class="leaderboard-actions">
+          <a
+            class="button button-primary button-small"
+            href="./community.html#evaluation"
+            >Request a simulation run</a
+          >
+        </div>
+        <div class="benchmark-workbench" id="benchmark-results">
+          <div
+            class="benchmark-tabs"
+            role="tablist"
+            aria-label="Benchmark results"
+          >
+            <button
+              id="result-tab-generalization"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="benchmark-generalization"
+              tabindex="0"
+            >
+              Policy rankings
+            </button>
+            <button
+              id="result-tab-robustness"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="benchmark-robustness"
+              tabindex="-1"
+            >
+              Randomization
+            </button>
+            <button
+              id="result-tab-sources"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="benchmark-sources"
+              tabindex="-1"
+            >
+              Data sources
+            </button>
+            <button
+              id="result-tab-controllers"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="benchmark-controllers"
+              tabindex="-1"
+            >
+              Controllers
+            </button>
+          </div>
+          <div
+            id="benchmark-generalization"
+            class="benchmark-panel"
+            role="tabpanel"
+            aria-labelledby="result-tab-generalization"
+            tabindex="0"
+          >
+            <div class="benchmark-panel-heading">
+              <div>
+                <span class="result-eyebrow">01 / POLICY GENERALIZATION</span>
+                <h3>Seen tasks, unseen tasks, and unseen scenes</h3>
+              </div>
+              <span class="result-unit">Success rate (%)</span>
+            </div>
+            <div
+              data-content-slot="policy-results"
+              data-result-table="generalization"
+            ></div>
+          </div>
+          <div
+            id="benchmark-robustness"
+            class="benchmark-panel"
+            role="tabpanel"
+            aria-labelledby="result-tab-robustness"
+            tabindex="0"
+            hidden
+          >
+            <div class="benchmark-panel-heading">
+              <div>
+                <span class="result-eyebrow">02 / DOMAIN RANDOMIZATION</span>
+                <h3>Domain randomization</h3>
+              </div>
+              <span class="result-unit">Success rate (%)</span>
+            </div>
+            <div
+              data-content-slot="robustness-results"
+              data-result-table="robustness"
+            ></div>
+          </div>
+          <div
+            id="benchmark-sources"
+            class="benchmark-panel"
+            role="tabpanel"
+            aria-labelledby="result-tab-sources"
+            tabindex="0"
+            hidden
+          >
+            <div class="benchmark-panel-heading">
+              <div>
+                <span class="result-eyebrow">03 / DATA-SOURCE ABLATION</span>
+                <h3>Data-source ablation</h3>
+              </div>
+              <span class="result-unit">Success rate (%)</span>
+            </div>
+            <div
+              data-content-slot="data-source-results"
+              data-result-table="sources"
+            ></div>
+          </div>
+          <div
+            id="benchmark-controllers"
+            class="benchmark-panel"
+            role="tabpanel"
+            aria-labelledby="result-tab-controllers"
+            tabindex="0"
+            hidden
+          >
+            <div class="benchmark-panel-heading">
+              <div>
+                <span class="result-eyebrow">04 / CONTROLLER PROFILES</span>
+                <h3>Controller comparison</h3>
+              </div>
+              <a
+                class="result-source"
+                href="./media/results/controller-metrics.csv"
+                download
+                >Download data ↓</a
+              >
+            </div>
+            <div
+              data-content-slot="controller-results"
+              id="controller-radar"
+            ></div>
+            <noscript
+              ><p>
+                Enable JavaScript to compare controller profiles, or
+                <a href="./media/results/controller-metrics.csv" download
+                  >download the reported measurements</a
+                >.
+              </p></noscript
+            >
+          </div>
+          <noscript
+            ><p>
+              Enable JavaScript to sort the result tables.
+              <a href="./media/results/table-generalization.png"
+                >View the original policy table</a
+              >.
+            </p></noscript
+          >
+        </div>
+        <section
+          id="policy-rollouts"
+          class="policy-rollouts-section"
+          aria-labelledby="policy-rollouts-title"
+         data-availability="pending">
+<div id="policy-rollouts-root">
+  <div class="wrap rollout-wrap rollout-release">
+    <div class="rollout-heading">
+      <h3 id="policy-rollouts-title">Policy rollouts</h3>
+      <p>The full policy rollout library will be released separately.</p>
+    </div>
+    <a class="text-link" href="./index.html#tasks">View task demonstrations <span aria-hidden="true">↗</span></a>
+  </div></div>
+</section>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-main">
+        <a class="wordmark" href="./index.html">
+          <img
+            class="brand-logo"
+            src="./brand/locomanilab-logo.png"
+            width="2137"
+            height="736"
+            alt="LocoManiLab"
+          />
+        </a>
+        <p>Humanoid loco-manipulation</p>
+        <a class="back-top" href="#top"
+          >Back to top <span aria-hidden="true">↑</span></a
+        >
+      </div>
+      <div class="wrap footer-bottom">
+        <span>LocoManiLab</span><span>Research project · 2026</span>
+      </div>
+    </footer>
+    <a
+      class="reading-top"
+      href="#top"
+      aria-label="Back to top"
+      title="Back to top"
+      hidden
+      ><span aria-hidden="true">↑</span></a
+    >
+    <script type="module" src="./src/leaderboard.js?v=20261013-pages"></script>
+  </body>
+</html>

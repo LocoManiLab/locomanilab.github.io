@@ -1,0 +1,277 @@
+/* Compact identity marks share proportions across the byline and results. */
+.organization-mark {
+  --mark-size: 36px;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: var(--mark-size);
+  height: var(--mark-size);
+  overflow: visible;
+  vertical-align: middle;
+}
+.organization-mark img {
+  display: block;
+  width: auto;
+  height: var(--mark-size);
+  max-width: none;
+  object-fit: contain;
+}
+/* These originals combine a circular seal and a long university wordmark.
+   Show the existing seal beside the abbreviated affiliation label. */
+.organization-mark[data-organization="zju"],
+.organization-mark[data-organization="sjtu"] {
+  overflow: hidden;
+}
+.organization-mark[data-organization="zju"] img,
+.organization-mark[data-organization="sjtu"] img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.organization-mark[data-organization="hku"] img {
+  height: calc(var(--mark-size) * 1.08);
+}
+.organization-mark[data-organization="hkust"] img {
+  height: calc(var(--mark-size) * 1.12);
+}
+.organization-mark[data-organization="columbia"] img {
+  height: calc(var(--mark-size) * 1.16);
+}
+.organization-mark[data-organization="pi"] img,
+.organization-mark[data-organization="xiaomi"] img {
+  height: calc(var(--mark-size) * 0.9);
+}
+.organization-mark[data-organization="ailab"] {
+  width: calc(var(--mark-size) * 2);
+  height: calc(var(--mark-size) * 0.72);
+  overflow: hidden;
+}
+.organization-mark[data-organization="ailab"] img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+.organization-mark[data-organization="ucsd"] {
+  width: 114px;
+}
+.organization-mark[data-organization="ucsd"] img {
+  width: 114px;
+  height: auto;
+}
+.policy-brand,
+.controller-brand {
+  height: 40px;
+}
+.policy-brand .organization-mark,
+.controller-brand .organization-mark {
+  --mark-size: 36px;
+}
+.policy-brand .organization-mark img,
+.controller-brand .organization-mark img {
+  max-width: none;
+}
+.table-policy-brand {
+  width: 40px;
+  flex-basis: 40px;
+  height: 28px;
+}
+.table-policy-brand .organization-mark {
+  --mark-size: 23px;
+}
+.table-policy-brand .organization-mark img {
+  max-width: none;
+}
+
+/* Balance the paper title on the same center line as its byline and logos. */
+.hero #hero-title {
+  max-width: 1040px;
+  margin: 18px auto 28px;
+  text-align: center;
+  white-space: normal;
+  text-wrap: balance;
+}
+.hero-intro > .paper-resources {
+  margin-inline: auto;
+}
+
+/* Separate numbered institution names from the standalone logo strip. */
+.paper-byline {
+  width: 100%;
+  max-width: 1040px;
+  margin-inline: auto;
+}
+.paper-byline .authors {
+  justify-content: center;
+  grid-template-columns: repeat(6, max-content);
+  column-gap: 28px;
+  row-gap: 4px;
+  font-size: 15px;
+  line-height: 1.85;
+}
+.paper-byline .authors a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+}
+.paper-byline .authors a:hover,
+.paper-byline .authors a:focus-visible {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+.paper-byline .affiliations {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 20px;
+  margin: 18px 0 0;
+  padding: 0;
+  border: 0;
+}
+.paper-byline .affiliations > span {
+  display: inline-block;
+}
+.paper-byline .institution-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 24px;
+}
+.paper-byline .institution-logos .organization-mark {
+  --mark-size: 60px;
+}
+.paper-byline .institution-logos .organization-mark img {
+  width: auto;
+  height: var(--mark-size);
+  max-width: none;
+}
+.paper-byline .institution-logos .organization-mark[data-organization="hku"] {
+  /* The narrow shield needs a little more height than the circular seals. */
+  width: calc(var(--mark-size) * 0.9 + 3.6px);
+  height: calc(var(--mark-size) + 4px);
+}
+.paper-byline
+  .institution-logos
+  .organization-mark[data-organization="hku"]
+  img {
+  height: 100%;
+}
+.paper-byline
+  .institution-logos
+  .organization-mark[data-organization="sjtu"]
+  img {
+  /* Exclude the official PNG's transparent margins; preserve the full seal. */
+  width: calc(100% * 2805 / 2493);
+  height: auto;
+  left: calc(-100% * 160 / 2493);
+  top: calc(-100% * 182 / 2493);
+}
+.paper-byline .institution-logos .organization-mark[data-organization="gamma"] {
+  width: calc((var(--mark-size) - 16px) * 1462 / 503);
+  height: auto;
+  aspect-ratio: 1462 / 503;
+  max-width: 100%;
+  overflow: hidden;
+}
+.paper-byline
+  .institution-logos
+  .organization-mark[data-organization="gamma"]
+  img {
+  /* Align the visible artwork, excluding its transparent canvas margins.
+     Source: 1862 × 845; artwork bounds: (262, 190)–(1724, 693). */
+  position: absolute;
+  width: calc(100% * 1862 / 1462);
+  max-width: none;
+  height: auto;
+  left: calc(-100% * 262 / 1462);
+  top: 50%;
+  transform: translateY(-52.2485%);
+}
+.paper-byline .affiliations .affiliation-label {
+  max-width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: #4c5669;
+  white-space: normal;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+.paper-byline .affiliation-label sup {
+  margin-left: 0;
+  margin-right: 2px;
+}
+.paper-byline .author-notes {
+  justify-content: center;
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (min-width: 701px) and (max-width: 1000px) {
+  .paper-byline .authors {
+    grid-template-columns: repeat(4, max-content);
+    font-size: 13px;
+    column-gap: 20px;
+  }
+  .paper-byline .affiliations {
+    column-gap: 20px;
+  }
+}
+@media (max-width: 700px) {
+  .hero #hero-title {
+    margin: 16px auto 24px;
+  }
+  .paper-byline {
+    width: 100%;
+  }
+  .paper-byline .authors {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    font-size: 13px;
+    gap: 4px 16px;
+  }
+  .paper-byline .affiliations {
+    gap: 5px 16px;
+    margin-top: 16px;
+  }
+  .paper-byline .institution-logos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-items: center;
+    max-width: 380px;
+    gap: 18px 14px;
+    margin: 22px auto 0;
+  }
+  .paper-byline .institution-logos .organization-mark {
+    --mark-size: 52px;
+  }
+  .paper-byline
+    .institution-logos
+    .organization-mark[data-organization="gamma"] {
+    grid-column: span 2;
+  }
+  .paper-byline .affiliations .affiliation-label {
+    font-size: 12px;
+  }
+  .table-policy-brand {
+    width: 32px;
+    flex-basis: 32px;
+  }
+  .policy-ranking-table .table-policy-brand {
+    width: 26px;
+    flex-basis: 26px;
+  }
+  .table-policy-brand .organization-mark {
+    --mark-size: 21px;
+  }
+  .table-policy-brand .organization-mark[data-organization="ailab"] {
+    width: 32px;
+    height: 12px;
+  }
+}

@@ -1,0 +1,795 @@
+/* Shared research identity. Loaded after component styles on all three pages.
+   Component media geometry, playback and interaction states remain local. */
+:root {
+  --paper: #f8fafc;
+  --ink: #16263d;
+  --muted: #526176;
+  --line: #dce3ed;
+  --accent: #2858c7;
+  --green: #2858c7;
+  --forest: #16263d;
+  --mint: #e6edfc;
+  --wrap: 1184px;
+  --chapter-space: 88px;
+  --chapter-heading-gap: 36px;
+  --research-surface: #fff;
+  --research-tint: #f0f4fa;
+  --research-radius: 10px;
+}
+
+body {
+  background: var(--paper);
+}
+.wrap,
+.header-inner {
+  width: calc(100% - 96px);
+}
+.site-header {
+  background: #ffffffed;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+}
+.site-header.is-scrolled {
+  box-shadow: 0 6px 24px #16263d06;
+}
+.site-header .brand-logo {
+  width: 154px;
+}
+.site-header nav {
+  gap: 30px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.site-header nav > a {
+  color: #45546a;
+}
+.nav-code small {
+  border-color: var(--line);
+  background: #f5f7fb;
+  font-size: 9px;
+  font-weight: 400;
+}
+.button {
+  border-radius: 7px;
+  font-weight: 500;
+}
+.button-primary {
+  background: var(--forest);
+}
+.button-primary:hover {
+  background: #23416a;
+}
+.button-outline {
+  border-color: #cbd5e3;
+  background: #fff;
+}
+
+/* A paper masthead: a distinct project name, full title, then attribution. */
+.hero {
+  isolation: isolate;
+  background: linear-gradient(180deg, #f0f5fd 0, #fafcfe 510px, #fff 100%);
+  padding-bottom: 0;
+  border-bottom: 1px solid var(--line);
+}
+.hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: 410px;
+  content: "";
+  pointer-events: none;
+  background-image:
+    linear-gradient(#2858c708 1px, transparent 1px),
+    linear-gradient(90deg, #2858c708 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(#000, transparent);
+}
+.hero-intro {
+  padding-block: 54px 34px;
+}
+.hero #hero-title {
+  max-width: 1040px;
+  margin: 0 auto 28px;
+}
+.hero h1 > .project-name {
+  display: block;
+  margin-bottom: 17px;
+  color: var(--ink);
+  font-size: clamp(48px, 5.2vw, 72px);
+  font-weight: 720;
+  letter-spacing: -0.065em;
+  line-height: 1.08;
+}
+.hero h1 > .paper-title {
+  display: block;
+  max-width: 960px;
+  margin-inline: auto;
+  color: #30425e;
+  font-size: clamp(26px, 2.6vw, 36px);
+  font-weight: 450;
+  line-height: 1.32;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.paper-byline .authors {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin-inline: auto;
+  gap: 3px 22px;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1.9;
+  font-weight: 450;
+}
+.paper-byline .authors > span {
+  flex: 0 0 calc((100% - 110px) / 6);
+  text-align: center;
+}
+.paper-byline .affiliations {
+  max-width: 1000px;
+  margin: 15px auto 0;
+  gap: 4px 20px;
+  line-height: 1.7;
+}
+.paper-byline .affiliations .affiliation-label {
+  color: var(--muted);
+  font-size: 12px;
+}
+.paper-byline .author-notes {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+.paper-byline .institution-logos {
+  gap: 24px;
+  margin-top: 24px;
+}
+.paper-resources {
+  gap: 18px 24px;
+  margin-top: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.paper-resources .paper-metadata {
+  padding-right: 24px;
+  border-right: 1px solid #ccd7e8;
+}
+.paper-resources .paper-metadata dt {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+.paper-resources .paper-metadata dd {
+  font-size: 12px;
+}
+.paper-resources .hero-actions .button {
+  min-height: 44px;
+  border-radius: 7px;
+  padding-inline: 17px;
+  border-color: #cbd7e8;
+  background: #ffffffdb;
+}
+.paper-resources .hero-actions a.button:hover {
+  border-color: var(--accent);
+  background: #f1f5fe;
+}
+.paper-resources .resource-status {
+  border-radius: 4px;
+  font-size: 9px;
+}
+.hero-filmstrip {
+  padding: 7px;
+  border: 1px solid #d4deec;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 44px -28px #233c6460;
+}
+.hero-wall-viewport {
+  border-radius: 6px;
+}
+.hero .stats-row {
+  margin-top: 26px;
+  padding-block: 27px 32px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.stats-row .stat-value {
+  color: var(--ink);
+  font-size: clamp(32px, 3.2vw, 43px);
+  font-weight: 550;
+  letter-spacing: -0.05em;
+}
+.stats-row .stat-label {
+  margin-top: 10px;
+  color: #354965;
+  font-size: 12px;
+  font-weight: 500;
+}
+.stats-row small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* Consistent chapter rhythm and an editorial title/abstract baseline. */
+.section {
+  padding-block: var(--chapter-space);
+}
+.section-top,
+.section-top.compact {
+  align-items: flex-end;
+  gap: 56px;
+  margin-bottom: var(--chapter-heading-gap);
+}
+.section-top > div:first-child {
+  min-width: 0;
+  flex: 1;
+}
+h2,
+.section-top.compact h2 {
+  color: var(--ink);
+  font-size: clamp(34px, 3.6vw, 48px);
+  font-weight: 450;
+  line-height: 1.13;
+  letter-spacing: -0.035em;
+}
+.section-top h2 {
+  max-width: 22ch;
+}
+.section-top > .section-aside {
+  flex: 0 1 350px;
+  max-width: 39ch;
+  padding-bottom: 2px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.eyebrow,
+.eyebrow.light {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 16px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+.eyebrow::before {
+  content: "";
+  flex: 0 0 20px;
+  height: 1px;
+  background: currentColor;
+}
+#overview .overview-intro {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 80px;
+}
+#overview h2 {
+  font-size: clamp(34px, 3.6vw, 48px);
+}
+#overview .overview-body > .overview-lead {
+  font-size: 23px;
+  line-height: 1.45;
+  font-weight: 450;
+}
+.overview-tour {
+  margin-top: 40px;
+  padding: 25px 28px 21px;
+  border: 1px solid var(--line);
+  border-radius: var(--research-radius);
+  background: var(--research-surface);
+}
+.overview-tour-toolbar {
+  margin-bottom: 20px;
+}
+.overview-steps {
+  border-top: 0;
+}
+.overview-steps button {
+  min-height: 65px;
+  font-size: 12px;
+}
+.overview-steps button[aria-selected="true"] {
+  background: #edf3ff;
+  color: var(--accent);
+}
+.overview-panel {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 40px;
+  padding-block: 32px;
+}
+.overview-feature-description {
+  font-size: 15px;
+  line-height: 1.8;
+}
+.overview-feature-tags,
+.overview-foundation p {
+  font-size: 11px;
+}
+.overview-art {
+  border: 1px solid #e2e8f1;
+  border-radius: 8px;
+}
+.detail-block {
+  border-color: var(--line);
+  border-radius: 8px;
+  box-shadow: none;
+}
+.worlds-section {
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.atlas-directory-header .small-label,
+.atlas-directory-header > span:last-child,
+.atlas-category {
+  font-size: 12px;
+}
+.atlas-category-nav {
+  gap: 6px;
+}
+.atlas-category {
+  min-height: 38px;
+  padding-inline: 14px;
+  border: 1px solid transparent;
+}
+.atlas-category[aria-pressed="true"] {
+  border-color: #cbd9f3;
+  background: #edf3ff;
+  color: var(--accent);
+}
+.atlas-media {
+  border-radius: var(--research-radius);
+}
+.atlas-description {
+  font-size: 15px;
+}
+/* Task definitions introduce the recordings in one compact chapter. */
+.task-overview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px;
+  padding-block: 22px;
+  border-block: 1px solid var(--line);
+  scroll-margin-top: 100px;
+}
+.task-overview > article {
+  min-width: 0;
+}
+.task-overview > article + article {
+  padding-left: 36px;
+  border-left: 1px solid var(--line);
+}
+.task-overview-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5px 16px;
+  margin-bottom: 9px;
+}
+.task-overview-heading h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 550;
+}
+.task-overview-heading > span {
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.task-overview-heading strong {
+  margin-right: 3px;
+  color: var(--accent);
+  font-size: 21px;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+.task-overview p {
+  max-width: 58ch;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+.task-overview .count-number {
+  display: inline-block;
+  text-align: right;
+}
+.catalog-section > .composition-detail {
+  margin-block: 0 28px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+.catalog-section > .composition-detail > summary {
+  min-height: 52px;
+  padding: 12px 0;
+}
+.catalog-section > .composition-detail > summary > span:first-child {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 3px 16px;
+}
+.catalog-section > .composition-detail > summary strong {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 500;
+}
+.catalog-section > .composition-detail > summary small {
+  margin: 0;
+  font-size: 11px;
+}
+.catalog-section > .composition-detail > .detail-body {
+  padding: 24px 0;
+}
+.episode-browser {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--research-radius);
+  background: #fff;
+}
+.episode-feature {
+  margin-top: 36px;
+  padding-top: 28px;
+}
+.episode-views {
+  border-radius: var(--research-radius);
+  background: #16263d;
+}
+.system-section {
+  background: var(--research-tint);
+  border-block: 1px solid var(--line);
+}
+#execution-stack .system-flow {
+  gap: 12px;
+  margin-top: 0;
+}
+#execution-stack .stack-tab {
+  border-color: #d3deec;
+  border-radius: 8px;
+  padding: 24px 20px 18px;
+  background: #ffffff9c;
+  box-shadow: none;
+}
+#execution-stack .stack-tab[aria-selected="true"] {
+  border-color: #93ade0;
+  background: #fff;
+  box-shadow: inset 0 3px 0 var(--accent);
+}
+#execution-stack .stack-tab small,
+#execution-stack .stack-tab .stage-link {
+  font-size: 12px;
+}
+.stack-panel {
+  padding: 32px;
+  border-color: var(--line);
+  border-radius: var(--research-radius);
+}
+.stack-panel .section-top > .section-aside {
+  font-size: 14px;
+}
+.stack-panel .corpus-card {
+  border-color: #e0e7f0;
+  border-radius: 8px;
+  background: #f6f8fc;
+}
+.stack-panel .data-story-item p {
+  font-size: 14px;
+}
+.deployment-section {
+  padding-block: var(--chapter-space);
+  background: #fff;
+}
+.sim2real-tabs {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.sim2real-tabs button:first-child {
+  border-radius: 7px 0 0 7px;
+}
+.sim2real-tabs button:last-child {
+  border-radius: 0 7px 7px 0;
+}
+.sim2real-tabs button[aria-selected="true"] {
+  background: #edf3ff;
+}
+.citation-section {
+  padding-block: 56px;
+}
+.citation-content pre {
+  padding: 28px 30px;
+  border: 1px solid var(--line);
+  border-left: 3px solid #7797ce;
+  border-radius: 8px;
+  background: #fff;
+  color: #3b506e;
+  line-height: 1.85;
+}
+.site-footer {
+  color: var(--muted);
+  background: #f0f4f9;
+  border-top: 1px solid var(--line);
+}
+.site-footer .brand-logo {
+  width: 154px;
+}
+.site-footer .footer-bottom {
+  color: var(--muted);
+  border-color: var(--line);
+}
+
+@media (max-width: 1000px) {
+  .wrap,
+  .header-inner {
+    width: calc(100% - 64px);
+  }
+  .site-header nav {
+    gap: 5px;
+    background: #fff;
+  }
+  .hero-intro {
+    padding-top: 40px;
+  }
+  .paper-byline .authors > span {
+    flex-basis: calc((100% - 66px) / 4);
+  }
+  .section-top {
+    gap: 32px;
+  }
+  .section-top > .section-aside {
+    flex-basis: 290px;
+    font-size: 14px;
+  }
+  #overview .overview-intro {
+    gap: 40px;
+  }
+  .overview-tour {
+    padding-inline: 22px;
+  }
+  .overview-panel {
+    gap: 28px;
+  }
+  .overview-steps button {
+    font-size: 11px;
+  }
+  #execution-stack .stack-tab {
+    padding-inline: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --chapter-space: 56px;
+    --chapter-heading-gap: 25px;
+  }
+  .wrap,
+  .header-inner {
+    width: calc(100% - 40px);
+  }
+  .site-header .brand-logo {
+    width: 142px;
+  }
+  .hero-intro {
+    padding-block: 36px 26px;
+  }
+  .hero #hero-title {
+    margin-bottom: 24px;
+  }
+  .hero h1 > .project-name {
+    margin-bottom: 15px;
+    font-size: clamp(39px, 10vw, 54px);
+    letter-spacing: -0.055em;
+  }
+  .hero h1 > .paper-title {
+    font-size: clamp(22px, 5.4vw, 29px);
+    line-height: 1.36;
+    letter-spacing: -0.03em;
+  }
+  .paper-byline .authors {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3px 10px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .paper-byline .affiliations {
+    gap: 5px 13px;
+    margin-top: 18px;
+  }
+  .paper-byline .affiliations .affiliation-label {
+    font-size: 11px;
+  }
+  .paper-byline .author-notes {
+    gap: 4px 12px;
+    font-size: 10px;
+  }
+  .paper-byline .institution-logos {
+    max-width: 350px;
+    gap: 16px 14px;
+    margin-top: 22px;
+  }
+  .paper-resources {
+    justify-content: center;
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .paper-resources .paper-metadata {
+    justify-content: center;
+    padding: 0;
+    border: 0;
+  }
+  .paper-resources .hero-actions {
+    justify-content: center;
+    padding-top: 0;
+    border: 0;
+    gap: 8px;
+  }
+  .paper-resources .hero-actions .button {
+    padding-inline: 11px;
+    font-size: 12px;
+  }
+  .hero-filmstrip {
+    padding: 4px;
+    border-radius: 8px;
+  }
+  .hero .stats-row {
+    margin-top: 12px;
+    padding-block: 4px 16px;
+  }
+  .stats-row .stat-value {
+    font-size: 31px;
+  }
+  .stats-row .stat-label {
+    margin-top: 7px;
+    font-size: 10px;
+  }
+  .section-top,
+  .section-top.compact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 17px;
+  }
+  .section-top > .section-aside {
+    flex-basis: auto;
+    max-width: 48ch;
+    padding: 0;
+    font-size: 14px;
+  }
+  h2,
+  .section-top.compact h2,
+  #overview h2 {
+    font-size: 34px;
+  }
+  .eyebrow {
+    margin-bottom: 12px;
+  }
+  #overview .overview-intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  #overview .overview-body > .overview-lead {
+    font-size: 21px;
+  }
+  .overview-tour {
+    margin-top: 28px;
+    padding: 18px 16px;
+  }
+  .overview-tour-toolbar {
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+  .overview-tour-caption {
+    font-size: 9px;
+  }
+  .overview-steps button {
+    min-height: 68px;
+    font-size: 10px;
+  }
+  .overview-panel {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-block: 26px;
+  }
+  /* Share row tracks across the seven panels: switching stays still, while
+     shorter copy no longer floats in the middle of a stretched mobile row. */
+  .overview-tour.is-enhanced .overview-panels {
+    grid-template-rows: auto auto;
+  }
+  .overview-tour.is-enhanced .overview-panel {
+    grid-area: 1 / 1 / span 2 / span 1;
+    grid-template-rows: subgrid;
+    align-items: start;
+  }
+  .overview-feature-description {
+    font-size: 14px;
+  }
+  .overview-feature-copy h3 {
+    font-size: 28px;
+  }
+  .overview-foundation p {
+    font-size: 10px;
+  }
+  .atlas-category {
+    padding-inline: 10px;
+    font-size: 11px;
+  }
+  .atlas-description {
+    font-size: 14px;
+  }
+  .task-overview {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-block: 18px;
+  }
+  .task-overview > article + article {
+    padding: 18px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .task-overview-heading {
+    gap: 4px 10px;
+    margin-bottom: 6px;
+  }
+  .task-overview-heading h3 {
+    font-size: 16px;
+  }
+  .task-overview-heading strong {
+    font-size: 18px;
+  }
+  .task-overview p {
+    font-size: 13px;
+  }
+  .catalog-section > .composition-detail {
+    margin-bottom: 22px;
+  }
+  .episode-browser {
+    padding: 15px;
+  }
+  #execution-stack .stack-tab {
+    padding: 18px 13px 14px;
+  }
+  #execution-stack .stack-tab small,
+  #execution-stack .stack-tab .stage-link {
+    font-size: 11px;
+  }
+  .stack-panel {
+    padding: 22px 16px;
+  }
+  .stack-panel .section-top {
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .stack-panel .corpus-card {
+    padding: 20px;
+  }
+  .citation-section {
+    padding-block: 44px;
+  }
+  .citation-content pre {
+    padding: 18px 16px;
+    font-size: 10px;
+  }
+}
+
+@media print {
+  .hero,
+  .system-section,
+  .site-footer {
+    background: #fff;
+  }
+  .hero::before {
+    display: none;
+  }
+  .hero-filmstrip {
+    box-shadow: none;
+  }
+}

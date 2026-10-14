@@ -1,0 +1,602 @@
+/* The leaderboard and community share the main page's research visual system. */
+.secondary-page {
+  --paper: #f8fafc;
+  --ink: #16263d;
+  --muted: #58677b;
+  --line: #dce3ed;
+  --accent: #2858c7;
+  --green: #2858c7;
+  --forest: #16263d;
+  --surface-shadow: 0 12px 36px -28px #16263d45;
+  background: var(--paper);
+}
+
+.secondary-page .eyebrow {
+  margin-bottom: 16px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.13em;
+}
+
+.secondary-page .button {
+  min-height: 44px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.secondary-page .button-primary {
+  background: var(--ink);
+  box-shadow: 0 4px 12px #16263d0a;
+}
+
+.secondary-page .button-primary:hover {
+  background: var(--accent);
+}
+
+.secondary-page .button-outline {
+  border-color: var(--line);
+  background: #fff;
+}
+
+.secondary-page .button-outline:hover {
+  border-color: #9cb3dd;
+  background: #f1f5fd;
+}
+
+.secondary-page h1,
+.community-page .page-heading h1 {
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(42px, 5vw, 62px);
+  font-weight: 450;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.leaderboard-page .results-section,
+.community-page .community-content {
+  padding-top: 76px;
+  padding-bottom: 80px;
+}
+
+.leaderboard-page .results-section > .section-top {
+  align-items: flex-end;
+  gap: 48px;
+  margin-bottom: 30px;
+}
+
+.leaderboard-page .results-section > .section-top .section-aside {
+  max-width: 400px;
+  padding-bottom: 3px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.leaderboard-page .section-aside .text-link {
+  margin-top: 8px;
+}
+
+.leaderboard-page .leaderboard-actions {
+  margin: 0 0 28px;
+}
+
+.leaderboard-page .benchmark-workbench {
+  border-color: var(--line);
+  border-radius: 12px;
+  box-shadow: var(--surface-shadow);
+}
+
+.leaderboard-page .benchmark-tabs {
+  gap: 5px;
+  padding: 8px;
+  background: #edf2f8;
+}
+
+.leaderboard-page .benchmark-tabs > button {
+  min-height: 48px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-weight: 550;
+}
+
+.leaderboard-page .benchmark-tabs > button[aria-selected="true"] {
+  color: var(--accent);
+  background: #fff;
+  box-shadow: 0 2px 6px #16263d0a;
+}
+
+.leaderboard-page .benchmark-panel {
+  padding: 32px 28px 26px;
+}
+
+.leaderboard-page .benchmark-panel-heading {
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+
+.leaderboard-page .result-eyebrow {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.leaderboard-page .benchmark-panel h3 {
+  margin-top: 9px;
+  color: var(--ink);
+  font-size: clamp(22px, 2.2vw, 27px);
+  font-weight: 550;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+
+.leaderboard-page .result-unit {
+  border-radius: 6px;
+  background: #f8fafc;
+  font-size: 11px;
+}
+
+.leaderboard-page .result-table-header {
+  margin-bottom: 16px;
+}
+
+.leaderboard-page .result-context {
+  color: #344863;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.leaderboard-page .result-scope,
+.leaderboard-page .result-source,
+.leaderboard-page .result-table-footer {
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.leaderboard-page .table-scroll {
+  border-color: var(--line);
+  border-radius: 8px;
+  scrollbar-color: #b0bdd3 #f4f7fa;
+}
+
+.leaderboard-page .benchmark-table {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.leaderboard-page .benchmark-table th,
+.leaderboard-page .benchmark-table td {
+  padding-block: 13px;
+  border-bottom-color: #e8edf4;
+}
+
+.leaderboard-page .benchmark-table thead,
+.leaderboard-page .table-groups > th:first-child {
+  background: #f3f6fa;
+}
+
+.leaderboard-page .table-groups th {
+  color: #455c7b;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.leaderboard-page .benchmark-table thead button {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.leaderboard-page .benchmark-table thead button small {
+  font-size: 10px;
+}
+
+.leaderboard-page .benchmark-table .sorted-column {
+  background: #f0f5ff;
+}
+
+.leaderboard-page .benchmark-table tbody tr:hover > * {
+  background: #eaf1fc;
+}
+
+.leaderboard-page .result-value.best {
+  color: var(--accent);
+  font-weight: 750;
+}
+
+.leaderboard-page .radar-controls {
+  border-radius: 8px;
+  background: #f5f8fc;
+}
+
+.leaderboard-page .radar-context,
+.leaderboard-page .radar-choice legend,
+.leaderboard-page .radar-scale-label,
+.leaderboard-page .radar-detail > label {
+  font-size: 12px;
+}
+
+.leaderboard-page #results .policy-rollouts-section {
+  margin-top: 64px;
+  padding-top: 44px;
+  border-top-color: var(--line);
+}
+
+.leaderboard-page .rollout-heading h3 {
+  font-family: var(--serif);
+  font-size: clamp(30px, 3vw, 38px);
+  font-weight: 450;
+  line-height: 1.2;
+}
+
+.leaderboard-page .rollout-toolbar > label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.leaderboard-page .rollout-toolbar input,
+.leaderboard-page .rollout-toolbar select {
+  border-color: var(--line);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.leaderboard-page .rollout-feature {
+  border-color: var(--line);
+  background: #fff;
+  box-shadow: var(--surface-shadow);
+}
+
+.community-page .page-heading {
+  max-width: none;
+  margin-bottom: 42px;
+}
+
+.community-page .page-heading h1 {
+  margin-bottom: 18px;
+}
+
+.community-page .page-heading p:not(.eyebrow) {
+  max-width: 640px;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.community-page .page-heading .eyebrow {
+  color: var(--accent);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.community-page .evaluation-section {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.45fr);
+  gap: 48px;
+  padding-top: 40px;
+}
+
+.community-page .evaluation-intro {
+  padding-top: 8px;
+}
+
+.community-page .evaluation-scope-label,
+.community-page .community-channel {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.community-page .evaluation-intro h2 {
+  font-size: clamp(30px, 3.2vw, 39px);
+  line-height: 1.18;
+}
+
+.community-page .evaluation-intro > p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.community-page .evaluation-scope {
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid #d9e3f3;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: #edf3fc;
+}
+
+.community-page .evaluation-scope dt {
+  font-size: 11px;
+}
+
+.community-page .evaluation-scope dd,
+.community-page .evaluation-results-link {
+  font-size: 13px;
+}
+
+.community-page #evaluation-form {
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--surface-shadow);
+}
+
+.community-page #evaluation-form legend {
+  margin-bottom: 22px;
+  font-size: 17px;
+  font-weight: 550;
+}
+
+.community-page #evaluation-form legend > span {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #d9e3f3;
+  border-radius: 6px;
+  color: var(--accent);
+  background: #f0f5fd;
+}
+
+.community-page .evaluation-fields {
+  gap: 20px;
+}
+
+.community-page #evaluation-form fieldset + fieldset {
+  margin-top: 30px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.community-page #evaluation-form input,
+.community-page #evaluation-form select,
+.community-page #evaluation-form textarea {
+  border-color: #d3ddea;
+  border-radius: 8px;
+  background: #fbfcfe;
+  transition:
+    border-color 160ms,
+    background-color 160ms;
+}
+
+.community-page #evaluation-form input,
+.community-page #evaluation-form select {
+  min-height: 46px;
+}
+
+.community-page #evaluation-form input:focus-visible,
+.community-page #evaluation-form select:focus-visible,
+.community-page #evaluation-form textarea:focus-visible {
+  border-color: var(--accent);
+  background: #fff;
+  outline: 2px solid #2858c744;
+  outline-offset: 2px;
+}
+
+.community-page .evaluation-draft-note {
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.community-page .wechat-section {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 270px);
+  gap: 56px;
+  margin-top: 56px;
+  padding: 36px 40px;
+  box-shadow: var(--surface-shadow);
+}
+
+.community-page .wechat-intro {
+  max-width: 520px;
+}
+
+.community-page .community-card h2 {
+  font-family: var(--serif);
+  font-size: clamp(29px, 3vw, 36px);
+  font-weight: 450;
+  line-height: 1.2;
+}
+
+.community-page .community-card p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.community-page .wechat-code-link {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.community-page .contacts-section {
+  margin-top: 48px;
+  padding-top: 32px;
+}
+
+.community-page .contacts-section > h2 {
+  font-size: 30px;
+}
+
+.community-page .contact-grid {
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.community-page .contact-grid > .contact-card {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.community-page .contact-grid h3 {
+  margin-bottom: 7px;
+  font-size: 15px;
+}
+
+@media (max-width: 1000px) {
+  .community-page .evaluation-section {
+    gap: 28px;
+  }
+
+  .community-page #evaluation-form {
+    padding: 24px;
+  }
+
+  .community-page .wechat-section {
+    gap: 32px;
+    padding: 28px;
+  }
+
+  .community-page .contact-grid > .contact-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .secondary-page .wrap,
+  .secondary-page .header-inner {
+    width: calc(100% - 36px);
+  }
+
+  .leaderboard-page .results-section,
+  .community-page .community-content {
+    padding-top: 44px;
+    padding-bottom: 52px;
+  }
+
+  .secondary-page h1,
+  .community-page .page-heading h1 {
+    font-size: clamp(37px, 10.4vw, 44px);
+  }
+
+  .leaderboard-page .results-section > .section-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .leaderboard-page .results-section > .section-top .section-aside {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .leaderboard-page .leaderboard-actions {
+    margin-bottom: 24px;
+  }
+
+  .leaderboard-page .benchmark-tabs {
+    padding: 6px;
+  }
+
+  .leaderboard-page .benchmark-tabs > button {
+    padding-inline: 14px;
+    font-size: 12px;
+  }
+
+  .leaderboard-page .benchmark-panel {
+    padding: 24px 14px 20px;
+  }
+
+  .leaderboard-page .benchmark-panel-heading {
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .leaderboard-page .benchmark-panel h3 {
+    font-size: 22px;
+  }
+
+  .leaderboard-page .benchmark-table th,
+  .leaderboard-page .benchmark-table td {
+    padding-block: 12px;
+  }
+
+  .leaderboard-page #results .policy-rollouts-section {
+    margin-top: 44px;
+    padding-top: 32px;
+  }
+
+  .leaderboard-page .rollout-toolbar input,
+  .leaderboard-page .rollout-toolbar select {
+    font-size: 16px;
+  }
+
+  .leaderboard-page .rollout-feature {
+    padding: 14px;
+  }
+
+  .community-page .page-heading {
+    margin-bottom: 28px;
+  }
+
+  .community-page .page-heading p:not(.eyebrow) {
+    font-size: 15px;
+  }
+
+  .community-page .evaluation-section,
+  .community-page .wechat-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .community-page .evaluation-section {
+    padding-top: 28px;
+  }
+
+  .community-page .evaluation-intro {
+    padding-top: 0;
+  }
+
+  .community-page #evaluation-form {
+    padding: 22px 18px;
+  }
+
+  .community-page .evaluation-fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .community-page #evaluation-form input,
+  .community-page #evaluation-form select,
+  .community-page #evaluation-form textarea {
+    font-size: 16px;
+  }
+
+  .community-page .wechat-section {
+    margin-top: 36px;
+    padding: 24px 20px;
+  }
+
+  .community-page .wechat-code-link {
+    max-width: 270px;
+  }
+
+  .community-page .contacts-section {
+    margin-top: 36px;
+    padding-top: 28px;
+  }
+
+  .community-page .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .community-page .contact-grid > .contact-card {
+    display: block;
+    padding: 16px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .community-page #evaluation-form input,
+  .community-page #evaluation-form select,
+  .community-page #evaluation-form textarea {
+    transition: none;
+  }
+}
