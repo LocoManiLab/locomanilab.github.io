@@ -33,7 +33,7 @@ export const policyRolloutsPendingMarkup = `
   <div class="wrap rollout-wrap rollout-release">
     <div class="rollout-heading">
       <h3 id="policy-rollouts-title">Policy rollouts</h3>
-      <p>The full policy rollout library will be released separately.</p>
+      <p>The 7,607 selected policy rollouts are being prepared for release.</p>
     </div>
     <a class="text-link" href="./index.html#tasks">View task demonstrations <span aria-hidden="true">↗</span></a>
   </div>`;
@@ -68,11 +68,13 @@ export function enhancePolicyRollouts() {
   root.innerHTML = `<div class="wrap rollout-wrap">${header}
     <p class="rollout-loading" role="status">The rollout directory loads as you reach this section.</p></div>`;
 
-  function mediaURL(kind, id) {
+  function mediaURL(kind, id, group) {
     const base =
       (kind === "poster"
         ? root.dataset.posterBase || section.dataset.posterBase
-        : root.dataset.mediaBase || section.dataset.mediaBase) ||
+        : policyFor(group)?.videoBase ||
+          root.dataset.mediaBase ||
+          section.dataset.mediaBase) ||
       (kind === "poster" ? "/rollout-posters/" : "/rollout-media/");
     return new URL(
       `${encodeURIComponent(id)}.${kind === "poster" ? "jpg" : "mp4"}`,
@@ -130,7 +132,7 @@ export function enhancePolicyRollouts() {
     const policy = policyFor(group);
     const setting = settingFor(group);
     const counts = trialCounts(group);
-    player.poster = mediaURL("poster", clip.id);
+    player.poster = mediaURL("poster", clip.id, group);
     player.setAttribute(
       "aria-label",
       `${policy?.label || group.policy}: ${task?.title || group.task}, ${outcomeLabel(clip)}`,
@@ -169,7 +171,7 @@ export function enhancePolicyRollouts() {
   function playSelected() {
     if (!selectedClip) return;
     const requestGeneration = ++mediaGeneration;
-    const src = mediaURL("video", selectedClip.id);
+    const src = mediaURL("video", selectedClip.id, selectedGroup);
     if (player.getAttribute("src") !== src) {
       player.src = src;
       player.load();
@@ -183,7 +185,7 @@ export function enhancePolicyRollouts() {
       $("#rollout-player-status").textContent =
         error.name === "NotAllowedError"
           ? "Press play in the player to start this rollout."
-          : "Unable to load this rollout. Check that the media server is running.";
+          : "Unable to load this rollout. Please try again.";
     });
   }
 
@@ -201,7 +203,7 @@ export function enhancePolicyRollouts() {
             const counts = trialCounts(group);
             return `<article class="rollout-card" data-rollout-group="${escape(group.id)}">
             <div class="rollout-card-poster">
-              <img src="${escape(mediaURL("poster", poster.id))}" alt="" width="320" height="240" loading="lazy" decoding="async">
+              <img src="${escape(mediaURL("poster", poster.id, group))}" alt="" width="320" height="240" loading="lazy" decoding="async">
               <span class="rollout-card-scene">${task?.sceneId ? `Scene ${escape(task.sceneId)}` : ""}</span>
             </div>
             <div class="rollout-card-body">
@@ -418,7 +420,7 @@ export function enhancePolicyRollouts() {
       announcePlayback(false);
       $("#rollout-play").hidden = false;
       $("#rollout-player-status").textContent =
-        "Unable to load this rollout. Check that the media server is running.";
+        "Unable to load this rollout. Please try again.";
     });
     if ("IntersectionObserver" in window) {
       playerObserver = new IntersectionObserver(

@@ -1,0 +1,199 @@
+name: Activate completed policy rollouts
+
+on:
+  push:
+    branches: [main]
+    paths: [hosting/migration/activation-request.json]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rollout-activation
+  cancel-in-progress: false
+
+jobs:
+  wait-1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          node scripts/sync-release-proof.mjs --wait-ms 10800000
+
+  wait-2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-1
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-1.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-1.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  wait-3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-2
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-2.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-2.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  wait-4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-3
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-3.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-3.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  wait-5:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-4
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-4.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-4.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  wait-6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-5
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-5.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-5.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  wait-7:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-6
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-6.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-6.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  deploy:
+    needs: [wait-1, wait-2, wait-3, wait-4, wait-5, wait-6, wait-7]
+    if: always() && !cancelled() && (needs.wait-1.outputs.ready == 'true' || needs.wait-2.outputs.ready == 'true' || needs.wait-3.outputs.ready == 'true' || needs.wait-4.outputs.ready == 'true' || needs.wait-5.outputs.ready == 'true' || needs.wait-6.outputs.ready == 'true' || needs.wait-7.outputs.ready == 'true')
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        with:
+          ref: main
+      - name: Require the complete verified proof
+        run: node scripts/sync-release-proof.mjs --required
+      - name: Build static site
+        run: node scripts/build.mjs --main-site
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  not-ready:
+    needs: [wait-1, wait-2, wait-3, wait-4, wait-5, wait-6, wait-7]
+    if: always() && !cancelled() && !(needs.wait-1.outputs.ready == 'true' || needs.wait-2.outputs.ready == 'true' || needs.wait-3.outputs.ready == 'true' || needs.wait-4.outputs.ready == 'true' || needs.wait-5.outputs.ready == 'true' || needs.wait-6.outputs.ready == 'true' || needs.wait-7.outputs.ready == 'true')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report exhausted activation window
+        run: |
+          echo "::error::No complete verified rollout proof became available within the seven waiting windows."
+          exit 1

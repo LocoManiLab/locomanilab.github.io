@@ -20,6 +20,8 @@ jobs:
         uses: actions/checkout@v6
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+      - name: Load completed public rollout proof
+        run: node scripts/sync-release-proof.mjs
       - name: Build static site
         run: node scripts/build.mjs --main-site
       - name: Upload Pages artifact
