@@ -155,9 +155,150 @@ jobs:
             node scripts/sync-release-proof.mjs --wait-ms 10800000
           fi
 
+  wait-8:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-7
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-7.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-7.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  wait-9:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-8
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-8.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-8.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  wait-10:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-9
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-9.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-9.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  wait-11:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-10
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-10.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-10.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  wait-12:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-11
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-11.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-11.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
+  wait-13:
+    runs-on: ubuntu-latest
+    timeout-minutes: 185
+    needs: wait-12
+    outputs:
+      ready: ${{ steps.proof.outputs.ready }}
+    steps:
+      - name: Check out latest Pages source
+        uses: actions/checkout@v6
+        if: needs.wait-12.outputs.ready != 'true'
+        with:
+          ref: main
+      - name: Wait for complete public proof
+        id: proof
+        run: |
+          if [ '${{ needs.wait-12.outputs.ready }}' = 'true' ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/sync-release-proof.mjs --wait-ms 10800000
+          fi
+
   deploy:
-    needs: [wait-1, wait-2, wait-3, wait-4, wait-5, wait-6, wait-7]
-    if: always() && !cancelled() && (needs.wait-1.outputs.ready == 'true' || needs.wait-2.outputs.ready == 'true' || needs.wait-3.outputs.ready == 'true' || needs.wait-4.outputs.ready == 'true' || needs.wait-5.outputs.ready == 'true' || needs.wait-6.outputs.ready == 'true' || needs.wait-7.outputs.ready == 'true')
+    needs:
+      [
+        wait-1,
+        wait-2,
+        wait-3,
+        wait-4,
+        wait-5,
+        wait-6,
+        wait-7,
+        wait-8,
+        wait-9,
+        wait-10,
+        wait-11,
+        wait-12,
+        wait-13,
+      ]
+    if: always() && !cancelled() && (needs.wait-1.outputs.ready == 'true' || needs.wait-2.outputs.ready == 'true' || needs.wait-3.outputs.ready == 'true' || needs.wait-4.outputs.ready == 'true' || needs.wait-5.outputs.ready == 'true' || needs.wait-6.outputs.ready == 'true' || needs.wait-7.outputs.ready == 'true' || needs.wait-8.outputs.ready == 'true' || needs.wait-9.outputs.ready == 'true' || needs.wait-10.outputs.ready == 'true' || needs.wait-11.outputs.ready == 'true' || needs.wait-12.outputs.ready == 'true' || needs.wait-13.outputs.ready == 'true')
     runs-on: ubuntu-latest
     concurrency:
       group: pages
@@ -189,11 +330,26 @@ jobs:
         uses: actions/deploy-pages@v4
 
   not-ready:
-    needs: [wait-1, wait-2, wait-3, wait-4, wait-5, wait-6, wait-7]
-    if: always() && !cancelled() && !(needs.wait-1.outputs.ready == 'true' || needs.wait-2.outputs.ready == 'true' || needs.wait-3.outputs.ready == 'true' || needs.wait-4.outputs.ready == 'true' || needs.wait-5.outputs.ready == 'true' || needs.wait-6.outputs.ready == 'true' || needs.wait-7.outputs.ready == 'true')
+    needs:
+      [
+        wait-1,
+        wait-2,
+        wait-3,
+        wait-4,
+        wait-5,
+        wait-6,
+        wait-7,
+        wait-8,
+        wait-9,
+        wait-10,
+        wait-11,
+        wait-12,
+        wait-13,
+      ]
+    if: always() && !cancelled() && !(needs.wait-1.outputs.ready == 'true' || needs.wait-2.outputs.ready == 'true' || needs.wait-3.outputs.ready == 'true' || needs.wait-4.outputs.ready == 'true' || needs.wait-5.outputs.ready == 'true' || needs.wait-6.outputs.ready == 'true' || needs.wait-7.outputs.ready == 'true' || needs.wait-8.outputs.ready == 'true' || needs.wait-9.outputs.ready == 'true' || needs.wait-10.outputs.ready == 'true' || needs.wait-11.outputs.ready == 'true' || needs.wait-12.outputs.ready == 'true' || needs.wait-13.outputs.ready == 'true')
     runs-on: ubuntu-latest
     steps:
       - name: Report exhausted activation window
         run: |
-          echo "::error::No complete verified rollout proof became available within the seven waiting windows."
+          echo "::error::No complete verified rollout proof is ready. A waiting check failed or all thirteen windows ended; inspect the waiting job logs."
           exit 1
