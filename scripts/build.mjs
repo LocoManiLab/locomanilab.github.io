@@ -30,6 +30,14 @@ const hostingManifestPath = sourcePath(
   "--hosting-manifest",
   "hosting/policy-rollouts-releases.json",
 );
+const rawHostingManifestPath = sourcePath(
+  "--raw-hosting-manifest",
+  "hosting/policy-rollouts-raw.json",
+);
+const rolloutSourceAssetsPath = sourcePath(
+  "--source-assets",
+  "hosting/migration/source-assets.json",
+);
 const rolloutCatalogPath = sourcePath(
   "--rollout-catalog",
   "media/results/policy-rollouts-catalog.json",
@@ -182,6 +190,7 @@ async function verifiedRolloutHosting() {
     posterFiles.add(poster);
   }
   return {
+    provider: "github-releases",
     catalog: {
       ...catalog,
       policies: catalog.policies.map((policy) => ({
@@ -193,10 +202,201 @@ async function verifiedRolloutHosting() {
   };
 }
 
+const rawSourceCommit = "0f2bb6c23d67c23384cea422322184c9353d95cf";
+const rawCatalogSha256 =
+  "cac7043217d1cdb5fce34185e67eec445e7d3f9b94b7a314e26c4448f8fdf6df";
+const rawClipCount = 7607;
+const rawVideoBytes = 4737404922;
+
+async function verifiedRawRolloutHosting() {
+  let manifestBytes;
+  try {
+    manifestBytes = await readFile(rawHostingManifestPath);
+  } catch (error) {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  }
+  const verify = (condition, reason) => {
+    if (!condition)
+      throw new Error(`Invalid policy rollout raw hosting manifest: ${reason}`);
+  };
+  let manifest;
+  try {
+    manifest = JSON.parse(manifestBytes);
+  } catch (cause) {
+    throw new Error(
+      "Invalid policy rollout raw hosting manifest: invalid JSON",
+      {
+        cause,
+      },
+    );
+  }
+  verify(
+    manifest && typeof manifest === "object" && !Array.isArray(manifest),
+    "expected an object",
+  );
+  verify(manifest.version === 1, "unsupported version");
+  verify(manifest.provider === "github-raw", "unsupported provider");
+  verify(
+    manifest.repository === "LocoManiLab/policy-rollouts",
+    "unexpected repository",
+  );
+  verify(manifest.complete === true, "source verification is not complete");
+  verify(
+    manifest.sourceCommit === rawSourceCommit,
+    "source commit is not the approved fixed revision",
+  );
+  verify(
+    manifest.clips === rawClipCount && manifest.totalBytes === rawVideoBytes,
+    "source counts or bytes do not match the approved collection",
+  );
+  verify(
+    manifest.verification?.playback === true &&
+      manifest.verification?.seek === true &&
+      typeof manifest.verification?.verifiedAt === "string" &&
+      Number.isFinite(Date.parse(manifest.verification.verifiedAt)),
+    "playback and seek verification is missing",
+  );
+  verify(
+    manifest.verification?.sourceVerified === true &&
+      typeof manifest.verification?.sourceVerifiedAt === "string" &&
+      Number.isFinite(Date.parse(manifest.verification.sourceVerifiedAt)),
+    "complete source tree and blob verification is missing",
+  );
+  const catalogBytes = await readFile(rolloutCatalogPath);
+  verify(
+    manifest.catalogSha256 === rawCatalogSha256 &&
+      sha256(catalogBytes) === rawCatalogSha256,
+    "catalog has changed since source verification",
+  );
+  const catalog = JSON.parse(catalogBytes);
+  const policies = new Set(catalog.policies.map((policy) => policy.id));
+  const clips = new Map();
+  let catalogVideoBytes = 0;
+  for (const group of catalog.groups) {
+    verify(policies.has(group.policy), "catalog references an unknown policy");
+    for (const clip of group.clips) {
+      verify(
+        /^[a-f0-9]{20}$/.test(clip.id) && !clips.has(clip.id),
+        "catalog contains an invalid or duplicate clip ID",
+      );
+      clips.set(clip.id, { clip, policy: group.policy });
+      catalogVideoBytes += clip.bytes;
+    }
+  }
+  verify(
+    clips.size === rawClipCount &&
+      policies.size === 12 &&
+      catalog.policies.length === 12 &&
+      catalog.stats.clips === rawClipCount &&
+      catalog.stats.policies === policies.size &&
+      catalogVideoBytes === rawVideoBytes,
+    "catalog does not contain the complete approved collection",
+  );
+  const sourceAssets = JSON.parse(await readFile(rolloutSourceAssetsPath));
+  verify(
+    sourceAssets.complete === true &&
+      sourceAssets.catalogSha256 === rawCatalogSha256 &&
+      Array.isArray(sourceAssets.entries) &&
+      sourceAssets.entries.length === rawClipCount,
+    "original source assets are incomplete or stale",
+  );
+  const originals = new Map();
+  for (const original of sourceAssets.entries) {
+    const source = clips.get(original.id);
+    verify(
+      source &&
+        !originals.has(original.id) &&
+        original.video?.path === `rollout-media/${original.id}.mp4` &&
+        original.video.bytes === source.clip.bytes &&
+        /^[a-f0-9]{64}$/.test(original.video.sha256) &&
+        original.poster?.path === `rollout-posters/${original.id}.jpg` &&
+        Number.isSafeInteger(original.poster.bytes) &&
+        original.poster.bytes > 0 &&
+        /^[a-f0-9]{64}$/.test(original.poster.sha256),
+      "original source assets contain an invalid or duplicate clip",
+    );
+    originals.set(original.id, original);
+  }
+  verify(
+    Array.isArray(manifest.entries) && manifest.entries.length === rawClipCount,
+    "verified video entries do not cover the complete catalog",
+  );
+  const posterDirectory = await lstat(posterSource);
+  verify(
+    posterDirectory.isDirectory() && !posterDirectory.isSymbolicLink(),
+    "poster source must be a regular directory",
+  );
+  const seen = new Set();
+  const posterFiles = new Set();
+  let verifiedVideoBytes = 0;
+  for (const entry of manifest.entries) {
+    const source = clips.get(entry.id);
+    const original = originals.get(entry.id);
+    verify(source && !seen.has(entry.id), "unknown or duplicate hosted clip");
+    verify(entry.policy === source.policy, "hosted clip has the wrong policy");
+    verify(
+      entry.video?.path === `originals/${source.policy}/${entry.id}.mp4` &&
+        entry.video.sourceVerified === true &&
+        typeof entry.video.gitBlobSha1 === "string" &&
+        /^[a-f0-9]{40}$/.test(entry.video.gitBlobSha1) &&
+        entry.video.bytes === original.video.bytes &&
+        entry.video.sha256 === original.video.sha256,
+      `source video verification is invalid for ${entry.id}`,
+    );
+    verify(
+      entry.poster?.path === original.poster.path &&
+        entry.poster.bytes === original.poster.bytes &&
+        entry.poster.sha256 === original.poster.sha256,
+      `original poster verification is invalid for ${entry.id}`,
+    );
+    const poster = path.join(posterSource, `${entry.id}.jpg`);
+    const info = await lstat(poster);
+    verify(
+      info.isFile() &&
+        !info.isSymbolicLink() &&
+        info.size === entry.poster.bytes &&
+        sha256(await readFile(poster)) === entry.poster.sha256,
+      `poster is missing or changed for ${entry.id}`,
+    );
+    verifiedVideoBytes += entry.video.bytes;
+    seen.add(entry.id);
+    posterFiles.add(poster);
+  }
+  verify(
+    verifiedVideoBytes === rawVideoBytes,
+    "verified video bytes do not match the approved collection",
+  );
+  return {
+    provider: "github-raw",
+    catalog: {
+      ...catalog,
+      policies: catalog.policies.map((policy) => ({
+        ...policy,
+        videoBase: `https://raw.githubusercontent.com/${manifest.repository}/${rawSourceCommit}/originals/${policy.id}/`,
+      })),
+    },
+    posterFiles,
+  };
+}
+
 // A missing manifest retains the pending release. An invalid present manifest
 // fails before replacing dist; only complete verified uploads enable the UI.
-const hostedRollouts =
-  mainSite || verifyOnly ? await verifiedRolloutHosting() : null;
+let hostedRollouts = null;
+if (mainSite || verifyOnly) {
+  // Candidate verification is isolated so an arriving Releases proof can be
+  // checked independently of the active raw source. Normal builds validate
+  // every present proof and prefer the complete Releases collection.
+  const releaseCandidate =
+    verifyOnly && process.argv.includes("--hosting-manifest");
+  const rawCandidate =
+    verifyOnly && process.argv.includes("--raw-hosting-manifest");
+  if (releaseCandidate && rawCandidate)
+    throw new Error("Choose one rollout hosting proof candidate to verify");
+  const releases = rawCandidate ? null : await verifiedRolloutHosting();
+  const raw = releaseCandidate ? null : await verifiedRawRolloutHosting();
+  hostedRollouts = releases || raw;
+}
 if (verifyOnly) {
   if (!hostedRollouts)
     throw new Error("Policy rollout hosting manifest is missing");
@@ -286,7 +486,7 @@ if (hostedRollouts) {
 console.log(
   mainSite
     ? hostedRollouts
-      ? "Main site built in dist/ — verified policy rollouts stream from GitHub Releases."
+      ? `Main site built in dist/ — verified policy rollouts stream from ${hostedRollouts.provider === "github-releases" ? "GitHub Releases" : "the fixed GitHub source revision"}.`
       : "Main site built in dist/ — policy rollout library pending separate release."
     : "Static site built in dist/ — no browser-side package dependencies.",
 );

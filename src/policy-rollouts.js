@@ -443,6 +443,7 @@ export function enhancePolicyRollouts() {
           "../media/results/policy-rollouts-catalog.json",
           import.meta.url,
         ),
+        { cache: "no-cache" },
       );
       if (!response.ok) throw new Error(`Catalog returned ${response.status}`);
       catalog = await response.json();

@@ -1,6 +1,6 @@
 import { enhanceNavigation } from "./navigation.js?v=20261013-pages";
 import { enhanceBenchmark } from "./benchmark.js?v=20261013-pages";
-import { enhancePolicyRollouts } from "./policy-rollouts.js?v=20261014-releases";
+import { enhancePolicyRollouts } from "./policy-rollouts.js?v=20261015-raw";
 import { enhanceDisclosures, enhanceReading } from "./experience.js";
 
 enhanceNavigation();
