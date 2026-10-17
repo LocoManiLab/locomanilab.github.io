@@ -71,7 +71,9 @@ export function enhancePolicyRollouts() {
   function mediaURL(kind, id, group) {
     const base =
       (kind === "poster"
-        ? root.dataset.posterBase || section.dataset.posterBase
+        ? policyFor(group)?.posterBase ||
+          root.dataset.posterBase ||
+          section.dataset.posterBase
         : policyFor(group)?.videoBase ||
           root.dataset.mediaBase ||
           section.dataset.mediaBase) ||
@@ -447,6 +449,29 @@ export function enhancePolicyRollouts() {
       );
       if (!response.ok) throw new Error(`Catalog returned ${response.status}`);
       catalog = await response.json();
+      // The DM0.5 release is supplemental: keep the verified original catalog
+      // and its fixed media revision intact while adding the new recordings.
+      const supplementalResponse = await fetch(
+        new URL("../media/results/dm05-rollouts-catalog.json", import.meta.url),
+        { cache: "no-cache" },
+      );
+      if (!supplementalResponse.ok)
+        throw new Error(
+          `DM0.5 catalog returned ${supplementalResponse.status}`,
+        );
+      const supplement = await supplementalResponse.json();
+      for (const key of ["policies", "settings", "tasks"]) {
+        const existing = new Set(catalog[key].map((item) => item.id));
+        catalog[key].push(
+          ...supplement[key].filter((item) => !existing.has(item.id)),
+        );
+      }
+      const existingGroups = new Set(catalog.groups.map((group) => group.id));
+      if (supplement.groups.some((group) => existingGroups.has(group.id)))
+        throw new Error(
+          "Supplemental rollout groups overlap the original release",
+        );
+      catalog.groups.push(...supplement.groups);
       // Constrain the browser even if it receives a stale broader catalog.
       catalog.settings = catalog.settings.filter(
         (setting) => setting.split === "seen" && seenSettings.has(setting.id),

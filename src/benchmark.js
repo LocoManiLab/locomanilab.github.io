@@ -1,9 +1,6 @@
-import { resultTables } from "./results-data.js";
-import { enhanceControllerRadar } from "./controller-radar.js?v=20261009-radar";
-import {
-  policyProfiles,
-  policyLogo,
-} from "./stack-data.js?v=20261009-identity";
+import { resultTables } from "./results-data.js?v=20261017-results";
+import { enhanceControllerRadar } from "./controller-radar.js?v=20261017-results";
+import { policyProfiles, policyLogo } from "./stack-data.js?v=20261017-results";
 
 const escape = (value) =>
   String(value).replace(
@@ -20,6 +17,7 @@ const escape = (value) =>
 
 const policies = new Map(policyProfiles.map((policy) => [policy.name, policy]));
 const rolloutPolicyIds = new Map([
+  ["DM0.5", "dm05"],
   ["StarVLA-α", "starvla"],
   ["PRTS", "prts"],
   ["π₀.₅", "pi05"],
@@ -76,7 +74,7 @@ function renderTable(host, key) {
   host.innerHTML = `
     <div class="result-table-header">
       <div><p class="result-context">${escape(data.caption)}</p><p class="result-scope">${escape(data.scope)}</p></div>
-      <a class="result-source" href="${data.source}" target="_blank" rel="noopener">Source table <span aria-hidden="true">↗</span></a>
+      <div class="result-downloads"><a class="result-source" href="${data.source}" download>Summary data <span aria-hidden="true">↓</span></a>${data.perTaskSource ? `<a class="result-source" href="${data.perTaskSource}" download>Per-task data <span aria-hidden="true">↓</span></a>` : ""}</div>
     </div>
     <div class="table-scroll" role="region" aria-label="${escape(data.title)} table, scroll horizontally for all columns" tabindex="0">
       <table class="benchmark-table${key === "sources" ? "" : " policy-ranking-table"}">

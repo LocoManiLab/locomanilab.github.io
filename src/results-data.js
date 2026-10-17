@@ -1,11 +1,13 @@
-// Author-supplied tables, 2026-10-09. Display reported averages without recomputing.
+// Author-supplied tables, 2026-10-17. Display reported averages without recomputing.
 export const resultTables = {
   generalization: {
     title: "Policy generalization",
     caption: "Success rate (%) · SONIC · no domain randomization",
     scope: "234 evaluation tasks · averages weight tasks equally",
     rowLabel: "Policy",
-    source: "./media/results/table-generalization.png",
+    source: "./media/results/paper-20261017/table2_main_results/summary.csv",
+    perTaskSource:
+      "./media/results/paper-20261017/table2_main_results/per_task.csv",
     groups: [
       {
         name: "Seen task",
@@ -15,67 +17,84 @@ export const resultTables = {
       {
         name: "Unseen task",
         labels: ["Atomic", "Compositional", "Average"],
-        counts: [52, 71, 123],
+        counts: [46, 77, 123],
       },
       {
         name: "Unseen scene",
         labels: ["Atomic", "Compositional", "Average"],
         counts: [6, 5, 11],
       },
-      { name: "Overall", labels: ["Average"], counts: [234] },
+      {
+        name: "Overall",
+        labels: ["Average"],
+        counts: [234],
+      },
     ],
     rows: [
-      ["XR-1", [84.3, 72.5, 78.4, 21.7, 27.9, 25.3, 0.0, 18.0, 8.2, 47.2]],
-      ["π₀.₅", [84.9, 48.4, 66.7, 11.2, 14.8, 13.3, 1.7, 24.0, 11.8, 36.0]],
+      ["XR-1", [85.2, 75.1, 80.2, 23.7, 26.1, 25.2, 0.0, 18.0, 8.2, 47.9]],
+      ["DM0.5", [90.1, 65.7, 77.9, 16.3, 16.8, 16.6, 0.0, 34.0, 15.5, 42.7]],
+      ["π₀.₅", [84.4, 51.0, 67.7, 12.6, 13.6, 13.3, 1.7, 24.0, 11.8, 36.5]],
       [
         "GR00T N1.7",
-        [81.4, 50.2, 65.8, 10.0, 12.7, 11.5, 1.7, 12.0, 6.4, 34.5],
+        [82.3, 54.1, 68.2, 11.3, 11.7, 11.5, 1.7, 12.0, 6.4, 35.5],
       ],
       [
         "InternVLA-A1.5",
-        [68.8, 38.0, 53.4, 10.2, 10.7, 10.5, 0.0, 18.0, 8.2, 28.7],
+        [70.7, 36.7, 53.7, 11.5, 9.9, 10.5, 0.0, 18.0, 8.2, 28.8],
       ],
-      ["SmolVLA", [74.6, 14.9, 44.8, 6.0, 2.7, 4.1, 1.7, 6.0, 3.6, 21.4]],
-      ["PRTS", [36.6, 32.5, 34.6, 2.9, 7.7, 5.7, 1.7, 4.0, 2.7, 17.9]],
-      ["Ψ₀", [54.4, 8.9, 31.7, 6.9, 2.0, 4.1, 0.0, 0.0, 0.0, 15.7]],
-      ["StarVLA-α", [48.3, 12.8, 30.6, 6.0, 1.3, 3.3, 5.0, 0.0, 2.7, 14.9]],
-      ["X-VLA", [54.1, 5.4, 29.8, 4.6, 3.1, 3.7, 1.7, 4.0, 2.7, 14.8]],
+      ["SmolVLA", [73.9, 17.4, 45.7, 6.7, 2.5, 4.1, 1.7, 6.0, 3.6, 21.8]],
+      ["Fast-WAM", [52.8, 28.6, 40.7, 7.8, 4.2, 5.5, 1.7, 4.0, 2.7, 20.4]],
+      ["PRTS", [37.0, 34.3, 35.7, 3.5, 7.0, 5.7, 1.7, 4.0, 2.7, 18.4]],
+      ["Ψ₀", [55.1, 9.0, 32.1, 8.0, 1.7, 4.1, 0.0, 0.0, 0.0, 15.8]],
+      ["X-VLA", [54.5, 6.0, 30.3, 5.2, 2.9, 3.7, 1.7, 4.0, 2.7, 15.0]],
+      ["StarVLA-α", [47.6, 13.5, 30.6, 6.7, 1.2, 3.3, 5.0, 0.0, 2.7, 14.9]],
       [
         "Diffusion Policy",
-        [27.1, 1.8, 14.5, 3.7, 0.0, 1.5, 0.0, 0.0, 0.0, 7.0],
+        [27.6, 1.8, 14.7, 4.1, 0.0, 1.5, 0.0, 0.0, 0.0, 7.1],
       ],
-      ["Fast-WAM", [10.1, 1.1, 5.6, 4.2, 1.1, 2.4, 1.7, 0.0, 0.9, 3.7]],
-      ["DreamZero", [9.3, 0.2, 4.8, 4.4, 0.8, 2.4, 0.0, 0.0, 0.0, 3.3]],
+      ["DreamZero", [9.3, 0.2, 4.8, 5.0, 0.8, 2.4, 0.0, 0.0, 0.0, 3.3]],
     ],
   },
   robustness: {
     title: "Robustness to domain randomization",
     caption: "Seen-task success rate (%) · three randomization levels",
-    scope: "100 seen tasks · 51 atomic + 49 compositional per level",
+    scope: "100 seen tasks · 50 atomic + 50 compositional per level",
     rowLabel: "Policy",
-    source: "./media/results/table-robustness.png",
+    source:
+      "./media/results/paper-20261017/table3_domain_randomization/summary.csv",
+    perTaskSource:
+      "./media/results/paper-20261017/table3_domain_randomization/per_task.csv",
     groups: [
-      { name: "Atomic", labels: ["Low", "Mid", "High"], counts: [51, 51, 51] },
+      {
+        name: "Atomic",
+        labels: ["Low", "Mid", "High"],
+        counts: [50, 50, 50],
+      },
       {
         name: "Compositional",
         labels: ["Low", "Mid", "High"],
-        counts: [49, 49, 49],
+        counts: [50, 50, 50],
       },
-      { name: "Overall", labels: ["Average"], counts: [100] },
+      {
+        name: "Overall",
+        labels: ["Average"],
+        counts: [100],
+      },
     ],
     rows: [
-      ["XR-1", [88.8, 83.8, 68.4, 68.6, 56.0, 39.2, 67.7]],
-      ["π₀.₅", [81.6, 80.2, 77.5, 42.9, 38.6, 31.1, 59.1]],
-      ["GR00T N1.7", [79.5, 74.3, 58.4, 43.1, 37.8, 19.2, 52.4]],
-      ["InternVLA-A1.5", [66.0, 63.7, 60.1, 30.8, 26.9, 22.2, 45.3]],
-      ["SmolVLA", [67.6, 66.8, 57.5, 13.9, 11.4, 7.8, 38.0]],
-      ["Ψ₀", [46.4, 42.0, 37.4, 8.2, 5.8, 4.8, 24.4]],
-      ["StarVLA-α", [40.4, 32.0, 25.0, 11.0, 8.7, 2.9, 20.2]],
-      ["PRTS", [35.1, 35.9, 31.4, 3.7, 3.4, 2.4, 18.3]],
-      ["X-VLA", [38.3, 32.1, 27.5, 2.1, 2.4, 1.7, 17.7]],
-      ["Diffusion Policy", [9.6, 10.2, 9.4, 0.2, 0.1, 0.0, 5.0]],
-      ["DreamZero", [8.2, 8.0, 11.3, 0.2, 0.0, 0.3, 4.8]],
-      ["Fast-WAM", [3.8, 3.1, 2.9, 1.6, 1.7, 2.2, 2.6]],
+      ["DM0.5", [89.3, 86.9, 83.0, 60.8, 58.5, 42.5, 70.2]],
+      ["XR-1", [90.0, 85.4, 70.5, 71.1, 57.7, 39.5, 69.0]],
+      ["π₀.₅", [83.5, 81.7, 78.8, 44.1, 40.7, 34.1, 60.5]],
+      ["GR00T N1.7", [80.1, 75.3, 59.8, 47.6, 41.6, 20.7, 54.2]],
+      ["InternVLA-A1.5", [67.5, 65.4, 61.6, 31.2, 27.2, 22.1, 45.8]],
+      ["SmolVLA", [68.5, 66.9, 58.0, 15.7, 13.5, 8.9, 38.6]],
+      ["Ψ₀", [48.3, 43.4, 38.4, 8.1, 6.0, 4.8, 24.8]],
+      ["Fast-WAM", [36.7, 28.8, 28.0, 19.4, 15.2, 15.2, 23.9]],
+      ["StarVLA-α", [41.2, 32.7, 25.4, 11.0, 9.0, 3.0, 20.4]],
+      ["PRTS", [30.9, 36.3, 32.3, 4.1, 3.6, 2.4, 18.3]],
+      ["X-VLA", [39.4, 32.7, 27.9, 2.1, 2.4, 1.9, 17.7]],
+      ["Diffusion Policy", [10.0, 10.5, 9.7, 0.2, 0.1, 0.0, 5.1]],
+      ["DreamZero", [8.4, 8.2, 11.5, 0.2, 0.0, 0.2, 4.8]],
     ],
   },
   sources: {
@@ -83,7 +102,9 @@ export const resultTables = {
     caption: "Success rate (%) · SONIC · equal task weighting",
     scope: "20 tasks · 16 atomic + 4 compositional · two policies",
     rowLabel: "Training data",
-    source: "./media/results/table-data-sources.png",
+    source: "./media/results/paper-20261017/table4_data_source/summary.csv",
+    perTaskSource:
+      "./media/results/paper-20261017/table4_data_source/per_task.csv",
     bestOnly: true,
     groups: [
       {
@@ -103,7 +124,7 @@ export const resultTables = {
       ["Data augmentation only", [66.9, 23.8, 58.2, 63.7, 3.8, 51.7]],
       ["Teleop. + synthesis", [73.8, 63.7, 71.8, 88.1, 73.8, 85.2]],
       ["Teleop. + augmentation", [85.9, 68.8, 82.5, 90.3, 63.7, 85.0]],
-      ["All three", [46.9, 43.8, 46.2, 90.3, 63.7, 85.0]],
+      ["All three", [46.9, 43.8, 46.2, 89.7, 63.7, 84.5]],
     ],
   },
 };

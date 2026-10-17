@@ -19,7 +19,7 @@ import {
   controllerProfiles,
   organizationLogos,
   policyLogo,
-} from "./stack-data.js?v=20261009-identity";
+} from "./stack-data.js?v=20261017-results";
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -31,6 +31,9 @@ const resultAnchors = new Set([
   "#benchmark-robustness",
   "#benchmark-sources",
   "#benchmark-controllers",
+  "#benchmark-scaling",
+  "#data-scaling-study",
+  "#open-space-study",
   "#controller-radar",
   "#policy-rollouts",
 ]);

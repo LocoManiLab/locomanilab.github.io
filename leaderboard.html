@@ -14,9 +14,18 @@
       property="og:description"
       content="A unified testbed for data, policies, controllers, and deployment in humanoid loco-manipulation."
     />
-    <meta property="og:image" content="https://locomanilab.github.io/media/social-preview.jpg" />
-    <meta property="og:url" content="https://locomanilab.github.io/leaderboard.html" />
-    <link rel="canonical" href="https://locomanilab.github.io/leaderboard.html" />
+    <meta
+      property="og:image"
+      content="https://locomanilab.github.io/media/social-preview.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://locomanilab.github.io/leaderboard.html"
+    />
+    <link
+      rel="canonical"
+      href="https://locomanilab.github.io/leaderboard.html"
+    />
     <meta
       property="og:image:alt"
       content="LocoManiLab — a humanoid research testbed with furnished simulated worlds."
@@ -65,6 +74,10 @@
     <link
       rel="stylesheet"
       href="./src/research-secondary.css?v=20261013-design-final"
+    />
+    <link
+      rel="stylesheet"
+      href="./src/transfer-studies.css?v=20261017-results"
     />
   </head>
   <body class="secondary-page leaderboard-page" id="top">
@@ -126,7 +139,7 @@
           </div>
           <p class="section-aside">
             Policy success rates, domain randomization, data-source ablations,
-            and controller measurements.
+            controller measurements, and motion-generation studies.
             <a class="text-link" href="#policy-rollouts"
               >Policy rollouts <span aria-hidden="true">↗</span></a
             >
@@ -139,7 +152,17 @@
             href="./community.html#evaluation"
             >Request a simulation run</a
           >
+          <a class="text-link" href="#benchmark-scaling"
+            >Data scaling <span aria-hidden="true">↗</span></a
+          >
+          <a class="text-link" href="#open-space-study"
+            >Open-space transfer <span aria-hidden="true">↗</span></a
+          >
         </div>
+        <p class="result-scope">
+          13 policies · Results updated October 17, 2026 · Scores from the
+          revised manuscript
+        </p>
         <div class="benchmark-workbench" id="benchmark-results">
           <div
             class="benchmark-tabs"
@@ -185,6 +208,16 @@
               tabindex="-1"
             >
               Controllers
+            </button>
+            <button
+              id="result-tab-scaling"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="benchmark-scaling"
+              tabindex="-1"
+            >
+              Data scaling
             </button>
           </div>
           <div
@@ -279,15 +312,40 @@
               </p></noscript
             >
           </div>
+          <div
+            id="benchmark-scaling"
+            class="benchmark-panel"
+            role="tabpanel"
+            aria-labelledby="result-tab-scaling"
+            tabindex="0"
+            hidden
+          >
+            <div class="benchmark-panel-heading">
+              <div>
+                <span class="result-eyebrow"
+                  >05 / DEMONSTRATION SCALE · FIG. 4</span
+                >
+                <h3>How demonstration scale changes policy success</h3>
+              </div>
+              <span class="result-unit">Success rate (%)</span>
+            </div>
+            <div id="data-scaling-study"></div>
+          </div>
           <noscript
             ><p>
               Enable JavaScript to sort the result tables.
-              <a href="./media/results/table-generalization.png"
-                >View the original policy table</a
+              <a
+                href="./media/results/paper-20261017/table2_main_results/summary.csv"
+                >Download the reported policy scores</a
               >.
             </p></noscript
           >
         </div>
+        <section
+          id="open-space-study"
+          class="transfer-study"
+          aria-labelledby="open-space-title"
+        ></section>
         <section
           id="policy-rollouts"
           class="policy-rollouts-section"
@@ -341,6 +399,9 @@
       hidden
       ><span aria-hidden="true">↑</span></a
     >
-    <script type="module" src="./src/leaderboard.js?v=20261015-raw"></script>
+    <script
+      type="module"
+      src="./src/leaderboard.js?v=20261017-results"
+    ></script>
   </body>
 </html>

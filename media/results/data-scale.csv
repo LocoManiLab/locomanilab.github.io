@@ -1,0 +1,77 @@
+panel,model,task_class,demos_per_task,successes,episodes,success_rate
+SONIC,GR00T N1.7,Atomic,10,71,100,71.0
+SONIC,GR00T N1.7,Atomic,30,57,100,57.0
+SONIC,GR00T N1.7,Atomic,50,70,100,70.0
+SONIC,GR00T N1.7,Atomic,100,54,100,54.0
+SONIC,GR00T N1.7,Compositional,10,6,100,6.0
+SONIC,GR00T N1.7,Compositional,30,20,100,20.0
+SONIC,GR00T N1.7,Compositional,50,19,100,19.0
+SONIC,GR00T N1.7,Compositional,100,18,100,18.0
+SONIC,π0.5,Atomic,10,0,100,0.0
+SONIC,π0.5,Atomic,30,53,100,53.0
+SONIC,π0.5,Atomic,50,44,100,44.0
+SONIC,π0.5,Atomic,100,78,100,78.0
+SONIC,π0.5,Compositional,10,0,100,0.0
+SONIC,π0.5,Compositional,30,15,100,15.0
+SONIC,π0.5,Compositional,50,32,100,32.0
+SONIC,π0.5,Compositional,100,29,100,29.0
+AMO,GR00T N1.7,Atomic,10,48,100,48.0
+AMO,GR00T N1.7,Atomic,30,63,100,63.0
+AMO,GR00T N1.7,Atomic,50,78,100,78.0
+AMO,GR00T N1.7,Compositional,10,20,100,20.0
+AMO,GR00T N1.7,Compositional,30,32,100,32.0
+AMO,GR00T N1.7,Compositional,50,29,100,29.0
+AMO,π0.5,Atomic,10,7,100,7.0
+AMO,π0.5,Atomic,30,27,100,27.0
+AMO,π0.5,Atomic,50,68,100,68.0
+AMO,π0.5,Compositional,10,1,100,1.0
+AMO,π0.5,Compositional,30,0,100,0.0
+AMO,π0.5,Compositional,50,14,100,14.0
+HEFT,GR00T N1.7,Atomic,10,0,100,0.0
+HEFT,GR00T N1.7,Atomic,30,37,100,37.0
+HEFT,GR00T N1.7,Atomic,50,51,100,51.0
+HEFT,GR00T N1.7,Compositional,10,0,100,0.0
+HEFT,GR00T N1.7,Compositional,30,12,100,12.0
+HEFT,GR00T N1.7,Compositional,50,11,100,11.0
+HEFT,π0.5,Atomic,10,0,100,0.0
+HEFT,π0.5,Atomic,30,2,100,2.0
+HEFT,π0.5,Atomic,50,10,100,10.0
+HEFT,π0.5,Compositional,10,1,100,1.0
+HEFT,π0.5,Compositional,30,2,100,2.0
+HEFT,π0.5,Compositional,50,5,100,5.0
+ALMI,GR00T N1.7,Atomic,10,30,100,30.0
+ALMI,GR00T N1.7,Atomic,30,54,100,54.0
+ALMI,GR00T N1.7,Atomic,50,79,100,79.0
+ALMI,GR00T N1.7,Compositional,10,16,100,16.0
+ALMI,GR00T N1.7,Compositional,30,34,100,34.0
+ALMI,GR00T N1.7,Compositional,50,35,100,35.0
+ALMI,π0.5,Atomic,10,10,100,10.0
+ALMI,π0.5,Atomic,30,4,100,4.0
+ALMI,π0.5,Atomic,50,27,100,27.0
+ALMI,π0.5,Compositional,10,0,100,0.0
+ALMI,π0.5,Compositional,30,15,100,15.0
+ALMI,π0.5,Compositional,50,32,100,32.0
+ScaleBFM,GR00T N1.7,Atomic,10,16,100,16.0
+ScaleBFM,GR00T N1.7,Atomic,30,70,100,70.0
+ScaleBFM,GR00T N1.7,Atomic,50,71,100,71.0
+ScaleBFM,GR00T N1.7,Compositional,10,0,100,0.0
+ScaleBFM,GR00T N1.7,Compositional,30,35,100,35.0
+ScaleBFM,GR00T N1.7,Compositional,50,36,100,36.0
+ScaleBFM,π0.5,Atomic,10,2,100,2.0
+ScaleBFM,π0.5,Atomic,30,1,100,1.0
+ScaleBFM,π0.5,Atomic,50,28,100,28.0
+ScaleBFM,π0.5,Compositional,10,0,100,0.0
+ScaleBFM,π0.5,Compositional,30,0,100,0.0
+ScaleBFM,π0.5,Compositional,50,8,100,8.0
+Controller mean,GR00T N1.7,Atomic,10,165,500,33.0
+Controller mean,GR00T N1.7,Atomic,30,281,500,56.2
+Controller mean,GR00T N1.7,Atomic,50,349,500,69.8
+Controller mean,GR00T N1.7,Compositional,10,42,500,8.4
+Controller mean,GR00T N1.7,Compositional,30,133,500,26.6
+Controller mean,GR00T N1.7,Compositional,50,130,500,26.0
+Controller mean,π0.5,Atomic,10,19,500,3.8
+Controller mean,π0.5,Atomic,30,87,500,17.4
+Controller mean,π0.5,Atomic,50,177,500,35.4
+Controller mean,π0.5,Compositional,10,2,500,0.4
+Controller mean,π0.5,Compositional,30,32,500,6.4
+Controller mean,π0.5,Compositional,50,91,500,18.2

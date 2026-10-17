@@ -80,6 +80,20 @@
 
 .leaderboard-page .leaderboard-actions {
   margin: 0 0 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.leaderboard-page .results-section > .result-scope {
+  margin: -10px 0 22px;
+}
+
+.result-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
 }
 
 .leaderboard-page .benchmark-workbench {

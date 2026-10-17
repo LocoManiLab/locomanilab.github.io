@@ -1,0 +1,7 @@
+metric,min,max,scale,larger_radius_is
+sr,5.0,79.0,linear,higher
+power_W,13.795,317.734,log,lower
+slip_cm_s,0.093,20.911,log,lower
+action_rad_s,3.048,45.392,log,lower
+fall_pct,0.0,22.785,linear,lower
+relative_time,0.873,1.859,log,lower

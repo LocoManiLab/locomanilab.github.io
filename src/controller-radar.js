@@ -1,8 +1,8 @@
-import { controllerMeasurements } from "./controller-metrics.js?v=20261009-radar";
+import { controllerMeasurements } from "./controller-metrics.js?v=20261017-results";
 import {
   controllerProfiles,
   organizationLogos,
-} from "./stack-data.js?v=20261009-identity";
+} from "./stack-data.js?v=20261017-results";
 
 const controllers = [
   { id: "sonic", name: "SONIC", color: "#315ee7", dash: "" },
@@ -28,100 +28,55 @@ export const radarMetrics = [
     label: "Output power",
     short: "Power",
     unit: "W",
-    decimals: 0,
+    decimals: 3,
     direction: "↓",
-    reference: 50,
-    successOnly: true,
-    description:
-      "Mean mechanical output power across all 43 motors, over successful episodes.",
+    description: "Mechanical output power reported in Fig. 3. Lower is better.",
   },
   {
     key: "slip",
     label: "Foot slip",
     short: "Foot slip",
     unit: "cm/s",
-    decimals: 1,
+    decimals: 3,
     direction: "↓",
-    reference: 2,
-    description: "Horizontal foot speed while in contact, over all episodes.",
+    description: "Foot-slip speed reported in Fig. 3. Lower is better.",
   },
   {
     key: "actionRate",
     label: "Action rate",
     short: "Action rate",
     unit: "rad/s",
-    decimals: 1,
+    decimals: 3,
     direction: "↓",
-    reference: 10,
     description:
-      "Change in the 29 body-joint position targets per second, over all episodes.",
+      "Rate of change in body-joint position targets reported in Fig. 3. Lower is better.",
   },
   {
     key: "fall",
     label: "Fall rate",
     short: "Falls",
     unit: "%",
-    decimals: 1,
+    decimals: 3,
     direction: "↓",
-    description:
-      "Episodes with a pelvis drop greater than 0.3 m, as a percentage of all episodes.",
+    description: "Fall percentage reported in Fig. 3. Lower is better.",
   },
   {
     key: "relativeTime",
     label: "Relative time",
     short: "Rel. time",
     unit: "×",
-    decimals: 2,
+    decimals: 3,
     direction: "↓",
-    reference: 1,
-    successOnly: true,
     description:
-      "Time to success relative to the same task’s median across controllers of the same model.",
+      "Relative completion time reported in Fig. 3. Lower is better.",
   },
 ];
 
-const tableMetrics = [
-  radarMetrics[0],
-  radarMetrics[1],
-  {
-    key: "energy",
-    label: "Output energy",
-    unit: "kJ",
-    decimals: 2,
-    successOnly: true,
-  },
-  {
-    key: "legShare",
-    label: "Leg share",
-    unit: "%",
-    decimals: 0,
-    successOnly: true,
-  },
-  radarMetrics[2],
-  radarMetrics[3],
-  radarMetrics[4],
-  {
-    key: "time",
-    label: "Time to success",
-    unit: "s",
-    decimals: 1,
-    successOnly: true,
-  },
-  radarMetrics[5],
-];
-
-// Display coordinates only: fixed across filters, never a reported score.
-export function radarRadius(metric, value) {
-  if (value === null) return null;
-  if (metric.key === "success") return value / 100;
-  if (metric.key === "fall") return 1 - value / 100;
-  return metric.reference / (metric.reference + value);
-}
+const tableMetrics = radarMetrics;
 
 function number(row, metric) {
   const value = row[metric.key];
-  if (value === null) return "—";
-  return `${value.toFixed(metric.decimals)}${row.flagged.includes(metric.key) ? "†" : ""}`;
+  return value === null ? "—" : value.toFixed(metric.decimals);
 }
 
 function point(index, radius) {
@@ -170,9 +125,7 @@ export function enhanceControllerRadar() {
         <button type="button" data-radar-task="atomic" aria-pressed="true">Atomic</button>
         <button type="button" data-radar-task="composite" aria-pressed="false">Compositional</button>
       </div></fieldset>
-      <label class="radar-scale-label" for="radar-scale">Demonstrations / task
-        <select id="radar-scale"><option value="10">10 demonstrations</option><option value="30">30 demonstrations</option><option value="50" selected>50 demonstrations</option><option value="100">100 · SONIC only</option><option value="pooled">All scales pooled</option></select>
-      </label>
+      <span class="radar-scale-label">Fig. 3 · 50 demonstrations / task</span>
     </div>
     <div class="radar-context"><p id="radar-scope"></p><span>Outward = better · fixed scales</span></div>
     <div class="radar-legend" role="group" aria-label="Visible controllers">
@@ -181,7 +134,7 @@ export function enhanceControllerRadar() {
     </div>
     <div class="radar-comparison">
       <figure class="radar-plot"><div class="radar-canvas"><svg viewBox="0 0 520 425" role="img" aria-labelledby="radar-title radar-description"></svg><div class="radar-tooltip" hidden></div><p class="radar-empty" hidden>Select a controller above to compare.</p></div>
-        <figcaption>Point to an axis or a marker to inspect its value.<br><span>◇ / †: fewer than 20 successful episodes.</span></figcaption>
+        <figcaption>Point to an axis or a marker to inspect its reported value.</figcaption>
       </figure>
       <div class="radar-detail">
         <label for="radar-metric">Inspect a metric</label>
@@ -191,15 +144,15 @@ export function enhanceControllerRadar() {
         <div class="radar-values"></div>
       </div>
     </div>
-    <p class="radar-sampling-note">Power and relative time use successful episodes; success, slip, action rate and falls use all episodes.</p>
+    <p class="radar-sampling-note">Current Fig. 3 profiles · 50 demonstrations per task · 100 evaluation episodes per controller. Raw values and chart radii are supplied with the manuscript.</p>
     <details class="radar-raw"><summary>Raw measurements <span aria-hidden="true">+</span></summary>
       <div class="radar-table-scroll" role="region" aria-label="Controller measurements, scroll horizontally for all metrics" tabindex="0"><table class="radar-data-table"><caption class="sr-only">Reported controller measurements for the current policy, task type and data scale.</caption><thead><tr><th scope="col">Controller</th>${tableMetrics.map((metric) => `<th scope="col">${metric.label}<small>${metric.unit}</small></th>`).join("")}<th scope="col">Successful<small>episodes</small></th></tr></thead><tbody></tbody></table></div>
     </details>
     <details class="radar-method"><summary>How to read this chart <span aria-hidden="true">+</span></summary>
       <div><p>The chart compares controllers within one policy, task type and data setting. Values in the metric panel and table are the reported measurements, not normalized scores.</p>
-      <p>Success uses SR / 100; falls use 1 − fall / 100. The other axes use reference / (reference + value): 50 W for power, 2 cm/s for slip, 10 rad/s for action rate and 1× for relative time. These fixed display scales are shared by every selection. The chart does not compute an overall ranking.</p>
-      <p>A diamond / dagger marks a success-only measurement with fewer than 20 successes. No success means a missing value and a gap in the line. At 100 demonstrations, only SONIC has data. Pooled rows are the supplied Table 2 aggregates: 400 episodes for SONIC and 300 for each other controller, not averages of the displayed checkpoint rows.</p>
-      <p>Output power counts positive and negative mechanical work across 43 motors, without electrical losses. Two π₀.₅ / ALMI numerical divergences are counted in success and fall rates, but excluded from slip and action rate. Successful-only metrics can reflect different solved task mixes across controllers.</p></div>
+      <p>The chart plots the supplied Fig. 3 radii directly, with the same fixed axes across all policy and task selections. Success and falls use linear scales; power, foot slip, action rate and relative time use logarithmic scales. Outward means higher success or lower cost. The chart does not compute an overall ranking.</p>
+      <p>Axis ranges: success 5–79%; power 13.795–317.734 W; foot slip 0.093–20.911 cm/s; action rate 3.048–45.392 rad/s; falls 0–22.785%; relative time 0.873–1.859×. <a href="./media/results/paper-20261017/fig3_controller_radar/axis_ranges.csv" download>Download axis ranges ↓</a>.</p>
+      <p>Each profile uses 50 demonstrations per task and reports 100 evaluation episodes. The table and metric panel show the original measurements in their stated units; normalized radii only determine chart geometry. <a href="./media/results/paper-20261017/fig3_controller_radar/profiles.csv" download>Download Fig. 3 profiles ↓</a>.</p></div>
     </details>
     <p class="sr-only radar-status" role="status" aria-live="polite"></p>`;
 
@@ -236,9 +189,8 @@ export function enhanceControllerRadar() {
     const metric = radarMetrics.find((item) => item.key === key);
     host.querySelector(".radar-metric-description").textContent =
       metric.description;
-    host.querySelector(".radar-population").textContent = metric.successOnly
-      ? "Successful episodes only"
-      : "All evaluation episodes";
+    host.querySelector(".radar-population").textContent =
+      "Reported Fig. 3 measurement · 100 evaluation episodes";
     host.querySelector(".radar-values").innerHTML = visible
       .map((controller) => {
         const row = rows.find((item) => item.controller === controller.name);
@@ -297,9 +249,7 @@ export function enhanceControllerRadar() {
     const policy = state.model === "groot" ? "GR00T" : "π₀.₅";
     const tasks = state.task === "atomic" ? "Atomic" : "Compositional";
     const scale =
-      state.scale === "pooled"
-        ? "all scales pooled · 400 episodes for SONIC, 300 for others"
-        : `${state.scale} demonstrations / task · 100 episodes${state.scale === "100" ? " · SONIC only" : " / controller"}`;
+      "50 demonstrations / task · 100 episodes / controller · Fig. 3";
     host.querySelector("#radar-scope").textContent =
       `${policy} · ${tasks} · ${scale}`;
     const grids = [0.25, 0.5, 0.75, 1]
@@ -319,24 +269,19 @@ export function enhanceControllerRadar() {
     const series = visible
       .map((controller) => {
         const row = rows.find((item) => item.controller === controller.name);
-        const values = radarMetrics.map((metric) =>
-          radarRadius(metric, row[metric.key]),
-        );
+        const values = radarMetrics.map((metric) => row.radii[metric.key]);
         const markers = radarMetrics
           .map((metric, i) => {
             if (values[i] === null) return "";
             const [x, y] = point(i, values[i]);
-            const small = row.flagged.includes(metric.key);
-            const shape = small
-              ? `<path class="radar-marker" d="M${x},${y - 5}l5,5 -5,5 -5,-5Z"/>`
-              : `<circle class="radar-marker" cx="${x}" cy="${y}" r="3.8"/>`;
-            return `<g class="radar-point" data-metric="${metric.key}" data-controller="${controller.id}"><title>${controller.name} · ${metric.label}: ${number(row, metric)} ${metric.unit}${small ? `; ${row.nSuccess} successful episodes` : ""}</title><circle class="radar-hit" cx="${x}" cy="${y}" r="12"/>${shape}</g>`;
+            const shape = `<circle class="radar-marker" cx="${x}" cy="${y}" r="3.8"/>`;
+            return `<g class="radar-point" data-metric="${metric.key}" data-controller="${controller.id}"><title>${controller.name} · ${metric.label}: ${number(row, metric)} ${metric.unit}</title><circle class="radar-hit" cx="${x}" cy="${y}" r="12"/>${shape}</g>`;
           })
           .join("");
         return `<g class="radar-series" data-controller="${controller.id}" style="--series-color:${controller.color}"><path class="radar-area" d="${pathFor(values)}" fill="${values.some((value) => value === null) ? "none" : controller.color}"/><path class="radar-line" d="${pathFor(values)}" stroke-dasharray="${controller.dash}"/>${markers}</g>`;
       })
       .join("");
-    svg.innerHTML = `<title id="radar-title">Controller comparison: ${policy}, ${tasks}, ${state.scale === "pooled" ? "pooled data" : `${state.scale} demonstrations per task`}</title><desc id="radar-description">${visible.map((item) => item.name).join(", ") || "No controllers selected"}. Six axes: success, power, slip, action rate, falls and relative time. Outward is better. Exact reported values are available in the metric panel and raw measurements table.</desc><g class="radar-grid">${grids}${axes}</g>${series}`;
+    svg.innerHTML = `<title id="radar-title">Controller comparison: ${policy}, ${tasks}, 50 demonstrations per task, Fig. 3</title><desc id="radar-description">${visible.map((item) => item.name).join(", ") || "No controllers selected"}. Six axes: success, power, slip, action rate, falls and relative time. Outward is better. Exact reported values are available in the metric panel and raw measurements table.</desc><g class="radar-grid">${grids}${axes}</g>${series}`;
     host.querySelector(".radar-empty").hidden = visible.length > 0;
     host.querySelector(".radar-data-table tbody").innerHTML = rows
       .map(
@@ -372,10 +317,6 @@ export function enhanceControllerRadar() {
     else if (event.target.closest(".radar-value-row"))
       highlight(event.target.closest(".radar-value-row").dataset.controller);
   });
-  host.querySelector("#radar-scale").addEventListener("change", (event) => {
-    state.scale = event.target.value;
-    update(true);
-  });
   metricSelect.addEventListener("change", () => {
     tooltip.hidden = true;
     inspect(metricSelect.value);
@@ -393,7 +334,7 @@ export function enhanceControllerRadar() {
       const row = rows.find((item) => item.controller === controller.name);
       inspect(metric.key);
       highlight(id);
-      tooltip.textContent = `${controller.name} · ${number(row, metric)} ${metric.unit}${row.flagged.includes(metric.key) ? ` · n = ${row.nSuccess}` : ""}`;
+      tooltip.textContent = `${controller.name} · ${number(row, metric)} ${metric.unit}`;
       tooltip.hidden = false;
       const canvas = host
         .querySelector(".radar-canvas")

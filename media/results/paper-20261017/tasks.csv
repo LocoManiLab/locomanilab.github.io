@@ -1,0 +1,235 @@
+task_id,catalog_id,scene_category,task_class,split,scene_id,instruction,episodes_per_model
+IThorKitchenAppleIntoBox_scene13,K-A01,Kitchen,Atomic,Seen task,13,put the apple into the box,20
+IThorKitchenAppleOnPlate_scene13,K-A02,Kitchen,Atomic,Unseen task,13,put the apple on the plate on the table,10
+IThorKitchenApproachFridge_scene13,K-A03,Kitchen,Atomic,Seen task,13,walk over to the fridge and stand next to it,20
+IThorKitchenBendAndPutAppleOnPlate_scene13,K-A04,Kitchen,Atomic,Seen task,13,bend down and put the apple on the plate on the low table,20
+IThorKitchenBowlToSink_scene13,K-A05,Kitchen,Atomic,Unseen task,13,pick up the bowl beside the sink and put it into the sink,10
+IThorKitchenBreadOnPlate_scene13,K-A06,Kitchen,Atomic,Seen task,13,put the bread on the plate on the table,20
+IThorKitchenCheeseOnPlate_scene13,K-A07,Kitchen,Atomic,Unseen task,13,put the cheese on the plate on the table,10
+IThorKitchenCloseCabinet_scene13,K-A08,Kitchen,Atomic,Seen task,13,close the cabinet door in front of you,20
+IThorKitchenCloseDrawer_scene13,K-A09,Kitchen,Atomic,Seen task,13,close the drawer in front of you,20
+IThorKitchenCloseFridge_scene13,K-A10,Kitchen,Atomic,Seen task,13,close the fridge door in front of you,20
+IThorKitchenCloseOven_scene13,K-A11,Kitchen,Atomic,Unseen task,13,close the oven door in front of you,10
+IThorKitchenCupIntoBox_scene13,K-A12,Kitchen,Atomic,Unseen task,13,put the cup into the box,10
+IThorKitchenCupStack_scene13,K-A13,Kitchen,Atomic,Unseen task,13,stack the two cups on the table,10
+IThorKitchenCupToSink_scene13,K-A14,Kitchen,Atomic,Seen task,13,pick up the cup beside the sink and put it into the sink,20
+IThorKitchenLiftEggplant_scene13,K-A15,Kitchen,Atomic,Unseen task,13,lift the eggplant from the table by 0.3 meters,10
+IThorKitchenLiftPlate_scene13,K-A16,Kitchen,Atomic,Unseen task,13,lift the plate from the table by 0.3 meters,10
+IThorKitchenLiftSaltShaker_scene13,K-A17,Kitchen,Atomic,Unseen task,13,lift the salt shaker from the table by 0.3 meters,10
+IThorKitchenMugOnPlate_scene13,K-A18,Kitchen,Atomic,Unseen task,13,put the mug on the plate on the table,10
+IThorKitchenOpenCabinet_scene13,K-A19,Kitchen,Atomic,Seen task,13,open the cabinet door in front of you,20
+IThorKitchenOpenDrawer_scene13,K-A20,Kitchen,Atomic,Seen task,13,open the drawer in front of you,20
+IThorKitchenOpenFridge_scene13,K-A21,Kitchen,Atomic,Seen task,13,open the fridge door in front of you,20
+IThorKitchenOpenOven_scene13,K-A22,Kitchen,Atomic,Unseen task,13,open the oven door in front of you,10
+IThorKitchenPanTableToStove_scene13,K-A23,Kitchen,Atomic,Unseen task,13,pick up the frying pan from the table beside the stove and place it on the stove,10
+IThorKitchenStandCannedDrinkUpright_scene13,K-A24,Kitchen,Atomic,Unseen task,13,stand the canned drink that is lying on its side upright on the table,10
+IThorKitchenStatueIntoBox_scene13,K-A25,Kitchen,Atomic,Unseen task,13,put the statue into the box,10
+IThorKitchenAppleBananaPlateSwap_scene13,K-C01,Kitchen,Compositional,Seen task,13,"pick the apple from the plate, put the apple on the table, and put the banana on the plate",20
+IThorKitchenAppleCabinetPnP_scene13,K-C02,Kitchen,Compositional,Seen task,13,"take the apple from the table, put it inside the open cabinet, then close the cabinet",20
+IThorKitchenApproachCabinetAndClose_scene13,K-C03,Kitchen,Compositional,Unseen task,13,walk to the cabinet and close it,10
+IThorKitchenApproachCabinetAndOpenClose_scene13,K-C04,Kitchen,Compositional,Seen task,13,"walk to the cabinet, open its door, then close the same door",20
+IThorKitchenApproachCabinetAndOpen_scene13,K-C05,Kitchen,Compositional,Unseen task,13,walk to the cabinet and open it,10
+IThorKitchenApproachDrawerAndClose_scene13,K-C06,Kitchen,Compositional,Unseen task,13,walk to the drawer and close it,10
+IThorKitchenApproachDrawerAndOpenClose_scene13,K-C07,Kitchen,Compositional,Unseen task,13,"walk to the drawer, open it, then close the same drawer",10
+IThorKitchenApproachDrawerAndOpen_scene13,K-C08,Kitchen,Compositional,Unseen task,13,walk to the drawer and open it,10
+IThorKitchenApproachOpenFridge_scene13,K-C09,Kitchen,Compositional,Seen task,13,walk to the fridge from far away and open the fridge door,20
+IThorKitchenApproachOpenOven_scene13,K-C10,Kitchen,Compositional,Unseen task,13,walk to the oven from far away and open the oven door,10
+IThorKitchenApproachSinkAndPutBowl_scene13,K-C11,Kitchen,Compositional,Seen task,13,walk to the sink and put the bowl into the sink,20
+IThorKitchenApproachSinkAndPutCup_scene13,K-C12,Kitchen,Compositional,Unseen task,13,walk to the sink and put the cup into the sink,10
+IThorKitchenApproachStoveAndPutPan_scene13,K-C13,Kitchen,Compositional,Unseen task,13,walk to the stove and put the pan on the stove,10
+IThorKitchenApproachTableAndLiftApple_scene13,K-C14,Kitchen,Compositional,Seen task,13,"walk to the table, then lift the apple",20
+IThorKitchenApproachTableAndLiftBowl_scene13,K-C15,Kitchen,Compositional,Unseen task,13,"walk to the table, then lift the bowl",10
+IThorKitchenApproachTableAndLiftSaltShaker_scene13,K-C16,Kitchen,Compositional,Unseen task,13,"walk to the table, then lift the salt shaker",10
+IThorKitchenApproachTableAndPutAppleOnPlate_scene13,K-C17,Kitchen,Compositional,Unseen task,13,"walk to the table, then put the apple on the plate",10
+IThorKitchenApproachTableAndPutBreadOnPlate_scene13,K-C18,Kitchen,Compositional,Unseen task,13,"walk to the table, then put the bread on the plate",10
+IThorKitchenApproachTableAndPutCheeseOnPlate_scene13,K-C19,Kitchen,Compositional,Unseen task,13,"walk to the table, then put the cheese on the plate",10
+IThorKitchenApproachTableAndPutMugOnPlate_scene13,K-C20,Kitchen,Compositional,Unseen task,13,"walk to the table, then put the mug on the plate",10
+IThorKitchenApproachTableAndStandCannedDrinkUpright_scene13,K-C21,Kitchen,Compositional,Unseen task,13,walk to the table and stand the canned drink upright,10
+IThorKitchenBananaBasketToTable_scene13,K-C22,Kitchen,Compositional,Unseen task,13,"pick up the handled basket with the banana in it, carry it to the closest desk, and put the basket down while keeping the banana inside",10
+IThorKitchenCloseThenOpenLowMicrowave_scene13,K-C23,Kitchen,Compositional,Seen task,13,"crouch down, close the microwave on the low table, then open its door",20
+IThorKitchenCoffeeDrinkToTrash_scene13,K-C24,Kitchen,Compositional,Unseen task,13,pick up the coffee drink and throw it into the trash can,10
+IThorKitchenDrawerPnP_scene13,K-C25,Kitchen,Compositional,Seen task,13,"open the drawer in front of you, put the apple inside, then close the drawer",20
+IThorKitchenFridgeThenDishwasher_scene13,K-C26,Kitchen,Compositional,Unseen task,13,"walk to the fridge, then walk to the dishwasher",10
+IThorKitchenFridgeThenOven_scene13,K-C27,Kitchen,Compositional,Unseen task,13,"walk to the fridge, then walk to the oven",10
+IThorKitchenOpenCloseLowMicrowave_scene13,K-C28,Kitchen,Compositional,Unseen task,13,"crouch down, open the microwave on the low table, and close its door",10
+IThorKitchenOpenDrawerAndTurnAppleToTrash_scene13,K-C29,Kitchen,Compositional,Seen task,13,"open the drawer, take out the apple, turn around in place, and drop the apple into the trash can behind you",20
+IThorKitchenOpenDrawerTakeApple_scene13,K-C30,Kitchen,Compositional,Unseen task,13,"open the drawer, take out the apple, and place it on the table",10
+IThorKitchenOvenThenFridge_scene13,K-C31,Kitchen,Compositional,Unseen task,13,"walk to the oven, then walk to the fridge",10
+IThorKitchenPackProduceIntoBox_scene13,K-C32,Kitchen,Compositional,Unseen task,13,put the apple and banana into the box,10
+IThorKitchenPickAppleAndTurnToTrash_scene13,K-C33,Kitchen,Compositional,Unseen task,13,"pick up the apple from the table, turn around in place, and drop the apple into the trash can behind you",10
+IThorLivingRoomApproachSofa_scene209,L-A01,Living room,Atomic,Seen task,209,walk over to the sofa and stand next to it,20
+IThorLivingRoomBookIntoBasket_scene209,L-A02,Living room,Atomic,Seen task,209,pick up the book and place it in the basket,20
+IThorLivingRoomCandleToBasket_scene209,L-A03,Living room,Atomic,Seen task,209,pick up the candle and place it in the basket,20
+IThorLivingRoomCloseBoxFlap_scene209,L-A04,Living room,Atomic,Seen task,209,close the box flap,20
+IThorLivingRoomCloseDrawer_scene209,L-A05,Living room,Atomic,Seen task,209,close the drawer in front of you,20
+IThorLivingRoomCloseLaptop_scene209,L-A06,Living room,Atomic,Seen task,209,close the laptop lid in front of you,20
+IThorLivingRoomLiftCupAmongObjects_scene209,L-A07,Living room,Atomic,Unseen task,209,lift the cup from the table with five objects,10
+IThorLivingRoomLiftDumbbell_scene209,L-A08,Living room,Atomic,Unseen task,209,lift the dumbbell from the edge of the table,10
+IThorLivingRoomLiftStatue_scene209,L-A09,Living room,Atomic,Unseen task,209,lift the statue from the edge of the table,10
+IThorLivingRoomLiftWateringCan_scene209,L-A10,Living room,Atomic,Unseen task,209,lift the watering can from the edge of the table,10
+IThorLivingRoomOpenBoxFlap_scene209,L-A11,Living room,Atomic,Seen task,209,open the box flap,20
+IThorLivingRoomOpenDrawer_scene209,L-A12,Living room,Atomic,Seen task,209,open the drawer in front of you,20
+IThorLivingRoomOpenLaptop_scene209,L-A13,Living room,Atomic,Seen task,209,open the laptop lid in front of you,20
+IThorLivingRoomPourBlockFromBasket_scene209,L-A14,Living room,Atomic,Unseen task,209,pick up the basket and tilt it to pour the block out,10
+IThorLivingRoomPourIceFromCup_scene209,L-A15,Living room,Atomic,Unseen task,209,pick up the cup and pour its ice cube out onto the surface,10
+IThorLivingRoomPushBasketball_scene209,L-A16,Living room,Atomic,Unseen task,209,push the basketball across the table,10
+IThorLivingRoomPushBlockToTargetRegion_scene209,L-A17,Living room,Atomic,Unseen task,209,push the small block into the target region,10
+IThorLivingRoomRemoteToBasket_scene209,L-A18,Living room,Atomic,Unseen task,209,pick up the remote control and place it in the basket,10
+IThorLivingRoomStackBookOnBook_scene209,L-A19,Living room,Atomic,Unseen task,209,stack one book on top of the other book,10
+IThorLivingRoomTissueBoxToBasket_scene209,L-A20,Living room,Atomic,Unseen task,209,pick up the tissue box and place it in the basket,10
+IThorLivingRoomApproachTableAndLiftDumbbell_scene207,L-C01,Living room,Compositional,Seen task,207,"walk to the table, then lift the dumbbell by 30 cm",20
+IThorLivingRoomApproachTableAndLiftWateringCan_scene207,L-C02,Living room,Compositional,Unseen task,207,"walk to the table, then lift the watering can by 30 cm",10
+IThorLivingRoomApproachTableAndPutBookInBasket_scene207,L-C03,Living room,Compositional,Seen task,207,"walk to the table, then put the book into the basket on the table",20
+IThorLivingRoomApproachTableAndPutCandleInBasket_scene207,L-C04,Living room,Compositional,Unseen task,207,"walk to the table, then put the candle into the basket on the table",10
+IThorLivingRoomApproachTableAndPutRemoteInBasket_scene207,L-C05,Living room,Compositional,Seen task,207,"walk to the table, then put the remote control into the basket on the table",20
+IThorLivingRoomApproachTableAndPutTissueBoxInBasket_scene207,L-C06,Living room,Compositional,Unseen task,207,"walk to the table, then put the tissue box into the basket on the table",10
+IThorLivingRoomApproachTableAndLiftStatue_scene209,L-C07,Living room,Compositional,Seen task,209,"walk to the table, then lift the statue by 30 cm",20
+IThorLivingRoomBasketToSofa_scene209,L-C08,Living room,Compositional,Unseen task,209,pick up the basket and place it on the sofa,10
+IThorLivingRoomCoffeeDrinkToBin_scene209,L-C09,Living room,Compositional,Unseen task,209,"pick up the coffee drink, approach the bin, and throw it into the bin",10
+IThorLivingRoomDumbbellToSofa_scene209,L-C10,Living room,Compositional,Seen task,209,pick up the dumbbell and place it on the sofa,20
+IThorLivingRoomLowDrawerPnP_scene209,L-C11,Living room,Compositional,Seen task,209,"pick up the apple from the top of the dresser, open its lower-left drawer, put the apple inside, and close the drawer",20
+IThorLivingRoomPackCandleStatueIntoBasket_scene209,L-C12,Living room,Compositional,Seen task,209,put the candle and statue into the basket,20
+IThorLivingRoomRemoteToBin_scene209,L-C13,Living room,Compositional,Unseen task,209,pick up the remote and put it into the bin beside you,10
+IThorLivingRoomStatueToSofa_scene209,L-C14,Living room,Compositional,Unseen task,209,pick up the statue and place it on the sofa,10
+IThorLivingRoomWalkAndCloseDrawer_scene209,L-C15,Living room,Compositional,Seen task,209,walk to the drawer and close it,20
+IThorLivingRoomWalkAndCloseLowDrawer_scene209,L-C16,Living room,Compositional,Unseen task,209,"walk to the lower-left drawer of the dresser, then crouch down and close it",10
+IThorLivingRoomWalkAndOpenCloseDrawer_scene209,L-C17,Living room,Compositional,Seen task,209,"walk to the drawer, open it to at least 80%, then close it to at most 20%",20
+IThorLivingRoomWalkAndOpenDrawer_scene209,L-C18,Living room,Compositional,Unseen task,209,walk to the drawer and open it,10
+IThorLivingRoomWalkAndOpenLowDrawer_scene209,L-C19,Living room,Compositional,Seen task,209,"walk to the lower-left drawer of the dresser, then crouch down and open it",20
+IThorLivingRoomWalkToTableAndPutCanInBasket_scene209,L-C20,Living room,Compositional,Seen task,209,"walk to the table, then put the can into the basket",20
+IThorBedroomCloseHamperLid_scene306,B-A01,Bedroom,Atomic,Unseen scene,306,close the laundry hamper lid,10
+IThorBedroomOpenHamperLid_scene306,B-A02,Bedroom,Atomic,Unseen scene,306,open the laundry hamper lid,10
+IThorBedroomCloseSafeDoor_scene323,B-A03,Bedroom,Atomic,Unseen scene,323,close the safe door,10
+IThorBedroomOpenSafeDoor_scene323,B-A04,Bedroom,Atomic,Unseen scene,323,open the safe door,10
+IThorBedroomApproachBed_scene329,B-A05,Bedroom,Atomic,Seen task,329,walk to the bed,20
+IThorBedroomBoxedFoodIntoBasket_scene329,B-A06,Bedroom,Atomic,Seen task,329,put the boxed food in the basket,20
+IThorBedroomCanIntoBasket_scene329,B-A07,Bedroom,Atomic,Seen task,329,put the can in the basket,20
+IThorBedroomCloseBoxFlap_scene329,B-A08,Bedroom,Atomic,Seen task,329,close the outer flap of the floor box,20
+IThorBedroomCloseDrawer_scene329,B-A09,Bedroom,Atomic,Seen task,329,close the opposite bedside drawer,20
+IThorBedroomCloseLaptop_scene329,B-A10,Bedroom,Atomic,Seen task,329,close the laptop lid,20
+IThorBedroomCloseTopDrawer_scene329,B-A11,Bedroom,Atomic,Unseen task,329,close the top bedside drawer,10
+IThorBedroomLiftBasketFromFloor_scene329,B-A12,Bedroom,Atomic,Seen task,329,pick up the basket from the low bedroom stool,20
+IThorBedroomLiftBasket_scene329,B-A13,Bedroom,Atomic,Unseen task,329,pick up the basket and lift it,10
+IThorBedroomMugIntoBasket_scene329,B-A14,Bedroom,Atomic,Unseen task,329,put the mug in the basket,10
+IThorBedroomOpenBoxFlap_scene329,B-A15,Bedroom,Atomic,Seen task,329,open the outer flap of the floor box,20
+IThorBedroomOpenDrawer_scene329,B-A16,Bedroom,Atomic,Seen task,329,open the opposite bedside drawer,20
+IThorBedroomOpenLaptop_scene329,B-A17,Bedroom,Atomic,Seen task,329,open the laptop lid,20
+IThorBedroomOpenTopDrawer_scene329,B-A18,Bedroom,Atomic,Unseen task,329,open the top bedside drawer,10
+IThorBedroomApproachStorageAndCloseSafeDoor_scene302,B-C01,Bedroom,Compositional,Unseen task,302,walk to the safe and close its door,10
+IThorBedroomApproachStorageAndOpenSafeDoor_scene302,B-C02,Bedroom,Compositional,Seen task,302,walk to the safe and open its door,20
+IThorBedroomApproachStorageAndCloseHamperLidThenApproachDesk_scene306,B-C03,Bedroom,Compositional,Seen task,306,"approach the laundry hamper, close its lid, then walk over to the desk, keeping the lid closed",20
+IThorBedroomApproachStorageAndCloseHamperLid_scene306,B-C04,Bedroom,Compositional,Unseen task,306,walk to the laundry hamper and close its lid,10
+IThorBedroomApproachStorageAndOpenHamperLid_scene306,B-C05,Bedroom,Compositional,Unseen task,306,walk to the laundry hamper and open its lid,10
+IThorBedroomOpenThenCloseHamperLid_scene306,B-C06,Bedroom,Compositional,Seen task,306,"open the laundry hamper lid, then close it",20
+IThorBedroomApproachStorageAndCloseDrawer_scene323,B-C07,Bedroom,Compositional,Unseen scene,323,walk to the dresser and close its drawer,10
+IThorBedroomApproachStorageAndOpenDrawer_scene323,B-C08,Bedroom,Compositional,Unseen scene,323,walk to the dresser and open its drawer,10
+IThorBedroomOpenThenCloseSafeDoor_scene323,B-C09,Bedroom,Compositional,Unseen scene,323,"open the safe door, then close it",10
+IThorBedroomApproachDeskAndCloseLaptopThenApproachBed_scene329,B-C10,Bedroom,Compositional,Unseen task,329,"approach the desk, close the laptop, then approach the bed",10
+IThorBedroomApproachDeskAndCloseLaptop_scene329,B-C11,Bedroom,Compositional,Seen task,329,walk to the desk and close the laptop,20
+IThorBedroomApproachDeskAndLiftBasket_scene329,B-C12,Bedroom,Compositional,Unseen task,329,walk to the desk and lift the basket,10
+IThorBedroomApproachDeskAndOpenLaptop_scene329,B-C13,Bedroom,Compositional,Unseen task,329,walk to the desk and open the laptop,10
+IThorBedroomApproachDeskAndPutBoxedFoodInBasket_scene329,B-C14,Bedroom,Compositional,Unseen task,329,walk to the desk and put the boxed food in the basket,10
+IThorBedroomApproachDeskAndPutCanInBasket_scene329,B-C15,Bedroom,Compositional,Seen task,329,walk to the desk and put the can in the basket,20
+IThorBedroomApproachDeskAndPutCanThenBoxedFoodInBasket_scene329,B-C16,Bedroom,Compositional,Seen task,329,"Approach the desk, put the can in the basket, then put the boxed food in the same basket.",20
+IThorBedroomApproachDeskAndPutMugInBasketThenCloseLaptop_scene329,B-C17,Bedroom,Compositional,Seen task,329,"Approach the desk, put the mug in the basket, then close the laptop.",20
+IThorBedroomApproachDeskAndPutMugInBasket_scene329,B-C18,Bedroom,Compositional,Unseen task,329,walk to the desk and put the mug in the basket,10
+IThorBedroomApproachStorageAndCloseBoxFlap_scene329,B-C19,Bedroom,Compositional,Seen task,329,walk to the cardboard box on the floor and close its flap,20
+IThorBedroomApproachStorageAndOpenBoxFlap_scene329,B-C20,Bedroom,Compositional,Unseen task,329,walk to the cardboard box on the floor and open its flap,10
+IThorBedroomCloseLaptopThenApproachBedAndCloseTopDrawer_scene329,B-C21,Bedroom,Compositional,Seen task,329,"close the laptop, approach the bed, then close the top bedside drawer",20
+IThorBedroomOpenThenCloseBoxFlap_scene329,B-C22,Bedroom,Compositional,Seen task,329,"open the box flap, then close it",20
+IThorBedroomOpenThenCloseDrawer_scene329,B-C23,Bedroom,Compositional,Unseen task,329,"open the drawer, then close it",10
+IThorBedroomOpenThenCloseLaptop_scene329,B-C24,Bedroom,Compositional,Unseen task,329,"open the laptop, then close it",10
+IThorBedroomOpenThenCloseTopDrawer_scene329,B-C25,Bedroom,Compositional,Unseen task,329,"open the top drawer, then close it",10
+IThorBedroomPutCanThenBoxedFoodThenMugInBasket_scene329,B-C26,Bedroom,Compositional,Unseen task,329,"Put the can, then the boxed food, then the mug in the same larger basket. Stable stacking is allowed.",10
+IThorBathroomApproachToilet_scene401,R-A01,Bathroom,Atomic,Seen task,401,walk over to the toilet and stand next to it,20
+IThorBathroomCloseToiletLid_scene401,R-A02,Bathroom,Atomic,Unseen task,401,close the toilet lid,10
+IThorBathroomLiftCandleFromFloor_scene401,R-A03,Bathroom,Atomic,Unseen task,401,pick up the bathroom candle from the low floor-standing stool,10
+IThorBathroomLiftScrubBrush_scene401,R-A04,Bathroom,Atomic,Seen task,401,pick up the scrub brush,20
+IThorBathroomLiftSoapBottle_scene401,R-A05,Bathroom,Atomic,Seen task,401,pick up the soap bottle,20
+IThorBathroomLiftSprayBottle_scene401,R-A06,Bathroom,Atomic,Unseen task,401,pick up the spray bottle,10
+IThorBathroomLiftToiletPaperRoll_scene401,R-A07,Bathroom,Atomic,Unseen task,401,pick up the toilet paper roll,10
+IThorBathroomOpenToiletLid_scene401,R-A08,Bathroom,Atomic,Unseen task,401,open the toilet lid,10
+IThorBathroomPutSpongeInBathtub_scene401,R-A09,Bathroom,Atomic,Seen task,401,pick up the sponge from the bathtub rim and put it in the bathtub,20
+IThorBathroomSoapToLowerShelf_scene401,R-A10,Bathroom,Atomic,Unseen task,401,pick up the bar of soap from the second-lowest wall shelf and place it on the lowest shelf,10
+IThorBathroomStandSoapBottleUpright_scene401,R-A11,Bathroom,Atomic,Unseen task,401,stand the soap bottle upright,10
+IThorBathroomToiletPaperRollIntoBin_scene401,R-A12,Bathroom,Atomic,Unseen task,401,put the toilet paper roll into the bin,10
+IThorBathroomCloseShowerDoor_scene407,R-A13,Bathroom,Atomic,Seen task,407,close the shower door,20
+IThorBathroomOpenShowerDoor_scene407,R-A14,Bathroom,Atomic,Seen task,407,open the shower door,20
+IThorBathroomCloseLowerDrawer_scene415,R-A15,Bathroom,Atomic,Seen task,415,crouch slightly and close the lower bathroom drawer,20
+IThorBathroomOpenLowerDrawer_scene415,R-A16,Bathroom,Atomic,Seen task,415,crouch slightly and open the lower bathroom drawer,20
+IThorBathroomCloseCabinetDoor_scene418,R-A17,Bathroom,Atomic,Seen task,418,close the bathroom cabinet door,20
+IThorBathroomOpenCabinetDoor_scene418,R-A18,Bathroom,Atomic,Seen task,418,open the bathroom cabinet door halfway,20
+IThorBathroomApproachGarbageCanAndPutToiletPaperRollIntoBin_scene401,R-C01,Bathroom,Compositional,Seen task,401,"walk to the garbage can, then put the toilet-paper roll inside",20
+IThorBathroomApproachToiletAndCloseToiletLid_scene401,R-C02,Bathroom,Compositional,Unseen task,401,"walk to the toilet, then close the toilet lid",10
+IThorBathroomApproachToiletAndOpenToiletLidThenLiftScrubBrush_scene401,R-C03,Bathroom,Compositional,Seen task,401,"walk to the toilet, open its lid, then pick up the scrub brush",20
+IThorBathroomApproachToiletAndOpenToiletLid_scene401,R-C04,Bathroom,Compositional,Unseen task,401,"walk to the toilet, then open the toilet lid",10
+IThorBathroomCloseThenOpenToiletLid_scene401,R-C05,Bathroom,Compositional,Unseen task,401,"close the toilet lid, then open it",10
+IThorBathroomCloseToiletLidThenApproachSinkAndLiftSoapBottle_scene401,R-C06,Bathroom,Compositional,Seen task,401,"close the toilet lid, walk to the sink, then pick up the soap bottle",20
+IThorBathroomNavigateToBathingAreaAndLiftSoapBottle_scene401,R-C07,Bathroom,Compositional,Unseen task,401,"walk to the bathtub, then pick up the soap bottle",10
+IThorBathroomNavigateToBathingAreaAndPutSpongeInBathtub_scene401,R-C08,Bathroom,Compositional,Unseen task,401,"walk to the bathtub, then put the sponge in it",10
+IThorBathroomNavigateToBathingAreaAndStandSoapBottleUprightThenPutSpongeInBathtub_scene401,R-C09,Bathroom,Compositional,Seen task,401,"walk to the bathtub, stand the soap bottle upright, then put the sponge in the bathtub",20
+IThorBathroomNavigateToBathingAreaAndStandSoapBottleUpright_scene401,R-C10,Bathroom,Compositional,Unseen task,401,"walk to the bathtub, then stand the soap bottle upright",10
+IThorBathroomOpenThenCloseToiletLid_scene401,R-C11,Bathroom,Compositional,Unseen task,401,"open the toilet lid, then close it",10
+IThorBathroomSoapToLowerShelfThenStandSoapBottleUprightAndPutSpongeInBathtub_scene401,R-C12,Bathroom,Compositional,Seen task,401,"put the bar of soap on the lowest shelf, stand the soap bottle upright, then put the sponge in the bathtub",20
+IThorBathroomNavigateToBathingAreaAndLiftScrubBrush_scene407,R-C13,Bathroom,Compositional,Unseen scene,407,"walk to the bathing area, then pick up the scrub brush",10
+IThorBathroomCloseThenOpenLowerDrawer_scene415,R-C14,Bathroom,Compositional,Seen task,415,"close the lower bathroom drawer, then open it",20
+IThorBathroomOpenThenCloseLowerDrawer_scene415,R-C15,Bathroom,Compositional,Unseen task,415,"open the lower bathroom drawer, then close it",10
+IThorBathroomOpenUpperDrawerThenLiftToiletPaperRollAndCloseUpperDrawer_scene415,R-C16,Bathroom,Compositional,Seen task,415,"open the second drawer from the top, take out the toilet-paper roll, then close that drawer",20
+IThorBathroomApproachSinkAndCloseCabinetDoor_scene418,R-C17,Bathroom,Compositional,Seen task,418,"walk to the sink cabinet, then close its door",20
+IThorBathroomApproachSinkAndLiftScrubBrush_scene418,R-C18,Bathroom,Compositional,Seen task,418,"walk to the sink, then pick up the scrub brush",20
+IThorBathroomApproachSinkAndLiftSoapBottle_scene418,R-C19,Bathroom,Compositional,Unseen task,418,"walk to the sink, then pick up the soap bottle",10
+IThorBathroomApproachSinkAndLiftSprayBottle_scene418,R-C20,Bathroom,Compositional,Unseen task,418,"walk to the sink, then pick up the spray bottle",10
+IThorBathroomApproachSinkAndLiftToiletPaperRoll_scene418,R-C21,Bathroom,Compositional,Unseen task,418,"walk to the sink, then pick up the toilet-paper roll",10
+IThorBathroomApproachSinkAndOpenCabinetDoor_scene418,R-C22,Bathroom,Compositional,Seen task,418,"walk to the sink cabinet, then open its door halfway",20
+IThorBathroomCloseThenOpenCabinetDoor_scene418,R-C23,Bathroom,Compositional,Unseen task,418,"close the bathroom cabinet door, then open it",10
+IThorBathroomCloseThenOpenShowerDoor_scene418,R-C24,Bathroom,Compositional,Unseen task,418,"close the shower door, then open it",10
+IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,R-C25,Bathroom,Compositional,Unseen task,418,"walk to the shower, then close the shower door",10
+IThorBathroomNavigateToBathingAreaAndOpenShowerDoor_scene418,R-C26,Bathroom,Compositional,Unseen task,418,"walk to the shower, then open the shower door",10
+IThorBathroomOpenThenCloseCabinetDoor_scene418,R-C27,Bathroom,Compositional,Unseen task,418,"open the bathroom cabinet door, then close it",10
+IThorBathroomOpenThenCloseShowerDoor_scene418,R-C28,Bathroom,Compositional,Unseen task,418,"open the shower door, then close it",10
+HolodeckApproachDesk_scene117,O-A01,Office,Atomic,Seen task,117,walk to the desk,20
+HolodeckCloseDrawer_scene117,O-A02,Office,Atomic,Seen task,117,Close the dresser drawer closest to the desk.,20
+HolodeckCloseLaptop_scene117,O-A03,Office,Atomic,Seen task,117,close the laptop lid in front of you,20
+HolodeckCloseMugLid_scene117,O-A04,Office,Atomic,Seen task,117,put the lid back on the jar,20
+HolodeckIceCubeInGlass_scene117,O-A05,Office,Atomic,Unseen task,117,pick up an ice cube and put it into the glass cup,10
+HolodeckMoveCupToCenter_scene117,O-A06,Office,Atomic,Seen task,117,move the glass cup to the center,20
+HolodeckMoveCupToCorner_scene117,O-A07,Office,Atomic,Seen task,117,move the glass cup to either robot-side desk corner,20
+HolodeckOpenDrawer_scene117,O-A08,Office,Atomic,Seen task,117,Open the dresser drawer closest to the desk.,20
+HolodeckOpenLaptop_scene117,O-A09,Office,Atomic,Seen task,117,open the laptop lid in front of you,20
+HolodeckOpenMugLid_scene117,O-A10,Office,Atomic,Seen task,117,remove the lid from the jar,20
+HolodeckPickBookFromDresser_scene117,O-A11,Office,Atomic,Seen task,117,pick up the closed book from the side table by the window and lift it,20
+HolodeckPickBoxFromFloor_scene117,O-A12,Office,Atomic,Unseen task,117,pick up the cardboard box from the floor and lift it,10
+HolodeckPickCupFromDesk_scene117,O-A13,Office,Atomic,Unseen task,117,pick up the glass cup from the desk and lift it,10
+HolodeckPlaceBoxOnDesk_scene117,O-A14,Office,Atomic,Unseen task,117,pick up the cardboard box and place it on the desk,10
+HolodeckPlaceBoxOnFloor_scene117,O-A15,Office,Atomic,Unseen task,117,pick up the cardboard box from the desk and place it on the floor,10
+HolodeckPlaceCupOnPlacemat_scene117,O-A16,Office,Atomic,Unseen task,117,pick up the cup from the desk and place it on the placemat,10
+HolodeckPullChairFromDesk_scene117,O-A17,Office,Atomic,Unseen task,117,pull the black office chair out from under the desk,10
+HolodeckSugarCubeInJar_scene117,O-A18,Office,Atomic,Unseen task,117,pick up the enlarged sugar cube and place it inside the open jar,10
+HolodeckTakeTissueBoxFromOpenDrawer_scene117,O-A19,Office,Atomic,Unseen task,117,Take the tissue box out of the open drawer.,10
+HolodeckThrowBottleIntoTrashCan_scene117,O-A20,Office,Compositional,Seen task,117,pick up the empty bottle from the side table and throw it into the trash can,20
+HolodeckInsertFolderIntoShelf_scene1018,O-A21,Office,Atomic,Unseen scene,1018,pick up the folder from the nearest desk and insert it into the middle shelf of the file rack,10
+HolodeckRemoveFolderFromShelf_scene1018,O-A22,Office,Atomic,Unseen scene,1018,grasp the folder from the middle shelf and move it completely outside the shelf space,10
+HolodeckApproachDeskIceCubePlaceCupThenPickCup_scene117,O-C01,Office,Compositional,Seen task,117,"walk to the desk, put the ice cube in the cup, place the cup on the placemat, then pick up that glass cup",20
+HolodeckApproachDeskThenCloseDrawer_scene117,O-C02,Office,Compositional,Unseen task,117,"walk to the desk, then close the specified dresser drawer",10
+HolodeckApproachDeskThenCloseLaptopMoveCup_scene117,O-C03,Office,Compositional,Seen task,117,"walk to the desk, close the laptop, then move the glass cup to a corner",20
+HolodeckApproachDeskThenCloseLaptopThenApproachTrashCan_scene117,O-C04,Office,Compositional,Unseen task,117,"walk to the desk, close the laptop, then walk to the trash can",10
+HolodeckApproachDeskThenIceCubeInGlass_scene117,O-C05,Office,Compositional,Unseen task,117,"walk to the desk, then put the ice cube into the glass cup",10
+HolodeckApproachDeskThenMoveCupToCenter_scene117,O-C06,Office,Compositional,Unseen task,117,"walk to the desk, then move the glass cup to the center",10
+HolodeckApproachDeskThenOpenJar_scene117,O-C07,Office,Compositional,Seen task,117,"walk to the desk, then open the jar",20
+HolodeckApproachDeskThenOpenLaptop_scene117,O-C08,Office,Compositional,Unseen task,117,"walk to the desk, then open the laptop",10
+HolodeckApproachDeskThenPickCup_scene117,O-C09,Office,Compositional,Unseen task,117,"walk to the desk, then pick up the glass cup",10
+HolodeckApproachDeskThenPullChair_scene117,O-C10,Office,Compositional,Seen task,117,"walk to the desk, then pull the chair out from under it",20
+HolodeckApproachTrashCanThenApproachDeskThenPullChair_scene117,O-C11,Office,Compositional,Unseen task,117,"walk to the trash can, walk to the desk, then pull the chair out",10
+HolodeckApproachTrashCanThenPickBoxFromFloor_scene117,O-C12,Office,Compositional,Seen task,117,"walk to the trash can, then pick up the cardboard box from the floor",20
+HolodeckApproachTrashCanThenThrowBottle_scene117,O-C13,Office,Compositional,Unseen task,117,"walk to the trash can, then throw the empty bottle from the side table into it",10
+HolodeckApproachWindowThenDeskThenPickCup_scene117,O-C14,Office,Compositional,Seen task,117,"walk to the rightmost window, walk to the desk, then pick up the glass cup",20
+HolodeckApproachWindowThenPickBox_scene117,O-C15,Office,Compositional,Unseen task,117,"walk to the rightmost window, then pick up the cardboard box from the floor and lift it",10
+HolodeckCloseLaptopThenApproachTrashCanThenPickBox_scene117,O-C16,Office,Compositional,Unseen task,117,"close the laptop, walk to the trash can, then pick up the cardboard box and lift it",10
+HolodeckIceCubeThenApproachWindowThenPickBox_scene117,O-C17,Office,Compositional,Unseen task,117,"put the ice cube in the cup, walk to the rightmost window, then pick up the cardboard box from the floor",10
+HolodeckIceCubeThenPlaceCup_scene117,O-C18,Office,Compositional,Seen task,117,"put the ice cube in the cup, then move the cup onto the placemat",20
+HolodeckOpenDrawerTakeTissueBoxToDesk_scene117,O-C19,Office,Compositional,Seen task,117,"open the dresser drawer, take out the tissue box, then place it on the desk",20
+HolodeckOpenDrawerThenTakeTissueBox_scene117,O-C20,Office,Compositional,Unseen task,117,"open the dresser drawer, then take out the tissue box",10
+HolodeckOpenJarAddSugarThenCloseJar_scene117,O-C21,Office,Compositional,Seen task,117,"remove the jar lid, put the sugar cube into the jar, then put the lid back on",20
+HolodeckPullChairThenApproachTrashCanThenPickBox_scene117,O-C22,Office,Compositional,Unseen task,117,"pull the chair out from under the desk, walk to the trash can, then pick up and lift the cardboard box",10
+HolodeckSugarCubeThenCloseJar_scene117,O-C23,Office,Compositional,Unseen task,117,"put the sugar cube into the open jar, then put the lid back on",10
+HolodeckRemoveFolderFromShelfToDesk_scene1018,O-C24,Office,Compositional,Unseen scene,1018,"remove the folder from the shelf, then place it on the desk",10

@@ -19,9 +19,16 @@ export const organizations = {
   mit: { name: "MIT", logo: "mit.svg" },
   tri: { name: "Toyota Research Institute", logo: "tri.svg" },
   ucsd: { name: "UC San Diego", logo: "ucsd.webp" },
+  dexmal: { name: "Dexmal", logo: "dexmal.jpg" },
 };
 
 export const policyProfiles = [
+  {
+    name: "DM0.5",
+    url: "https://github.com/dexmal/opendm",
+    organizations: ["dexmal"],
+    affiliation: "Dexmal",
+  },
   {
     name: "StarVLA-α",
     url: "https://github.com/starVLA/starVLA-alpha",
