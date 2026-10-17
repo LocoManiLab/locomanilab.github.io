@@ -1,5 +1,7 @@
-const evaluationRecipient = "dweik0607@gmail.com";
-const evaluationCc = "jinrui.han@connect.hku.hk";
+const evaluationRecipients = [
+  "dweik0607@gmail.com",
+  "jinrui.han@connect.hku.hk",
+];
 
 function evaluationDraft(form) {
   const values = new FormData(form);
@@ -27,10 +29,9 @@ function evaluationDraft(form) {
     "Additional details:",
     value("notes") || "Not provided",
   ].join("\n");
-  const href = `mailto:${evaluationRecipient}?cc=${encodeURIComponent(evaluationCc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const href = `mailto:${evaluationRecipients.join(",")}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   const text = [
-    `To: ${evaluationRecipient}`,
-    `Cc: ${evaluationCc}`,
+    `To: ${evaluationRecipients.join(", ")}`,
     `Subject: ${subject}`,
     "",
     body,
@@ -66,7 +67,7 @@ export function enhanceCommunity(root = document) {
     if (!form.reportValidity()) return;
     const draft = updateMailLink();
     setStatus(
-      "Your simulation evaluation draft is ready. Send it from your email app to make the request. If no email app opens, use Copy details and email it to dweik0607@gmail.com.",
+      `Your simulation evaluation draft is ready. Send it from your email app to make the request. If no email app opens, use Copy details and email it to ${evaluationRecipients.join(" and ")}.`,
     );
     window.location.href = draft.href;
   });
@@ -81,7 +82,7 @@ export function enhanceCommunity(root = document) {
       );
     } catch {
       setStatus(
-        "The draft could not be copied. Use Prepare email, or email your request to dweik0607@gmail.com and cc jinrui.han@connect.hku.hk.",
+        `The draft could not be copied. Use Prepare email, or email your request to ${evaluationRecipients.join(" and ")}.`,
       );
     }
   });

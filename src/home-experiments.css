@@ -114,6 +114,25 @@
 .home-experiments .benchmark-table tbody tr:hover > * {
   background: #eaf1fc;
 }
+/* Match the existing policy identities to the paired learning-curve headings. */
+#experiment-source-results .table-policy-group {
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+#experiment-source-results .table-policy-brand {
+  width: 34px;
+  flex-basis: 34px;
+  height: 32px;
+}
+#experiment-source-results .table-policy-brand .organization-mark {
+  --mark-size: 30px;
+}
+#experiment-source-results
+  .table-policy-brand
+  .organization-mark[data-organization="pi"] {
+  --mark-size: 26px;
+}
 @media (max-width: 700px) {
   .home-experiment-card,
   .home-experiments .transfer-study {

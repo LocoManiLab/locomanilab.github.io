@@ -1030,11 +1030,29 @@
   background: #fff;
 }
 .transfer-policy-heading h4 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 32px;
   margin: 0 0 12px;
   color: #243c5b;
   font-size: 18px;
   font-weight: 600;
   line-height: 1.4;
+}
+.transfer-policy-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 32px;
+}
+.transfer-policy-logo .organization-mark {
+  --mark-size: 32px;
+}
+.transfer-policy-logo .organization-mark[data-organization="pi"] {
+  --mark-size: 26px;
 }
 .transfer-policy-legend {
   display: flex;

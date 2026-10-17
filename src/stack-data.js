@@ -33,7 +33,7 @@ export const policyProfiles = [
     name: "StarVLA-α",
     url: "https://github.com/starVLA/starVLA-alpha",
     organizations: ["hkust", "cuhk", "tsinghua"],
-    affiliation: "HKUST · XJTU · CUHK · Tsinghua · Tongyi Lab · SmartMore",
+    affiliation: "HKUST + collaborators",
   },
   {
     name: "PRTS",

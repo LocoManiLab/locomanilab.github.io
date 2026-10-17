@@ -152,6 +152,17 @@
   line-height: 1.4;
   letter-spacing: -0.02em;
 }
+.contact-grid h3 a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #b9c6d8;
+  text-underline-offset: 3px;
+}
+.contact-grid h3 a:hover,
+.contact-grid h3 a:focus-visible {
+  color: var(--accent, var(--green));
+  text-decoration-color: currentColor;
+}
 
 .contact-grid .email,
 .contact-grid a[href^="mailto:"] {

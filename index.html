@@ -86,15 +86,15 @@
     />
     <link
       rel="stylesheet"
-      href="./src/research-theme.css?v=20261013-merged-tasks"
+      href="./src/research-theme.css?v=20261017-author-preview"
     />
     <link
       rel="stylesheet"
-      href="./src/transfer-studies.css?v=20261017-autoplay"
+      href="./src/transfer-studies.css?v=20261017-preview"
     />
     <link
       rel="stylesheet"
-      href="./src/home-experiments.css?v=20261017-autoplay"
+      href="./src/home-experiments.css?v=20261017-preview"
     />
     <link
       rel="stylesheet"
@@ -928,11 +928,7 @@
             <p class="eyebrow">BENCHMARK</p>
             <h2 id="tasks-title">Tasks and demonstrations</h2>
           </div>
-          <p class="section-aside">
-            235 task definitions. Explore 100 successful task replays—50 atomic
-            and 50 compositional—with synchronized third-person and egocentric
-            views: 99 dataset action replays and one GR00T rollout.
-          </p>
+          <p class="section-aside">Task examples.</p>
         </div>
         <div
           class="task-overview"
@@ -981,102 +977,6 @@
             </p>
           </article>
         </div>
-        <details
-          class="detail-block composition-detail"
-          id="composition-example"
-        >
-          <summary>
-            <span
-              ><strong>Explore a compositional task</strong
-              ><small>One instruction, two synchronized views.</small></span
-            >
-            <span class="disclosure-plus" aria-hidden="true">+</span>
-          </summary>
-          <div class="detail-body">
-            <p class="composition-instruction">
-              “Open the dresser drawer, take out the tissue box, then place it
-              on the desk.”
-            </p>
-            <p class="composition-meta">
-              Office · Scene 117 · Dataset action replay
-            </p>
-            <div
-              class="composition-pair"
-              id="composition-pair"
-              data-episode="e-cd17a3ee59"
-              data-playing="false"
-            >
-              <figure>
-                <figcaption>
-                  Third-person replay <span>Whole-body motion</span>
-                </figcaption>
-                <video
-                  id="composition-third-video"
-                  poster="./media/episodes/e-cd17a3ee59-third-6e7918e95d7e.jpg"
-                  muted
-                  playsinline
-                  preload="none"
-                  aria-label="Third-person replay: open drawer and bring tissue box to desk"
-                ></video>
-              </figure>
-              <figure>
-                <figcaption>
-                  First-person view <span>Same replay states</span>
-                </figcaption>
-                <video
-                  id="composition-ego-video"
-                  poster="./media/episodes/e-cd17a3ee59-ego-cf3daad2f9ef.jpg"
-                  muted
-                  playsinline
-                  preload="none"
-                  aria-label="First-person view: open drawer and bring tissue box to desk"
-                ></video>
-              </figure>
-            </div>
-            <div
-              class="composition-controls"
-              role="group"
-              aria-label="Synchronized compositional task playback"
-            >
-              <button
-                id="composition-play"
-                type="button"
-                aria-label="Play both views"
-                disabled
-              >
-                <span aria-hidden="true">▶</span
-                ><span data-composition-label>Play both views</span>
-              </button>
-              <button
-                id="composition-replay"
-                type="button"
-                aria-label="Replay both views"
-                disabled
-              >
-                ↻ <span>Replay</span>
-              </button>
-              <input
-                id="composition-seek"
-                type="range"
-                min="0"
-                max="22.6"
-                step="0.01"
-                value="0"
-                aria-label="Compositional task timeline"
-                disabled
-              />
-              <output id="composition-time">0:00 / 0:22</output>
-            </div>
-            <p
-              id="composition-status"
-              class="composition-status"
-              role="status"
-            ></p>
-            <noscript
-              ><p>Enable JavaScript to play both views together.</p></noscript
-            >
-          </div>
-        </details>
         <div class="episode-workbench">
           <div class="episode-browser">
             <div class="episode-toolbar">
@@ -1789,7 +1689,7 @@
             alt="LocoManiLab"
           />
         </a>
-        <p>Humanoid loco-manipulation</p>
+        <p>A full-stack testbed for humanoid loco-manipulation.</p>
         <a class="back-top" href="#top"
           >Back to top <span aria-hidden="true">↑</span></a
         >
@@ -1813,6 +1713,6 @@
         available.
       </p></noscript
     >
-    <script type="module" src="./src/main.js?v=20261017-autoplay"></script>
+    <script type="module" src="./src/main.js?v=20261017-preview"></script>
   </body>
 </html>

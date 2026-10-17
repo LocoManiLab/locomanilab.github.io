@@ -11,18 +11,17 @@ import {
   enhanceDisclosures,
 } from "./experience.js?v=20261013-merged-tasks";
 import { enhancePageMotion } from "./motion.js?v=20261009-rhythm";
-import { enhanceOverview } from "./overview.js?v=20261017-autoplay";
-import { enhanceComposition } from "./composition.js?v=20261017-autoplay";
+import { enhanceOverview } from "./overview.js?v=20261017-preview";
 import { enhanceSim2Real } from "./sim2real.js?v=20261017-autoplay";
 import { enhanceResultTables } from "./benchmark.js?v=20261017-home-studies";
-import { enhanceTransferStudies } from "./transfer-studies.js?v=20261017-autoplay";
+import { enhanceTransferStudies } from "./transfer-studies.js?v=20261017-preview";
 import { enhanceExecutionStack } from "./stack.js?v=20261009-stack-final";
 import {
   policyProfiles,
   controllerProfiles,
   organizationLogos,
   policyLogo,
-} from "./stack-data.js?v=20261017-results";
+} from "./stack-data.js?v=20261017-preview";
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -323,7 +322,6 @@ enhanceOverview();
 enhanceSim2Real();
 enhanceResultTables(document.querySelector("#experiments"));
 enhanceTransferStudies();
-enhanceComposition();
 stabilizeText(
   $("#controller-affiliation"),
   Object.values(controllerProfiles).map((item) => item.affiliation),

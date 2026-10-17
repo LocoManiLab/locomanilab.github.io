@@ -118,7 +118,7 @@ export const overviewArtwork = {
       <div><b>ALMI</b><small>Base + upper body</small></div>
       <div><b>ScaleBFM</b><small>Reference motion</small></div>
     </div>
-    <div class="tour-controller-action"><strong>Action</strong><span>Whole-body commands</span></div>
+    <div class="tour-controller-action"><strong>Action</strong><span>Whole body joints</span></div>
     <div class="tour-g1-portrait">${image("./media/embodiment/g1-dex3-dataset-tight.webp?v=20261013-face-front", "", "Unitree G1 with Dex3 hands")}<span>G1 + Dex3</span></div>
     <span class="tour-art-note">Five controller interfaces → action → whole-body motion</span>
   </div>`,

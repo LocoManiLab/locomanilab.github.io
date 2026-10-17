@@ -1,4 +1,4 @@
-import { overviewArtwork } from "./overview-art.js?v=20261014-live-overview";
+import { overviewArtwork } from "./overview-art.js?v=20261017-preview";
 
 // Static feature copy remains readable without JS. Enhance it into a tour only
 // after all controls and artwork are available.

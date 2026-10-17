@@ -3,6 +3,7 @@ import {
   openSpaceCases,
   kimodoAggregate,
 } from "./transfer-studies-data.js?v=20261017-results";
+import { organizationLogos } from "./stack-data.js?v=20261017-results";
 
 const escape = (value) =>
   String(value ?? "").replace(
@@ -60,12 +61,14 @@ function enhanceDataScale(host) {
       model: "GR00T N1.7",
       label: "GR00T N1.7",
       id: "groot",
+      organization: "nvidia",
       colors: ["#2858c7", "#067c80"],
     },
     {
       model: "π0.5",
       label: "π₀.₅",
       id: "pi05",
+      organization: "pi",
       colors: ["#ad5c25", "#7853b5"],
     },
   ];
@@ -95,7 +98,7 @@ function enhanceDataScale(host) {
           (
             policy,
           ) => `<article class="transfer-scale-panel" data-scale-panel="${escape(policy.model)}" aria-labelledby="transfer-policy-${policy.id}">
-        <div class="transfer-policy-heading"><h4 id="transfer-policy-${policy.id}">${policy.label}</h4><div class="transfer-policy-legend" aria-label="${escape(policy.label)} chart series">${tasks.map((task, index) => `<span style="--transfer-series:${policy.colors[index]}"><i class="${index ? "is-dashed" : ""}" aria-hidden="true"></i>${task}<strong data-scale-legend-task="${task}"></strong></span>`).join("")}</div></div>
+        <div class="transfer-policy-heading"><h4 id="transfer-policy-${policy.id}"><span class="transfer-policy-logo" aria-hidden="true">${organizationLogos([policy.organization])}</span><span>${policy.label}</span></h4><div class="transfer-policy-legend" aria-label="${escape(policy.label)} chart series">${tasks.map((task, index) => `<span style="--transfer-series:${policy.colors[index]}"><i class="${index ? "is-dashed" : ""}" aria-hidden="true"></i>${task}<strong data-scale-legend-task="${task}"></strong></span>`).join("")}</div></div>
         <figure class="transfer-scale-figure"><div class="transfer-scale-canvas"><svg viewBox="0 0 500 370" role="group" aria-labelledby="transfer-scale-title-${policy.id} transfer-scale-description-${policy.id}">
           <title id="transfer-scale-title-${policy.id}"></title><desc id="transfer-scale-description-${policy.id}"></desc>
           <defs><linearGradient id="transfer-scale-fill-${policy.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--scale-main)" stop-opacity=".14"/><stop offset="100%" stop-color="var(--scale-main)" stop-opacity=".01"/></linearGradient></defs>
