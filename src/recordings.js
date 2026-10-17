@@ -73,14 +73,13 @@ export function enhanceRecordings() {
   let episodePaused = false;
   let autoplayFailed = false;
   let automaticPlayback = false;
-  let policyPlaying = false;
   let previewMotionPaused =
     matchMedia("(prefers-reduced-motion: reduce)").matches ||
     document.readyState !== "complete";
   const pageSize = 12;
 
   function syncEpisodeMotion() {
-    if (!episodeVisible || document.hidden || policyPlaying) {
+    if (!episodeVisible || document.hidden) {
       if (intent) pauseViews();
       return;
     }
@@ -170,9 +169,6 @@ export function enhanceRecordings() {
     buffering = false;
     playing = false;
     status.textContent = "";
-    document
-      .querySelectorAll("[data-preview]")
-      .forEach((video) => video.pause());
     if (master.currentTime >= duration() - 0.05) seekTo(0);
     for (const video of videos) {
       if (video.error) video.load();
@@ -455,20 +451,6 @@ export function enhanceRecordings() {
       pauseViews();
       status.textContent =
         "A recording could not load. Press Play episode to retry both views.";
-    });
-  }
-  document.addEventListener("recording-pause", pauseViews);
-  for (const type of [
-    "policy-rollout-playback",
-    "sim2real-playback",
-    "composition-playback",
-    "generated-dataset-playback",
-  ]) {
-    document.addEventListener(type, () => {
-      policyPlaying = !!document.querySelector(
-        '#rollout-video[data-playing="true"], #sim2real-pair[data-playing="true"], #composition-pair[data-playing="true"], #generated-player[data-playing="true"]',
-      );
-      if (policyPlaying) pauseViews();
     });
   }
   document.addEventListener("preview-motion", (event) => {

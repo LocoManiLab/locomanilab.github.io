@@ -23,6 +23,26 @@ export function enhanceComposition() {
   let generation = 0;
   let frame;
   let targetTime = 0;
+  let visible = false;
+  let userPaused = false;
+  let autoplayFailed = false;
+  let sharedPaused =
+    matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    navigator.connection?.saveData === true ||
+    document.readyState !== "complete";
+
+  function syncAutoplay() {
+    if (
+      visible &&
+      disclosure.open &&
+      !document.hidden &&
+      !sharedPaused &&
+      !userPaused &&
+      !autoplayFailed &&
+      !intent
+    )
+      start();
+  }
 
   function updateTime() {
     const current = master.readyState ? master.currentTime : targetTime;
@@ -94,6 +114,7 @@ export function enhanceComposition() {
     );
     if (token !== generation) return;
     if (results.some((result) => result.status === "rejected")) {
+      autoplayFailed = true;
       pause();
       status.textContent =
         "Both views could not start. Press Play both views to retry.";
@@ -125,6 +146,7 @@ export function enhanceComposition() {
     });
     video.addEventListener("error", () => {
       if (!video.hasAttribute("src")) return;
+      autoplayFailed = true;
       pause();
       status.textContent =
         "A recording could not load. Press Play both views to retry.";
@@ -135,30 +157,38 @@ export function enhanceComposition() {
     pause();
     updateTime();
   });
-  play.addEventListener("click", () => (intent ? pause() : start()));
+  play.addEventListener("click", () => {
+    userPaused = intent;
+    autoplayFailed = false;
+    if (intent) pause();
+    else start();
+  });
   replay.addEventListener("click", () => {
+    userPaused = autoplayFailed = false;
     seekTo(0);
     start();
   });
   seek.addEventListener("input", () => seekTo(seek.value));
   disclosure.addEventListener("toggle", () => {
     if (!disclosure.open) pause();
+    else requestAnimationFrame(syncAutoplay);
   });
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) pause();
+    else requestAnimationFrame(syncAutoplay);
   });
   document.addEventListener("recording-pause", pause);
-  for (const type of [
-    "dataset-recording-playback",
-    "sim2real-playback",
-    "policy-rollout-playback",
-    "generated-dataset-playback",
-  ])
-    document.addEventListener(type, (event) => {
-      if (event.detail?.playing) pause();
-    });
+  document.addEventListener("preview-motion", (event) => {
+    const changed = sharedPaused !== event.detail.paused;
+    sharedPaused = event.detail.paused;
+    if (!changed) return;
+    if (sharedPaused) pause();
+    else syncAutoplay();
+  });
   new IntersectionObserver((entries) => {
-    if (!entries[0].isIntersecting) pause();
+    visible = entries[0].isIntersecting;
+    if (!visible) pause();
+    else requestAnimationFrame(syncAutoplay);
   }).observe(pair);
   seek.max = String(episode.duration);
   [play, replay, seek].forEach((element) => {

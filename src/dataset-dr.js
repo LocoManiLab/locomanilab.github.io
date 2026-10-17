@@ -58,10 +58,6 @@ export function enhanceDatasetDR() {
     document.readyState !== "complete";
   let generation = 0;
   let animation;
-  const foregroundPlaying = () =>
-    !!document.querySelector(
-      '#rollout-video[data-playing="true"], #episode-third-video[data-playing="true"], #composition-pair[data-playing="true"], #sim2real-pair[data-playing="true"], #generated-player[data-playing="true"]',
-    );
   function updatePhase() {
     const time = pendingSeek ?? video.currentTime ?? 0;
     const phase =
@@ -96,11 +92,7 @@ export function enhanceDatasetDR() {
     updateToggle();
     const canDisplay =
       visible && section.getClientRects().length > 0 && !document.hidden;
-    const active =
-      canDisplay &&
-      !localPaused &&
-      !sharedPaused &&
-      !foregroundPlaying();
+    const active = canDisplay && !localPaused && !sharedPaused;
     video.autoplay = active;
     if (!active) {
       video.pause();
@@ -198,17 +190,8 @@ export function enhanceDatasetDR() {
     sharedPaused = event.detail.paused;
     sync();
   });
-  for (const event of [
-    "visibilitychange",
-    "stackchange",
-    "policy-rollout-playback",
-    "dataset-recording-playback",
-    "sim2real-playback",
-    "composition-playback",
-    "generated-dataset-playback",
-  ])
+  for (const event of ["visibilitychange", "stackchange"])
     document.addEventListener(event, () => sync());
-  document.addEventListener("recording-pause", () => video.pause());
   new IntersectionObserver(
     (entries) => {
       visible = entries[0].isIntersecting;

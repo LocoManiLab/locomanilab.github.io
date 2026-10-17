@@ -1,10 +1,4 @@
 /* Research studies share the home page's white surfaces and blue accents. */
-.nav-dataset img {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
-  object-fit: contain;
-}
 .home-experiments {
   background: #f8fafc;
   border-top: 1px solid #e1e7f0;

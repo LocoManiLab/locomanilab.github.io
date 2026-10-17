@@ -408,6 +408,7 @@ export function enhancePolicyRollouts() {
       page++;
       renderPage();
     });
+    player.addEventListener("media-autoplay", playSelected);
     player.addEventListener("play", () => {
       $("#rollout-play").hidden = true;
       announcePlayback(true);
@@ -528,9 +529,6 @@ export function enhancePolicyRollouts() {
     else loadCatalog();
   });
   document.addEventListener("recording-pause", pause);
-  document.addEventListener("dataset-recording-playback", (event) => {
-    if (event.detail?.playing) pause();
-  });
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) pause();
   });

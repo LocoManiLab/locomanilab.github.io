@@ -1,8 +1,8 @@
-import { enhanceMediaControls } from "./media-controls.js?v=20261017-unified";
+import { enhanceMediaControls } from "./media-controls.js?v=20261017-autoplay";
 import { enhanceNavigation } from "./navigation.js?v=20261013-pages";
-import { enhanceRecordings } from "./recordings.js?v=20261014-success-replay";
-import { enhanceDatasetDR } from "./dataset-dr.js?v=20261013-generated";
-import { enhanceGeneratedDataset } from "./generated-dataset.js?v=20261014-corpus";
+import { enhanceRecordings } from "./recordings.js?v=20261017-autoplay";
+import { enhanceDatasetDR } from "./dataset-dr.js?v=20261017-autoplay";
+import { enhanceGeneratedDataset } from "./generated-dataset.js?v=20261017-autoplay";
 import { enhanceHeroWall } from "./hero-wall.js?v=20261014-success-replay";
 import {
   animateSwap,
@@ -11,11 +11,11 @@ import {
   enhanceDisclosures,
 } from "./experience.js?v=20261013-merged-tasks";
 import { enhancePageMotion } from "./motion.js?v=20261009-rhythm";
-import { enhanceOverview } from "./overview.js?v=20261014-live-overview";
-import { enhanceComposition } from "./composition.js?v=20261014-success-replay";
-import { enhanceSim2Real } from "./sim2real.js?v=20261017-clean-trials";
+import { enhanceOverview } from "./overview.js?v=20261017-autoplay";
+import { enhanceComposition } from "./composition.js?v=20261017-autoplay";
+import { enhanceSim2Real } from "./sim2real.js?v=20261017-autoplay";
 import { enhanceResultTables } from "./benchmark.js?v=20261017-home-studies";
-import { enhanceTransferStudies } from "./transfer-studies.js?v=20261017-home-studies";
+import { enhanceTransferStudies } from "./transfer-studies.js?v=20261017-autoplay";
 import { enhanceExecutionStack } from "./stack.js?v=20261009-stack-final";
 import {
   policyProfiles,
@@ -49,7 +49,6 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let motionPaused =
   reducedMotion.matches || navigator.connection?.saveData === true;
 let previewsReady = document.readyState === "complete";
-let foregroundRecordingPlaying = false;
 
 const controllers = [
   {
@@ -261,7 +260,6 @@ const previewObserver = new IntersectionObserver(
         entry.isIntersecting &&
         previewsReady &&
         !motionPaused &&
-        !foregroundRecordingPlaying &&
         !document.hidden
       )
         playPreview(video);
@@ -279,12 +277,7 @@ function playPreview(video) {
 }
 function syncMotion() {
   $$("[data-preview]").forEach((video) => {
-    if (
-      !motionPaused &&
-      !foregroundRecordingPlaying &&
-      video.dataset.visible === "true" &&
-      !document.hidden
-    )
+    if (!motionPaused && video.dataset.visible === "true" && !document.hidden)
       playPreview(video);
     else video.pause();
   });
@@ -300,23 +293,6 @@ reducedMotion.addEventListener("change", (event) => {
   syncMotion();
 });
 document.addEventListener("visibilitychange", syncMotion);
-for (const type of [
-  "policy-rollout-playback",
-  "open-space-playback",
-  "dataset-recording-playback",
-  "sim2real-playback",
-  "composition-playback",
-  "generated-dataset-playback",
-]) {
-  document.addEventListener(type, () => {
-    // Playback events can nest when one player pauses the other. Read their
-    // current state instead of letting a nested pause restart the previews.
-    foregroundRecordingPlaying = !!document.querySelector(
-      '#open-space-video[data-playing="true"], #rollout-video[data-playing="true"], #episode-third-video[data-playing="true"], #sim2real-pair[data-playing="true"], #composition-pair[data-playing="true"], #generated-player[data-playing="true"]',
-    );
-    syncMotion();
-  });
-}
 syncMotion();
 
 // Let text, fonts, and the main image settle before downloading video previews.

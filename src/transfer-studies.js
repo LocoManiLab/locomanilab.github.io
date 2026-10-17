@@ -54,99 +54,75 @@ const models = [
 function enhanceDataScale(host) {
   if (!host || host.dataset.enhanced === "true") return;
   host.dataset.enhanced = "true";
-  const state = {
-    model: "GR00T N1.7",
-    task: "Atomic",
-    controller: "Controller mean",
-    budget: 50,
-  };
-  const palettes = {
-    "GR00T N1.7": ["#2858c7", "#067c80"],
-    "π0.5": ["#ad5c25", "#7853b5"],
-  };
+  const state = { task: "Atomic", controller: "Controller mean", budget: 50 };
+  const policies = [
+    {
+      model: "GR00T N1.7",
+      label: "GR00T N1.7",
+      id: "groot",
+      colors: ["#2858c7", "#067c80"],
+    },
+    {
+      model: "π0.5",
+      label: "π₀.₅",
+      id: "pi05",
+      colors: ["#ad5c25", "#7853b5"],
+    },
+  ];
   const tasks = ["Atomic", "Compositional"];
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const budgets = () =>
     state.controller === "SONIC" ? [10, 30, 50, 100] : [10, 30, 50];
-  const rowsFor = (task, model = state.model) =>
+  const rowsFor = (task, model) =>
     dataScalePoints.filter(
       (row) =>
         row.panel === state.controller &&
         row.model === model &&
         row.task_class === task,
     );
-  const pointFor = (task, budget = state.budget) =>
-    rowsFor(task).find((row) => row.demos_per_task === budget);
+  const pointFor = (model, task, budget = state.budget) =>
+    rowsFor(task, model).find((row) => row.demos_per_task === budget);
+  const chartWidth = 500;
+  const x = (budget) => 54 + ((budget - 10) / (budgets().at(-1) - 10)) * 410;
+  const y = (value) => 305 - value * 2.4;
+
   host.innerHTML = `
     <div class="transfer-scale-workbench">
-      <div class="transfer-scale-toolbar">
-        <fieldset class="transfer-model-choice"><legend>Policy</legend><div>${Object.keys(
-          palettes,
-        )
-          .map(
-            (model, index) =>
-              `<button type="button" data-scale-model="${escape(model)}" aria-pressed="${index === 0}">${escape(model)}</button>`,
-          )
-          .join("")}</div></fieldset>
-        <label class="transfer-controller-choice" for="transfer-scale-controller">Execution controller<select id="transfer-scale-controller">${scaleViews.map((view) => `<option value="${escape(view)}">${view === "Controller mean" ? "Five-controller mean" : escape(view)}</option>`).join("")}</select></label>
-      </div>
-      <div class="transfer-scale-chart-heading"><p id="transfer-scale-context"></p><div class="transfer-task-controls" role="group" aria-label="Task category in focus">${tasks.map((task, index) => `<button type="button" data-scale-task="${task}" aria-pressed="${index === 0}"><i aria-hidden="true"></i>${task}<span data-scale-task-value="${task}"></span></button>`).join("")}</div></div>
-      <figure class="transfer-scale-figure">
-        <div class="transfer-scale-canvas"><svg viewBox="0 0 960 395" role="group" aria-labelledby="transfer-scale-title transfer-scale-description">
-          <title id="transfer-scale-title"></title><desc id="transfer-scale-description"></desc>
-          <defs><linearGradient id="transfer-scale-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--scale-main)" stop-opacity=".14"/><stop offset="100%" stop-color="var(--scale-main)" stop-opacity=".01"/></linearGradient></defs>
-          <g class="transfer-scale-grid" aria-hidden="true"></g>
-          <path class="transfer-chart-area" aria-hidden="true"/>
+      <div class="transfer-scale-toolbar"><fieldset class="transfer-controller-choice"><legend>Execution controller</legend><div>${scaleViews.map((view, index) => `<button type="button" data-scale-controller="${escape(view)}" aria-pressed="${index === 0}">${view === "Controller mean" ? "Five-controller mean" : escape(view)}</button>`).join("")}</div></fieldset><span class="transfer-paired-scale-note">Shared axes · success 0–100%</span></div>
+      <div class="transfer-scale-chart-heading"><p id="transfer-scale-context"></p><div class="transfer-task-controls" role="group" aria-label="Task category in focus">${tasks.map((task, index) => `<button type="button" data-scale-task="${task}" style="--transfer-series:${policies[0].colors[index]}" aria-pressed="${index === 0}"><i aria-hidden="true"></i>${task}</button>`).join("")}</div></div>
+      <div class="transfer-policy-panels">${policies
+        .map(
+          (
+            policy,
+          ) => `<article class="transfer-scale-panel" data-scale-panel="${escape(policy.model)}" aria-labelledby="transfer-policy-${policy.id}">
+        <div class="transfer-policy-heading"><h4 id="transfer-policy-${policy.id}">${policy.label}</h4><div class="transfer-policy-legend" aria-label="${escape(policy.label)} chart series">${tasks.map((task, index) => `<span style="--transfer-series:${policy.colors[index]}"><i class="${index ? "is-dashed" : ""}" aria-hidden="true"></i>${task}<strong data-scale-legend-task="${task}"></strong></span>`).join("")}</div></div>
+        <figure class="transfer-scale-figure"><div class="transfer-scale-canvas"><svg viewBox="0 0 500 370" role="group" aria-labelledby="transfer-scale-title-${policy.id} transfer-scale-description-${policy.id}">
+          <title id="transfer-scale-title-${policy.id}"></title><desc id="transfer-scale-description-${policy.id}"></desc>
+          <defs><linearGradient id="transfer-scale-fill-${policy.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--scale-main)" stop-opacity=".14"/><stop offset="100%" stop-color="var(--scale-main)" stop-opacity=".01"/></linearGradient></defs>
+          <g class="transfer-scale-grid" aria-hidden="true"></g><path class="transfer-chart-area" style="fill:url(#transfer-scale-fill-${policy.id})" aria-hidden="true"/>
           <g class="transfer-scale-curves" aria-hidden="true">${tasks.map((task, index) => `<path data-scale-curve="${task}" class="transfer-chart-series ${index ? "is-dashed" : ""}"/>`).join("")}</g>
-          <line class="transfer-checkpoint-line" y1="52" y2="315" aria-hidden="true"/>
-          <g class="transfer-scale-markers"></g>
-        </svg><div class="transfer-scale-tooltip" role="tooltip" hidden></div></div>
-        <figcaption id="transfer-scale-caption">Choose a task category, then inspect a checkpoint. Hover or focus a marker for the exact result.</figcaption>
-      </figure>
-      <div class="transfer-checkpoint-controls"><div class="transfer-checkpoint-label"><span>Training checkpoint</span><strong><output id="transfer-budget-output">50</output><small> demos / task</small></strong></div><div class="transfer-budget-scrubber"><input id="transfer-scale-budget" type="range" min="0" max="2" value="2" step="1" aria-label="Demonstrations per task" aria-describedby="transfer-budget-scope"/><div class="transfer-budget-options" role="group" aria-label="Available demonstration budgets"></div></div></div>
-      <div class="transfer-scale-insights" aria-live="off"><article class="transfer-primary-insight"><span>Success at this checkpoint</span><strong id="transfer-checkpoint-rate"></strong><p id="transfer-checkpoint-task"></p></article><article><span>Change from 10 demos</span><strong id="transfer-checkpoint-gain"></strong><p id="transfer-checkpoint-baseline"></p></article><article><span>Atomic–compositional gap</span><strong id="transfer-checkpoint-gap"></strong><p id="transfer-checkpoint-comparison"></p></article></div>
+          <line class="transfer-checkpoint-line" y1="52" y2="305" aria-hidden="true"/><g class="transfer-scale-markers"></g>
+        </svg><div class="transfer-scale-tooltip" role="tooltip" hidden></div></div><figcaption class="sr-only">${escape(policy.label)} success rates. Both policy panels share the same demonstration and success-rate scales.</figcaption></figure>
+        <div class="transfer-scale-insights" aria-live="off"><article class="transfer-primary-insight"><span data-scale-rate-label>Atomic success</span><strong data-scale-rate></strong><p data-scale-checkpoint></p></article><article><span>Gain from 10 demos</span><strong data-scale-gain></strong><p data-scale-baseline></p></article><article><span>Task-category gap</span><strong data-scale-gap></strong><p data-scale-comparison></p></article></div>
+      </article>`,
+        )
+        .join("")}</div>
+      <p id="transfer-scale-caption" class="transfer-paired-hint">Compare both policies at the same checkpoint. Hover or focus a marker to inspect an exact result.</p>
+      <div class="transfer-checkpoint-controls"><div class="transfer-checkpoint-label"><span>Shared training checkpoint</span><strong><output id="transfer-budget-output">50</output><small> demos / task</small></strong></div><div class="transfer-budget-scrubber"><input id="transfer-scale-budget" type="range" min="0" max="2" value="2" step="1" aria-label="Demonstrations per task for both policies" aria-describedby="transfer-budget-scope"/><div class="transfer-budget-options" role="group" aria-label="Available demonstration budgets"></div></div></div>
       <p id="transfer-budget-scope" class="transfer-budget-scope"></p>
     </div>
     <div class="transfer-study-note"><p>Separate checkpoints cover five atomic or five compositional tasks, with 100 evaluation episodes per checkpoint. More demonstrations also mean more training updates; the curves compare both data and training budget.</p></div>
     <div class="transfer-scale-footer"><details class="transfer-details"><summary>Exact values for this view</summary><div class="transfer-table-scroll" tabindex="0" role="region" aria-label="Demonstration scale success rates"><table class="transfer-table"><caption class="sr-only">Success rate in percent by demonstrations per task, for both policies.</caption><thead></thead><tbody></tbody></table></div></details><a class="text-link" href="./media/results/data-scale.csv" download>Download curve data <span aria-hidden="true">↓</span></a></div>
     <p class="sr-only transfer-scale-status" role="status" aria-live="polite"></p>`;
-  const svg = host.querySelector("svg");
-  const tooltip = host.querySelector(".transfer-scale-tooltip");
+
+  for (const policy of policies) {
+    policy.element = host.querySelector(`[data-scale-panel="${policy.model}"]`);
+    policy.svg = policy.element.querySelector("svg");
+    policy.tooltip = policy.element.querySelector(".transfer-scale-tooltip");
+  }
   const slider = host.querySelector("#transfer-scale-budget");
-  let chartWidth = host.clientWidth < 600 ? 500 : 960;
-  const x = (budget) =>
-    70 + ((budget - 10) / (budgets().at(-1) - 10)) * (chartWidth - 154);
-  const y = (value) => 315 - value * 2.5;
   let animation;
   let curveCoordinates = null;
-  let pointerInside = false;
-
-  function hideTooltip() {
-    tooltip.hidden = true;
-  }
-  function showTooltip(marker) {
-    if (!marker) return;
-    const task = marker.dataset.scalePointTask;
-    const budget = Number(marker.dataset.scalePointBudget);
-    const row = pointFor(task, budget);
-    const canvas = host.querySelector(".transfer-scale-canvas");
-    const bounds = canvas.getBoundingClientRect();
-    tooltip.innerHTML = `<span>${escape(task)} · ${budget} demos / task</span><strong>${row.success_rate.toFixed(1)}<small>% success</small></strong>`;
-    tooltip.hidden = false;
-    const left = Math.max(
-      8,
-      Math.min(
-        bounds.width - tooltip.offsetWidth - 8,
-        (x(budget) / chartWidth) * bounds.width - tooltip.offsetWidth / 2,
-      ),
-    );
-    const top = Math.max(
-      6,
-      (y(row.success_rate) / 395) * bounds.height - tooltip.offsetHeight - 18,
-    );
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${top}px`;
-  }
   const path = (coordinates) =>
     coordinates
       .map(
@@ -154,20 +130,43 @@ function enhanceDataScale(host) {
           `${index ? "L" : "M"}${cx.toFixed(2)},${cy.toFixed(2)}`,
       )
       .join(" ");
+  const areaPath = (coordinates) =>
+    `${path(coordinates)}L${coordinates.at(-1)[0]},305L${coordinates[0][0]},305Z`;
+  function hideTooltips() {
+    policies.forEach((policy) => {
+      policy.tooltip.hidden = true;
+    });
+  }
+  function showTooltip(policy, marker) {
+    if (!marker) return;
+    hideTooltips();
+    const task = marker.dataset.scalePointTask;
+    const budget = Number(marker.dataset.scalePointBudget);
+    const row = pointFor(policy.model, task, budget);
+    const bounds = policy.element
+      .querySelector(".transfer-scale-canvas")
+      .getBoundingClientRect();
+    const tooltip = policy.tooltip;
+    tooltip.innerHTML = `<span>${policy.label} · ${task}</span><strong>${row.success_rate.toFixed(1)}<small>% success</small></strong><span>${budget} demonstrations / task</span>`;
+    tooltip.hidden = false;
+    tooltip.style.left = `${Math.max(8, Math.min(bounds.width - tooltip.offsetWidth - 8, (x(budget) / chartWidth) * bounds.width - tooltip.offsetWidth / 2))}px`;
+    tooltip.style.top = `${Math.max(6, (y(row.success_rate) / 370) * bounds.height - tooltip.offsetHeight - 18)}px`;
+  }
   function setCurves(coordinates) {
     curveCoordinates = coordinates;
-    tasks.forEach((task, index) =>
-      host
-        .querySelector(`[data-scale-curve="${task}"]`)
-        .setAttribute("d", path(coordinates[index])),
-    );
-    const selected = coordinates[tasks.indexOf(state.task)];
-    host
-      .querySelector(".transfer-chart-area")
-      .setAttribute(
-        "d",
-        `${path(selected)}L${selected.at(-1)[0]},315L${selected[0][0]},315Z`,
+    policies.forEach((policy, modelIndex) => {
+      tasks.forEach((task, taskIndex) =>
+        policy.element
+          .querySelector(`[data-scale-curve="${task}"]`)
+          .setAttribute("d", path(coordinates[modelIndex][taskIndex])),
       );
+      policy.element
+        .querySelector(".transfer-chart-area")
+        .setAttribute(
+          "d",
+          areaPath(coordinates[modelIndex][tasks.indexOf(state.task)]),
+        );
+    });
   }
   function animateCurves(next) {
     cancelAnimationFrame(animation);
@@ -175,21 +174,23 @@ function enhanceDataScale(host) {
       setCurves(next);
       return;
     }
-    const previous = curveCoordinates.map((coordinates) =>
-      coordinates.map((point) => [...point]),
+    const previous = curveCoordinates.map((model) =>
+      model.map((series) => series.map((point) => [...point])),
     );
     const started = performance.now();
     function frame(now) {
       const progress = Math.min(1, (now - started) / 360);
       const eased = 1 - (1 - progress) ** 3;
       setCurves(
-        next.map((coordinates, series) =>
-          coordinates.map(([cx, cy], point) => [
-            previous[series][point][0] +
-              (cx - previous[series][point][0]) * eased,
-            previous[series][point][1] +
-              (cy - previous[series][point][1]) * eased,
-          ]),
+        next.map((model, modelIndex) =>
+          model.map((series, taskIndex) =>
+            series.map(([cx, cy], point) => [
+              previous[modelIndex][taskIndex][point][0] +
+                (cx - previous[modelIndex][taskIndex][point][0]) * eased,
+              previous[modelIndex][taskIndex][point][1] +
+                (cy - previous[modelIndex][taskIndex][point][1]) * eased,
+            ]),
+          ),
         ),
       );
       if (progress < 1) animation = requestAnimationFrame(frame);
@@ -198,56 +199,76 @@ function enhanceDataScale(host) {
   }
   function updateCheckpoint(announce = true) {
     const available = budgets();
-    const active = pointFor(state.task);
-    const initial = pointFor(state.task, 10);
-    const atomic = pointFor("Atomic");
-    const compositional = pointFor("Compositional");
-    const gain = active.success_rate - initial.success_rate;
-    const gap = atomic.success_rate - compositional.success_rate;
-    host.style.setProperty(
-      "--scale-main",
-      palettes[state.model][tasks.indexOf(state.task)],
-    );
-    host.querySelectorAll("[data-scale-task]").forEach((button, index) => {
-      button.setAttribute(
-        "aria-pressed",
-        String(button.dataset.scaleTask === state.task),
+    host
+      .querySelectorAll("[data-scale-task]")
+      .forEach((button) =>
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.scaleTask === state.task),
+        ),
       );
-      button.style.setProperty(
-        "--transfer-series",
-        palettes[state.model][index],
+    policies.forEach((policy, modelIndex) => {
+      const panel = policy.element;
+      const active = pointFor(policy.model, state.task);
+      const initial = pointFor(policy.model, state.task, 10);
+      const atomic = pointFor(policy.model, "Atomic");
+      const compositional = pointFor(policy.model, "Compositional");
+      const gain = active.success_rate - initial.success_rate;
+      const gap = atomic.success_rate - compositional.success_rate;
+      panel.style.setProperty(
+        "--scale-main",
+        policy.colors[tasks.indexOf(state.task)],
       );
-      button.querySelector("span").textContent =
-        `${pointFor(button.dataset.scaleTask).success_rate.toFixed(1)}%`;
+      panel.querySelectorAll("[data-scale-legend-task]").forEach((label) => {
+        label.textContent = `${pointFor(policy.model, label.dataset.scaleLegendTask).success_rate.toFixed(1)}%`;
+      });
+      tasks.forEach((task, index) => {
+        const curve = panel.querySelector(`[data-scale-curve="${task}"]`);
+        curve.style.setProperty("--transfer-series", policy.colors[index]);
+        curve.classList.toggle("is-muted", task !== state.task);
+      });
+      panel.querySelectorAll("[data-scale-point-budget]").forEach((marker) => {
+        const selected =
+          Number(marker.dataset.scalePointBudget) === state.budget &&
+          marker.dataset.scalePointTask === state.task;
+        marker.setAttribute("aria-pressed", String(selected));
+        marker.classList.toggle("is-selected", selected);
+        marker.classList.toggle(
+          "is-muted",
+          marker.dataset.scalePointTask !== state.task,
+        );
+      });
+      const line = panel.querySelector(".transfer-checkpoint-line");
+      line.setAttribute("x1", x(state.budget));
+      line.setAttribute("x2", x(state.budget));
+      panel.querySelector("[data-scale-rate-label]").textContent =
+        `${state.task} success`;
+      panel.querySelector("[data-scale-rate]").innerHTML =
+        `${active.success_rate.toFixed(1)}<small>%</small>`;
+      panel.querySelector("[data-scale-checkpoint]").textContent =
+        `${state.budget} demos / task`;
+      panel.querySelector("[data-scale-gain]").innerHTML =
+        `${gain > 0 ? "+" : gain < 0 ? "−" : ""}${Math.abs(gain).toFixed(1)}<small> pp</small>`;
+      panel.querySelector("[data-scale-baseline]").textContent =
+        `${initial.success_rate.toFixed(1)}% → ${active.success_rate.toFixed(1)}%`;
+      panel.querySelector("[data-scale-gap]").innerHTML =
+        `${gap < 0 ? "−" : ""}${Math.abs(gap).toFixed(1)}<small> pp</small>`;
+      panel.querySelector("[data-scale-comparison]").textContent =
+        "Atomic − compositional";
+      if (curveCoordinates)
+        panel
+          .querySelector(".transfer-chart-area")
+          .setAttribute(
+            "d",
+            areaPath(curveCoordinates[modelIndex][tasks.indexOf(state.task)]),
+          );
     });
-    tasks.forEach((task, index) => {
-      const curve = host.querySelector(`[data-scale-curve="${task}"]`);
-      curve.style.setProperty(
-        "--transfer-series",
-        palettes[state.model][index],
-      );
-      curve.classList.toggle("is-muted", task !== state.task);
-    });
-    host.querySelectorAll("[data-scale-point-budget]").forEach((marker) => {
-      const selected =
-        Number(marker.dataset.scalePointBudget) === state.budget &&
-        marker.dataset.scalePointTask === state.task;
-      marker.setAttribute("aria-pressed", String(selected));
-      marker.classList.toggle("is-selected", selected);
-      marker.classList.toggle(
-        "is-muted",
-        marker.dataset.scalePointTask !== state.task,
-      );
-    });
-    const checkpointLine = host.querySelector(".transfer-checkpoint-line");
-    checkpointLine.setAttribute("x1", x(state.budget));
-    checkpointLine.setAttribute("x2", x(state.budget));
     host.querySelector("#transfer-budget-output").textContent = state.budget;
     slider.max = available.length - 1;
     slider.value = available.indexOf(state.budget);
     slider.setAttribute(
       "aria-valuetext",
-      `${state.budget} demonstrations per task, ${active.success_rate.toFixed(1)} percent ${state.task.toLowerCase()} success`,
+      `${state.budget} demonstrations per task. ${policies.map((policy) => `${policy.model}: ${pointFor(policy.model, state.task).success_rate.toFixed(1)} percent ${state.task.toLowerCase()} success`).join("; ")}.`,
     );
     host
       .querySelectorAll("[data-scale-budget]")
@@ -257,89 +278,73 @@ function enhanceDataScale(host) {
           String(Number(button.dataset.scaleBudget) === state.budget),
         ),
       );
-    host.querySelector("#transfer-checkpoint-rate").innerHTML =
-      `${active.success_rate.toFixed(1)}<small>%</small>`;
-    host.querySelector("#transfer-checkpoint-task").textContent =
-      `${state.model} · ${state.task}`;
-    host.querySelector("#transfer-checkpoint-gain").innerHTML =
-      `${gain > 0 ? "+" : gain < 0 ? "−" : ""}${Math.abs(gain).toFixed(1)}<small> pp</small>`;
-    host.querySelector("#transfer-checkpoint-baseline").textContent =
-      `${initial.success_rate.toFixed(1)}% → ${active.success_rate.toFixed(1)}% success`;
-    host.querySelector("#transfer-checkpoint-gap").innerHTML =
-      `${gap < 0 ? "−" : ""}${Math.abs(gap).toFixed(1)}<small> pp</small>`;
-    host.querySelector("#transfer-checkpoint-comparison").textContent =
-      `${atomic.success_rate.toFixed(1)}% atomic · ${compositional.success_rate.toFixed(1)}% compositional`;
-    const area = host.querySelector(".transfer-chart-area");
-    if (curveCoordinates) {
-      const selected = curveCoordinates[tasks.indexOf(state.task)];
-      area.setAttribute(
-        "d",
-        `${path(selected)}L${selected.at(-1)[0]},315L${selected[0][0]},315Z`,
-      );
-    }
     if (announce)
       host.querySelector(".transfer-scale-status").textContent =
-        `${state.model}, ${state.controller}, ${state.task}: ${active.success_rate.toFixed(1)} percent success at ${state.budget} demonstrations per task.`;
+        `${state.controller}, ${state.budget} demonstrations per task. ${policies.map((policy) => `${policy.model}, ${state.task}: ${pointFor(policy.model, state.task).success_rate.toFixed(1)} percent success`).join(". ")}.`;
   }
   function draw() {
-    hideTooltip();
-    svg.setAttribute("viewBox", `0 0 ${chartWidth} 395`);
+    hideTooltips();
     const available = budgets();
     if (!available.includes(state.budget)) state.budget = available.at(-1);
     host.dataset.scaleController = state.controller;
-    host.dataset.scaleModel = state.model;
     host
-      .querySelectorAll("[data-scale-model]")
+      .querySelectorAll("[data-scale-controller]")
       .forEach((button) =>
         button.setAttribute(
           "aria-pressed",
-          String(button.dataset.scaleModel === state.model),
+          String(button.dataset.scaleController === state.controller),
         ),
       );
-    host.querySelector("#transfer-scale-title").textContent =
-      `${state.model} with ${state.controller}: success versus demonstrations per task`;
-    host.querySelector("#transfer-scale-description").textContent =
-      tasks
-        .map(
-          (task) =>
-            `${task}: ${rowsFor(task)
-              .map(
-                (row) =>
-                  `${row.success_rate.toFixed(1)} percent at ${row.demos_per_task} demonstrations`,
-              )
-              .join("; ")}.`,
-        )
-        .join(" ") +
-      " Focus or activate a marker to inspect that checkpoint. Exact values for both policies are in the table below.";
-    host.querySelector(".transfer-scale-grid").innerHTML = `
-      ${state.controller === "SONIC" ? `<rect x="${x(50)}" y="52" width="${x(100) - x(50)}" height="263" class="transfer-scale-extension"/><text x="${(x(50) + x(100)) / 2}" y="39" text-anchor="middle" class="transfer-chart-note">SONIC-only extension</text>` : ""}
-      ${[0, 25, 50, 75, 100].map((tick) => `<line x1="70" x2="${chartWidth - 84}" y1="${y(tick)}" y2="${y(tick)}" class="transfer-chart-grid"/><text x="51" y="${y(tick) + 5}" text-anchor="end" class="transfer-chart-tick">${tick}</text>`).join("")}
-      <text x="70" y="27" class="transfer-chart-axis">Success rate (%)</text>
-      ${available.map((budget) => `<text x="${x(budget)}" y="346" text-anchor="middle" class="transfer-chart-tick">${budget}</text>`).join("")}
-      <text x="${(70 + chartWidth - 84) / 2}" y="383" text-anchor="middle" class="transfer-chart-axis">Demonstrations per task</text>`;
-    host.querySelector(".transfer-scale-markers").innerHTML = tasks
-      .map((task, index) =>
-        rowsFor(task)
+    for (const policy of policies) {
+      const panel = policy.element;
+      panel.querySelector("title").textContent =
+        `${policy.model} with ${state.controller}: success versus demonstrations per task`;
+      panel.querySelector("desc").textContent =
+        "Shared success-rate axis from 0 to 100 percent. " +
+        tasks
           .map(
-            (row) =>
-              `<g class="transfer-chart-point" data-scale-point-task="${task}" data-scale-point-budget="${row.demos_per_task}" transform="translate(${x(row.demos_per_task)} ${y(row.success_rate)})" style="--transfer-series:${palettes[state.model][index]}" role="button" tabindex="0" aria-pressed="false" aria-label="${escape(state.model)}, ${task}, ${row.demos_per_task} demonstrations: ${row.success_rate.toFixed(1)} percent success"><circle r="19" class="transfer-chart-hit"/><circle r="10" class="transfer-chart-halo"/>${index ? '<path d="M0,-5L5,0L0,5L-5,0Z" class="transfer-chart-marker is-hollow"/>' : '<circle r="5" class="transfer-chart-marker"/>'}</g>`,
+            (task) =>
+              `${task}: ${rowsFor(task, policy.model)
+                .map(
+                  (row) =>
+                    `${row.success_rate.toFixed(1)} percent at ${row.demos_per_task} demonstrations`,
+                )
+                .join("; ")}.`,
           )
-          .join(""),
-      )
-      .join("");
-    const coordinates = tasks.map((task) => {
-      const result = rowsFor(task).map((row) => [
-        x(row.demos_per_task),
-        y(row.success_rate),
-      ]);
-      while (result.length < 4) result.push([...result.at(-1)]);
-      return result;
-    });
+          .join(" ") +
+        " Focus or activate a marker to inspect the shared checkpoint. Exact values for both policies are in the table below.";
+      panel.querySelector(".transfer-scale-grid").innerHTML = `
+        ${state.controller === "SONIC" ? `<rect x="${x(50)}" y="52" width="${x(100) - x(50)}" height="253" class="transfer-scale-extension"/><text x="${(x(50) + x(100)) / 2}" y="39" text-anchor="middle" class="transfer-chart-note">SONIC-only extension</text>` : ""}
+        ${[0, 25, 50, 75, 100].map((tick) => `<line x1="54" x2="464" y1="${y(tick)}" y2="${y(tick)}" class="transfer-chart-grid"/><text x="40" y="${y(tick) + 5}" text-anchor="end" class="transfer-chart-tick">${tick}</text>`).join("")}
+        <text x="54" y="27" class="transfer-chart-axis">Success rate (%)</text>
+        ${available.map((budget) => `<text x="${x(budget)}" y="335" text-anchor="middle" class="transfer-chart-tick">${budget}</text>`).join("")}
+        <text x="259" y="365" text-anchor="middle" class="transfer-chart-axis">Demonstrations per task</text>`;
+      panel.querySelector(".transfer-scale-markers").innerHTML = tasks
+        .map((task, index) =>
+          rowsFor(task, policy.model)
+            .map(
+              (row) =>
+                `<g class="transfer-chart-point" data-scale-point-task="${task}" data-scale-point-budget="${row.demos_per_task}" transform="translate(${x(row.demos_per_task)} ${y(row.success_rate)})" style="--transfer-series:${policy.colors[index]}" role="button" tabindex="0" aria-pressed="false" aria-label="${escape(policy.model)}, ${task}, ${row.demos_per_task} demonstrations: ${row.success_rate.toFixed(1)} percent success"><circle r="19" class="transfer-chart-hit"/><circle r="10" class="transfer-chart-halo"/>${index ? '<path d="M0,-5L5,0L0,5L-5,0Z" class="transfer-chart-marker is-hollow"/>' : '<circle r="5" class="transfer-chart-marker"/>'}</g>`,
+            )
+            .join(""),
+        )
+        .join("");
+    }
+    const coordinates = policies.map((policy) =>
+      tasks.map((task) => {
+        const result = rowsFor(task, policy.model).map((row) => [
+          x(row.demos_per_task),
+          y(row.success_rate),
+        ]);
+        while (result.length < 4) result.push([...result.at(-1)]);
+        return result;
+      }),
+    );
     animateCurves(coordinates);
     host.querySelector("#transfer-scale-context").textContent =
       state.controller === "Controller mean"
-        ? "Five controllers, weighted equally"
-        : `${state.controller} execution`;
+        ? "Five controllers, weighted equally · both policies"
+        : `${state.controller} execution · both policies`;
     host.querySelector("#transfer-budget-scope").textContent =
       state.controller === "Controller mean"
         ? "Shared budgets: 10, 30 and 50 demonstrations. SONIC’s extra 100-demo checkpoint is excluded from this mean."
@@ -367,18 +372,12 @@ function enhanceDataScale(host) {
       .join("");
     updateCheckpoint();
   }
-  host.querySelectorAll("[data-scale-model]").forEach((button) =>
+  host.querySelectorAll("[data-scale-controller]").forEach((button) =>
     button.addEventListener("click", () => {
-      state.model = button.dataset.scaleModel;
+      state.controller = button.dataset.scaleController;
       draw();
     }),
   );
-  host
-    .querySelector("#transfer-scale-controller")
-    .addEventListener("change", (event) => {
-      state.controller = event.target.value;
-      draw();
-    });
   host.querySelectorAll("[data-scale-task]").forEach((button) =>
     button.addEventListener("click", () => {
       state.task = button.dataset.scaleTask;
@@ -399,66 +398,70 @@ function enhanceDataScale(host) {
         updateCheckpoint();
       }
     });
-  function chooseMarker(marker) {
-    state.task = marker.dataset.scalePointTask;
-    state.budget = Number(marker.dataset.scalePointBudget);
-    updateCheckpoint();
-    showTooltip(marker);
+  for (const policy of policies) {
+    let pointerInside = false;
+    const svg = policy.svg;
+    function chooseMarker(marker) {
+      state.task = marker.dataset.scalePointTask;
+      state.budget = Number(marker.dataset.scalePointBudget);
+      updateCheckpoint();
+      showTooltip(policy, marker);
+    }
+    svg.addEventListener("click", (event) => {
+      const marker = event.target.closest("[data-scale-point-budget]");
+      if (marker) chooseMarker(marker);
+    });
+    svg.addEventListener("pointerover", (event) => {
+      const marker = event.target.closest("[data-scale-point-budget]");
+      if (marker) {
+        pointerInside = true;
+        showTooltip(policy, marker);
+      }
+    });
+    svg.addEventListener("pointerout", (event) => {
+      if (event.target.closest("[data-scale-point-budget]")) {
+        pointerInside = false;
+        if (!svg.contains(document.activeElement)) policy.tooltip.hidden = true;
+      }
+    });
+    svg.addEventListener("focusin", (event) =>
+      showTooltip(policy, event.target.closest("[data-scale-point-budget]")),
+    );
+    svg.addEventListener("focusout", () => {
+      if (!pointerInside) policy.tooltip.hidden = true;
+    });
+    svg.addEventListener("keydown", (event) => {
+      const marker = event.target.closest("[data-scale-point-budget]");
+      if (!marker) return;
+      if (["Enter", " "].includes(event.key)) {
+        event.preventDefault();
+        chooseMarker(marker);
+      }
+      if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+        event.preventDefault();
+        const available = budgets();
+        let index = available.indexOf(Number(marker.dataset.scalePointBudget));
+        index =
+          event.key === "Home"
+            ? 0
+            : event.key === "End"
+              ? available.length - 1
+              : Math.max(
+                  0,
+                  Math.min(
+                    available.length - 1,
+                    index + (event.key === "ArrowRight" ? 1 : -1),
+                  ),
+                );
+        const next = policy.element.querySelector(
+          `[data-scale-point-task="${marker.dataset.scalePointTask}"][data-scale-point-budget="${available[index]}"]`,
+        );
+        next.focus();
+        chooseMarker(next);
+      }
+      if (event.key === "Escape") policy.tooltip.hidden = true;
+    });
   }
-  svg.addEventListener("click", (event) => {
-    const marker = event.target.closest("[data-scale-point-budget]");
-    if (marker) chooseMarker(marker);
-  });
-  svg.addEventListener("pointerover", (event) => {
-    const marker = event.target.closest("[data-scale-point-budget]");
-    if (marker) {
-      pointerInside = true;
-      showTooltip(marker);
-    }
-  });
-  svg.addEventListener("pointerout", (event) => {
-    if (event.target.closest("[data-scale-point-budget]")) {
-      pointerInside = false;
-      if (!svg.contains(document.activeElement)) hideTooltip();
-    }
-  });
-  svg.addEventListener("focusin", (event) =>
-    showTooltip(event.target.closest("[data-scale-point-budget]")),
-  );
-  svg.addEventListener("focusout", () => {
-    if (!pointerInside) hideTooltip();
-  });
-  svg.addEventListener("keydown", (event) => {
-    const marker = event.target.closest("[data-scale-point-budget]");
-    if (!marker) return;
-    if (["Enter", " "].includes(event.key)) {
-      event.preventDefault();
-      chooseMarker(marker);
-    }
-    if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
-      event.preventDefault();
-      const available = budgets();
-      let index = available.indexOf(Number(marker.dataset.scalePointBudget));
-      index =
-        event.key === "Home"
-          ? 0
-          : event.key === "End"
-            ? available.length - 1
-            : Math.max(
-                0,
-                Math.min(
-                  available.length - 1,
-                  index + (event.key === "ArrowRight" ? 1 : -1),
-                ),
-              );
-      const next = host.querySelector(
-        `[data-scale-point-task="${marker.dataset.scalePointTask}"][data-scale-point-budget="${available[index]}"]`,
-      );
-      next.focus();
-      chooseMarker(next);
-    }
-    if (event.key === "Escape") hideTooltip();
-  });
   reducedMotion.addEventListener("change", () => {
     if (reducedMotion.matches) {
       cancelAnimationFrame(animation);
@@ -466,16 +469,6 @@ function enhanceDataScale(host) {
       draw();
     }
   });
-  if ("ResizeObserver" in window) {
-    new ResizeObserver(() => {
-      const nextWidth = host.clientWidth < 600 ? 500 : 960;
-      if (nextWidth !== chartWidth) {
-        chartWidth = nextWidth;
-        curveCoordinates = null;
-        draw();
-      }
-    }).observe(host);
-  }
   draw();
 }
 
@@ -593,7 +586,7 @@ function enhanceOpenSpace(host) {
     caseIndex = Number(caseSelect.value);
     renderCase();
   });
-  playButton.addEventListener("click", async () => {
+  async function startComparison() {
     const item = selectedCase();
     const generation = ++playbackGeneration;
     video.src = item.video;
@@ -610,7 +603,9 @@ function enhanceOpenSpace(host) {
       status.textContent =
         "Playback could not start. Select Play comparison to try again.";
     }
-  });
+  }
+  playButton.addEventListener("click", startComparison);
+  video.addEventListener("media-autoplay", startComparison);
   video.addEventListener("error", () => {
     if (!video.hasAttribute("src")) return;
     publishPlayback(false);
@@ -618,7 +613,7 @@ function enhanceOpenSpace(host) {
     status.textContent =
       "This clip could not load. Select Play comparison to retry.";
   });
-  // User-initiated playback only. Leaving the viewport or tab never starts it again.
+  // Source selection stays here; shared media controls own automatic starts.
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver((entries) => {
       if (!entries[0].isIntersecting) pause();
@@ -628,20 +623,6 @@ function enhanceOpenSpace(host) {
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) pause();
   });
-  document.addEventListener(
-    "play",
-    (event) => {
-      if (
-        event.target !== video &&
-        event.target instanceof HTMLMediaElement &&
-        !event.target.matches("[data-preview]") &&
-        !event.target.paused &&
-        !event.target.ended
-      )
-        pause();
-    },
-    true,
-  );
   renderCase();
 }
 

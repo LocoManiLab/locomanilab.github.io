@@ -23,7 +23,6 @@ export function enhanceSim2Real() {
   let trialIndex = 0;
   let generation = 0;
   let announcedPlaying = false;
-  let pausingOtherRecordings = false;
   let visible = false;
   let autoplayEnabled = true;
   let sharedPaused =
@@ -162,25 +161,8 @@ export function enhanceSim2Real() {
   }
 
   function autoplayPair(restart = false) {
-    if (
-      visible &&
-      !document.hidden &&
-      !sharedPaused &&
-      autoplayEnabled &&
-      !document.querySelector('#open-space-video[data-playing="true"]')
-    )
+    if (visible && !document.hidden && !sharedPaused && autoplayEnabled)
       playPair(restart);
-  }
-
-  function pauseOtherMedia() {
-    // The existing recording player has its own playback intent and frame loop.
-    // Cancel that intent as well as pausing its media elements.
-    pausingOtherRecordings = true;
-    document.dispatchEvent(new CustomEvent("recording-pause"));
-    document.querySelectorAll("video").forEach((video) => {
-      if (!videos.includes(video)) video.pause();
-    });
-    pausingOtherRecordings = false;
   }
 
   function configureVideo(video, clip, label, statusIndex) {
@@ -381,7 +363,6 @@ export function enhanceSim2Real() {
       autoplayEnabled = true;
       video.dataset.playing = "true";
       publishPlayback();
-      pauseOtherMedia();
     });
     video.addEventListener("playing", () => {
       statuses[index].textContent = "";
@@ -410,20 +391,6 @@ export function enhanceSim2Real() {
         "This recording could not load. Press Play both to retry.";
       publishPlayback();
     });
-  });
-  for (const name of [
-    "composition-playback",
-    "open-space-playback",
-    "dataset-recording-playback",
-    "policy-rollout-playback",
-    "generated-dataset-playback",
-  ]) {
-    document.addEventListener(name, (event) => {
-      if (event.detail?.playing) pausePair();
-    });
-  }
-  document.addEventListener("recording-pause", () => {
-    if (!pausingOtherRecordings) pausePair();
   });
   document.addEventListener("preview-motion", (event) => {
     const wasPaused = sharedPaused;

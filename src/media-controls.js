@@ -21,6 +21,7 @@ export function enhanceMediaControls() {
   initialized = true;
   const timelines = new Set();
   const players = new Map();
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   let frame = 0;
 
   function visible(element) {
@@ -44,6 +45,50 @@ export function enhanceMediaControls() {
 
   function schedule() {
     if (!frame) frame = requestAnimationFrame(refresh);
+  }
+
+  function autoplayPlayer(record) {
+    const { video } = record;
+    const key =
+      video.getAttribute("poster") ||
+      video.dataset.src ||
+      video.getAttribute("src") ||
+      "selected";
+    if (key !== record.autoplayKey) {
+      record.autoplayKey = key;
+      record.manualPaused = false;
+      record.autoplayAttempted = false;
+      record.startedAutomatically = false;
+    }
+    const inView = !document.hidden && visible(video);
+    if (inView && !record.wasVisible) record.autoplayAttempted = false;
+    record.wasVisible = inView;
+    const allowed =
+      !reducedMotion.matches && navigator.connection?.saveData !== true;
+    const automatic = inView && allowed && !record.manualPaused;
+    if (video.autoplay !== automatic) video.autoplay = automatic;
+    if (!inView) {
+      if (!video.paused) video.pause();
+      return;
+    }
+    if (!allowed) {
+      if (record.startedAutomatically && !video.paused) {
+        video.pause();
+        record.autoplayAttempted = false;
+      }
+      return;
+    }
+    if (
+      record.manualPaused ||
+      record.autoplayAttempted ||
+      !video.paused ||
+      video.error
+    )
+      return;
+    // Selection, media URLs, errors and async generations stay in the component.
+    record.autoplayAttempted = true;
+    record.startedAutomatically = true;
+    video.dispatchEvent(new CustomEvent("media-autoplay"));
   }
 
   function updatePlayer(record) {
@@ -96,6 +141,7 @@ export function enhanceMediaControls() {
         continue;
       }
       updatePlayer(record);
+      autoplayPlayer(record);
     }
     if (
       !document.hidden &&
@@ -143,14 +189,25 @@ export function enhanceMediaControls() {
       time,
       name,
       scrubbing: false,
+      manualPaused: false,
+      autoplayKey: "",
+      autoplayAttempted: false,
+      wasVisible: false,
+      startedAutomatically: false,
     };
     players.set(video, record);
     timelines.add(seek);
     video.dataset.sharedMedia = "true";
     play.addEventListener("click", async () => {
       status.textContent = "";
-      if (!video.paused && !video.ended) video.pause();
-      else {
+      record.startedAutomatically = false;
+      record.autoplayAttempted = true;
+      if (!video.paused && !video.ended) {
+        record.manualPaused = true;
+        video.autoplay = false;
+        video.pause();
+      } else {
+        record.manualPaused = false;
         if (video.ended) video.currentTime = 0;
         try {
           await video.play();
@@ -196,6 +253,13 @@ export function enhanceMediaControls() {
   }
 
   function discover(root = document) {
+    const mute = (video) => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+    };
+    if (root.matches?.("video")) mute(root);
+    root.querySelectorAll?.("video").forEach(mute);
     if (root.matches?.(timelineSelector)) timelines.add(root);
     root
       .querySelectorAll?.(timelineSelector)
@@ -237,6 +301,7 @@ export function enhanceMediaControls() {
     attributes: true,
     attributeFilter: [
       "src",
+      "poster",
       "controls",
       "min",
       "max",
@@ -245,6 +310,24 @@ export function enhanceMediaControls() {
       "aria-valuetext",
     ],
   });
+  document.addEventListener(
+    "click",
+    (event) => {
+      const button = event.target.closest(
+        ".transfer-video-play, #rollout-play",
+      );
+      if (!button) return;
+      const id =
+        button.id === "rollout-play" ? "rollout-video" : "open-space-video";
+      const record = players.get(document.getElementById(id));
+      if (record) {
+        record.manualPaused = false;
+        record.startedAutomatically = false;
+        record.autoplayAttempted = true;
+      }
+    },
+    true,
+  );
   for (const event of ["input", "change"])
     document.addEventListener(
       event,
@@ -278,5 +361,8 @@ export function enhanceMediaControls() {
   for (const event of ["scroll", "resize"])
     window.addEventListener(event, schedule, { passive: true });
   document.addEventListener("visibilitychange", schedule);
+  window.addEventListener("load", schedule, { once: true });
+  reducedMotion.addEventListener("change", schedule);
+  navigator.connection?.addEventListener?.("change", schedule);
   schedule();
 }

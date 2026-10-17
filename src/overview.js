@@ -78,10 +78,7 @@ export function enhanceOverview() {
       !mediaPaused &&
       !globallyPaused &&
       !preference.matches &&
-      !document.hidden &&
-      !document.querySelector(
-        '#composition-pair[data-playing="true"], #sim2real-pair[data-playing="true"], #episode-third-video[data-playing="true"], #rollout-video[data-playing="true"], #generated-player[data-playing="true"]',
-      );
+      !document.hidden;
     const running = mediaRunning && !paused;
     host.dataset.running = String(running);
     host.dataset.mediaRunning = String(mediaRunning);
@@ -157,18 +154,6 @@ export function enhanceOverview() {
     sync();
   });
   document.addEventListener("visibilitychange", sync);
-  for (const type of [
-    "sim2real-playback",
-    "composition-playback",
-    "dataset-recording-playback",
-    "policy-rollout-playback",
-    "generated-dataset-playback",
-  ])
-    document.addEventListener(type, sync);
-  document.addEventListener("recording-pause", () => {
-    videos.forEach((video) => video.pause());
-    queueMicrotask(sync);
-  });
   document.addEventListener("preview-motion", (event) => {
     globallyPaused = event.detail.paused;
     sync();

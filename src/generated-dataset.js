@@ -88,6 +88,9 @@ export function enhanceGeneratedDataset() {
   let frame;
   let targetTime = 0;
   let pendingSeek = null;
+  let visible = false;
+  let userPaused = false;
+  let autoplayFailed = false;
   let sharedPaused =
     matchMedia("(prefers-reduced-motion: reduce)").matches ||
     navigator.connection?.saveData === true ||
@@ -97,6 +100,19 @@ export function enhanceGeneratedDataset() {
   const master = () => (source === "gpt" ? third : ego);
   const duration = () => clip().duration;
   const isActive = (video) => activeVideos().includes(video);
+
+  function syncAutoplay() {
+    if (
+      visible &&
+      section.getClientRects().length &&
+      !document.hidden &&
+      !sharedPaused &&
+      !userPaused &&
+      !autoplayFailed &&
+      !intent
+    )
+      start();
+  }
 
   function updateTime() {
     const lead = master();
@@ -210,6 +226,7 @@ export function enhanceGeneratedDataset() {
     );
     if (token !== generation) return;
     if (results.some((result) => result.status === "rejected")) {
+      autoplayFailed = true;
       pause();
       status.textContent = "This episode could not start. Press Play to retry.";
       return;
@@ -231,6 +248,7 @@ export function enhanceGeneratedDataset() {
 
   function prepareMedia() {
     pause();
+    userPaused = autoplayFailed = false;
     targetTime = 0;
     pendingSeek = 0;
     for (const video of videos) {
@@ -273,6 +291,7 @@ export function enhanceGeneratedDataset() {
     seek.max = String(duration());
     publish();
     updateTime();
+    requestAnimationFrame(syncAutoplay);
   }
 
   function updateTasks() {
@@ -318,8 +337,14 @@ export function enhanceGeneratedDataset() {
     selected = generatedTasks.find((task) => task.id === taskSelect.value);
     prepareMedia();
   });
-  play.addEventListener("click", () => (intent ? pause() : start()));
+  play.addEventListener("click", () => {
+    userPaused = intent;
+    autoplayFailed = false;
+    if (intent) pause();
+    else start();
+  });
   $("#generated-replay").addEventListener("click", () => {
+    userPaused = autoplayFailed = false;
     pause();
     seekTo(0);
     start();
@@ -357,6 +382,7 @@ export function enhanceGeneratedDataset() {
     });
     video.addEventListener("error", () => {
       if (!isActive(video) || !video.hasAttribute("src")) return;
+      autoplayFailed = true;
       pause();
       status.textContent = "A recording could not load. Press Play to retry.";
     });
@@ -364,27 +390,23 @@ export function enhanceGeneratedDataset() {
   const disclosure = section.closest("details.generated-corpus");
   disclosure?.addEventListener("toggle", () => {
     if (!disclosure.open) pause();
+    else requestAnimationFrame(syncAutoplay);
   });
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) pause();
+    else requestAnimationFrame(syncAutoplay);
   });
   document.addEventListener("recording-pause", pause);
   document.addEventListener("preview-motion", (event) => {
     const wasPaused = sharedPaused;
     sharedPaused = event.detail.paused;
     if (sharedPaused && !wasPaused) pause();
+    else if (!sharedPaused && wasPaused) syncAutoplay();
   });
-  for (const type of [
-    "dataset-recording-playback",
-    "sim2real-playback",
-    "policy-rollout-playback",
-    "composition-playback",
-  ])
-    document.addEventListener(type, (event) => {
-      if (event.detail?.playing) pause();
-    });
   new IntersectionObserver((entries) => {
-    if (!entries[0].isIntersecting) pause();
+    visible = entries[0].isIntersecting;
+    if (!visible) pause();
+    else requestAnimationFrame(syncAutoplay);
   }).observe(player);
   updateTasks();
   prepareMedia();

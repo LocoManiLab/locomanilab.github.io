@@ -1,4 +1,4 @@
-import { enhanceMediaControls } from "./media-controls.js?v=20261017-unified";
+import { enhanceMediaControls } from "./media-controls.js?v=20261017-autoplay";
 const homeStudies = new Map([
   ["#benchmark-sources", "#data-source-study"],
   ["#benchmark-scaling", "#benchmark-scaling"],
@@ -19,7 +19,7 @@ window.addEventListener("hashchange", redirectStudyBookmark);
 
 import { enhanceNavigation } from "./navigation.js?v=20261013-pages";
 import { enhanceBenchmark } from "./benchmark.js?v=20261017-home-studies";
-import { enhancePolicyRollouts } from "./policy-rollouts.js?v=20261017-dm05";
+import { enhancePolicyRollouts } from "./policy-rollouts.js?v=20261017-autoplay";
 import { enhanceDisclosures, enhanceReading } from "./experience.js";
 
 enhanceNavigation();
