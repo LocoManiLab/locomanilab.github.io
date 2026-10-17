@@ -1,5 +1,5 @@
 import { resultTables } from "./results-data.js?v=20261017-results";
-import { enhanceControllerRadar } from "./controller-radar.js?v=20261017-results";
+import { enhanceControllerRadar } from "./controller-radar.js?v=20261017-home-studies";
 import { policyProfiles, policyLogo } from "./stack-data.js?v=20261017-results";
 
 const escape = (value) =>
@@ -156,12 +156,17 @@ function renderTable(host, key) {
   update();
 }
 
-export function enhanceBenchmark() {
-  enhanceControllerRadar();
-  document
+export function enhanceResultTables(root = document) {
+  root
     .querySelectorAll("[data-result-table]")
     .forEach((host) => renderTable(host, host.dataset.resultTable));
+}
+
+export function enhanceBenchmark() {
+  enhanceControllerRadar();
+  enhanceResultTables();
   const root = document.getElementById("benchmark-results");
+  if (!root) return;
   const tabs = [...root.querySelectorAll('[role="tab"]')];
   const select = (tab, focus = false) => {
     tabs.forEach((button) => {

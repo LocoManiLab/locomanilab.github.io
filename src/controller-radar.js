@@ -30,7 +30,8 @@ export const radarMetrics = [
     unit: "W",
     decimals: 3,
     direction: "↓",
-    description: "Mechanical output power reported in Fig. 3. Lower is better.",
+    description:
+      "Mechanical output power reported in the controller study. Lower is better.",
   },
   {
     key: "slip",
@@ -39,7 +40,8 @@ export const radarMetrics = [
     unit: "cm/s",
     decimals: 3,
     direction: "↓",
-    description: "Foot-slip speed reported in Fig. 3. Lower is better.",
+    description:
+      "Foot-slip speed reported in the controller study. Lower is better.",
   },
   {
     key: "actionRate",
@@ -49,7 +51,7 @@ export const radarMetrics = [
     decimals: 3,
     direction: "↓",
     description:
-      "Rate of change in body-joint position targets reported in Fig. 3. Lower is better.",
+      "Rate of change in body-joint position targets reported in the controller study. Lower is better.",
   },
   {
     key: "fall",
@@ -58,7 +60,8 @@ export const radarMetrics = [
     unit: "%",
     decimals: 3,
     direction: "↓",
-    description: "Fall percentage reported in Fig. 3. Lower is better.",
+    description:
+      "Fall percentage reported in the controller study. Lower is better.",
   },
   {
     key: "relativeTime",
@@ -68,7 +71,7 @@ export const radarMetrics = [
     decimals: 3,
     direction: "↓",
     description:
-      "Relative completion time reported in Fig. 3. Lower is better.",
+      "Relative completion time reported in the controller study. Lower is better.",
   },
 ];
 
@@ -125,7 +128,7 @@ export function enhanceControllerRadar() {
         <button type="button" data-radar-task="atomic" aria-pressed="true">Atomic</button>
         <button type="button" data-radar-task="composite" aria-pressed="false">Compositional</button>
       </div></fieldset>
-      <span class="radar-scale-label">Fig. 3 · 50 demonstrations / task</span>
+      <span class="radar-scale-label">50 demonstrations / task</span>
     </div>
     <div class="radar-context"><p id="radar-scope"></p><span>Outward = better · fixed scales</span></div>
     <div class="radar-legend" role="group" aria-label="Visible controllers">
@@ -144,15 +147,15 @@ export function enhanceControllerRadar() {
         <div class="radar-values"></div>
       </div>
     </div>
-    <p class="radar-sampling-note">Current Fig. 3 profiles · 50 demonstrations per task · 100 evaluation episodes per controller. Raw values and chart radii are supplied with the manuscript.</p>
+    <p class="radar-sampling-note">Current Controller profiles · 50 demonstrations per task · 100 evaluation episodes per controller. Raw values and chart radii are supplied with the manuscript.</p>
     <details class="radar-raw"><summary>Raw measurements <span aria-hidden="true">+</span></summary>
       <div class="radar-table-scroll" role="region" aria-label="Controller measurements, scroll horizontally for all metrics" tabindex="0"><table class="radar-data-table"><caption class="sr-only">Reported controller measurements for the current policy, task type and data scale.</caption><thead><tr><th scope="col">Controller</th>${tableMetrics.map((metric) => `<th scope="col">${metric.label}<small>${metric.unit}</small></th>`).join("")}<th scope="col">Successful<small>episodes</small></th></tr></thead><tbody></tbody></table></div>
     </details>
     <details class="radar-method"><summary>How to read this chart <span aria-hidden="true">+</span></summary>
       <div><p>The chart compares controllers within one policy, task type and data setting. Values in the metric panel and table are the reported measurements, not normalized scores.</p>
-      <p>The chart plots the supplied Fig. 3 radii directly, with the same fixed axes across all policy and task selections. Success and falls use linear scales; power, foot slip, action rate and relative time use logarithmic scales. Outward means higher success or lower cost. The chart does not compute an overall ranking.</p>
+      <p>The chart plots the supplied controller-study radii directly, with the same fixed axes across all policy and task selections. Success and falls use linear scales; power, foot slip, action rate and relative time use logarithmic scales. Outward means higher success or lower cost. The chart does not compute an overall ranking.</p>
       <p>Axis ranges: success 5–79%; power 13.795–317.734 W; foot slip 0.093–20.911 cm/s; action rate 3.048–45.392 rad/s; falls 0–22.785%; relative time 0.873–1.859×. <a href="./media/results/paper-20261017/fig3_controller_radar/axis_ranges.csv" download>Download axis ranges ↓</a>.</p>
-      <p>Each profile uses 50 demonstrations per task and reports 100 evaluation episodes. The table and metric panel show the original measurements in their stated units; normalized radii only determine chart geometry. <a href="./media/results/paper-20261017/fig3_controller_radar/profiles.csv" download>Download Fig. 3 profiles ↓</a>.</p></div>
+      <p>Each profile uses 50 demonstrations per task and reports 100 evaluation episodes. The table and metric panel show the original measurements in their stated units; normalized radii only determine chart geometry. <a href="./media/results/paper-20261017/fig3_controller_radar/profiles.csv" download>Download Controller profiles ↓</a>.</p></div>
     </details>
     <p class="sr-only radar-status" role="status" aria-live="polite"></p>`;
 
@@ -190,7 +193,7 @@ export function enhanceControllerRadar() {
     host.querySelector(".radar-metric-description").textContent =
       metric.description;
     host.querySelector(".radar-population").textContent =
-      "Reported Fig. 3 measurement · 100 evaluation episodes";
+      "Reported controller measurement · 100 evaluation episodes";
     host.querySelector(".radar-values").innerHTML = visible
       .map((controller) => {
         const row = rows.find((item) => item.controller === controller.name);
@@ -248,8 +251,7 @@ export function enhanceControllerRadar() {
     });
     const policy = state.model === "groot" ? "GR00T" : "π₀.₅";
     const tasks = state.task === "atomic" ? "Atomic" : "Compositional";
-    const scale =
-      "50 demonstrations / task · 100 episodes / controller · Fig. 3";
+    const scale = "50 demonstrations / task · 100 episodes / controller";
     host.querySelector("#radar-scope").textContent =
       `${policy} · ${tasks} · ${scale}`;
     const grids = [0.25, 0.5, 0.75, 1]
@@ -281,7 +283,7 @@ export function enhanceControllerRadar() {
         return `<g class="radar-series" data-controller="${controller.id}" style="--series-color:${controller.color}"><path class="radar-area" d="${pathFor(values)}" fill="${values.some((value) => value === null) ? "none" : controller.color}"/><path class="radar-line" d="${pathFor(values)}" stroke-dasharray="${controller.dash}"/>${markers}</g>`;
       })
       .join("");
-    svg.innerHTML = `<title id="radar-title">Controller comparison: ${policy}, ${tasks}, 50 demonstrations per task, Fig. 3</title><desc id="radar-description">${visible.map((item) => item.name).join(", ") || "No controllers selected"}. Six axes: success, power, slip, action rate, falls and relative time. Outward is better. Exact reported values are available in the metric panel and raw measurements table.</desc><g class="radar-grid">${grids}${axes}</g>${series}`;
+    svg.innerHTML = `<title id="radar-title">Controller comparison: ${policy}, ${tasks}, 50 demonstrations per task</title><desc id="radar-description">${visible.map((item) => item.name).join(", ") || "No controllers selected"}. Six axes: success, power, slip, action rate, falls and relative time. Outward is better. Exact reported values are available in the metric panel and raw measurements table.</desc><g class="radar-grid">${grids}${axes}</g>${series}`;
     host.querySelector(".radar-empty").hidden = visible.length > 0;
     host.querySelector(".radar-data-table tbody").innerHTML = rows
       .map(

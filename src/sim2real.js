@@ -1,4 +1,4 @@
-import { sim2realTasks } from "./sim2real-data.js";
+import { sim2realTasks } from "./sim2real-data.js?v=20261017-clean-trials";
 
 const escape = (value) =>
   String(value ?? "").replace(
@@ -162,7 +162,13 @@ export function enhanceSim2Real() {
   }
 
   function autoplayPair(restart = false) {
-    if (visible && !document.hidden && !sharedPaused && autoplayEnabled)
+    if (
+      visible &&
+      !document.hidden &&
+      !sharedPaused &&
+      autoplayEnabled &&
+      !document.querySelector('#open-space-video[data-playing="true"]')
+    )
       playPair(restart);
   }
 
@@ -407,6 +413,7 @@ export function enhanceSim2Real() {
   });
   for (const name of [
     "composition-playback",
+    "open-space-playback",
     "dataset-recording-playback",
     "policy-rollout-playback",
     "generated-dataset-playback",

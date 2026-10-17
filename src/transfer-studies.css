@@ -1,4 +1,4 @@
-/* Paper Fig. 4 and Fig. 5 use the site's existing research palette and rhythm. */
+/* Interactive experiment studies share the site's research palette and rhythm. */
 #data-scaling-study,
 .transfer-study {
   --transfer-cobalt: #2858c7;
@@ -10,7 +10,7 @@
 #data-scaling-study button,
 .transfer-study button,
 .transfer-study select {
-  font: inherit;
+  font-family: inherit;
   cursor: pointer;
 }
 #data-scaling-study button:focus-visible,
@@ -21,63 +21,141 @@
   outline: 3px solid #2858c755;
   outline-offset: 4px;
 }
-.transfer-scale-controls {
+.transfer-scale-workbench {
+  --scale-main: #2858c7;
+  overflow: hidden;
+  border: 1px solid #dbe4f0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 16px 40px -32px #16263d45;
+}
+.transfer-scale-toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 28px;
+  border-bottom: 1px solid #e3eaf3;
+  background: #f6f9fd;
+}
+.transfer-model-choice {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.transfer-model-choice legend,
+.transfer-controller-choice {
+  color: #566982;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.transfer-model-choice legend {
+  margin-bottom: 8px;
+  padding: 0;
+}
+.transfer-model-choice > div {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #dce5f2;
+  border-radius: 9px;
+  background: #eaf0f8;
+}
+.transfer-model-choice button {
+  min-width: 142px;
+  min-height: 42px;
+  padding: 9px 18px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #53647b;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 550;
+}
+.transfer-model-choice button[aria-pressed="true"] {
+  border-color: #dce5f2;
+  background: #fff;
+  color: #1e3f80;
+  box-shadow: 0 2px 5px #16263d0d;
+}
+.transfer-model-choice button:hover {
+  color: #1d4aa6;
+  background: #ffffffa6;
+}
+.transfer-controller-choice select {
+  display: block;
+  width: 244px;
+  max-width: 100%;
+  min-height: 50px;
+  margin-top: 8px;
+  padding: 9px 36px 9px 13px;
+  border: 1px solid #d6e0ee;
+  border-radius: 8px;
+  color: #263c5a;
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.transfer-scale-chart-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 23px 28px 0;
+}
+.transfer-scale-chart-heading > p {
+  margin: 0;
+  color: #4e6480;
+  font-size: 12px;
+  font-weight: 500;
+}
+.transfer-task-controls {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  padding: 12px;
-  border: 1px solid var(--line, #dce3ed);
-  border-radius: 8px;
-  background: #f5f8fc;
 }
-.transfer-scale-controls button {
-  min-height: 42px;
-  padding: 8px 14px;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  color: #53647c;
-  background: transparent;
-  font-size: 12px;
-  font-weight: 550;
-}
-.transfer-scale-controls button[aria-pressed="true"] {
-  border-color: #d9e3f3;
-  color: var(--transfer-cobalt);
-  background: #fff;
-  box-shadow: 0 2px 6px #16263d0a;
-}
-.transfer-scale-controls button:hover {
-  color: var(--transfer-cobalt);
-  background: #fff;
-}
-.transfer-scale-context {
-  margin: 20px 0 15px;
-  color: #465b79;
-  font-size: 12px;
-  font-weight: 550;
-}
-.transfer-scale-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 24px;
-}
-.transfer-scale-legend > span {
+.transfer-task-controls button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: #455771;
+  gap: 7px;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: #52637a;
+  background: transparent;
   font-size: 11px;
+  font-weight: 450;
 }
-.transfer-scale-legend i {
-  width: 22px;
+.transfer-task-controls button[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--transfer-series) 22%, white);
+  background: color-mix(in srgb, var(--transfer-series) 5%, white);
+  color: #243e62;
+}
+.transfer-task-controls button:hover {
+  background: #f3f6fa;
+}
+.transfer-task-controls i {
+  width: 14px;
   height: 0;
-  border-top: 2px solid var(--transfer-series);
+  border-top: 3px solid var(--transfer-series);
 }
-.transfer-scale-legend i.is-dashed {
+.transfer-task-controls button:last-child i {
   border-top-style: dashed;
 }
+.transfer-task-controls button span {
+  color: #344a68;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
 .transfer-scale-figure {
-  margin: 24px 0 22px;
+  margin: 17px 28px 0;
+}
+.transfer-scale-canvas {
+  position: relative;
 }
 .transfer-scale-figure svg {
   display: block;
@@ -86,54 +164,254 @@
   overflow: visible;
 }
 .transfer-chart-grid {
-  stroke: #dfe6f0;
+  stroke: #e3eaf3;
   stroke-width: 1;
-}
-.transfer-chart-axis-line {
-  stroke: #9aaac0;
+  stroke-dasharray: 3 5;
 }
 .transfer-chart-axis,
 .transfer-chart-tick,
 .transfer-chart-note {
-  fill: #53647c;
+  fill: #5c708c;
   font-family: var(--sans, sans-serif);
-  font-size: 13px;
+  font-size: 14px;
 }
 .transfer-chart-axis {
-  fill: #344b6b;
-  font-size: 13px;
+  fill: #405773;
+  font-size: 14px;
   font-weight: 500;
 }
 .transfer-chart-note {
-  fill: #5270a3;
+  fill: #536b8e;
   font-size: 12px;
 }
 .transfer-scale-extension {
-  fill: #edf3fd;
+  fill: #f0f4fb;
+}
+.transfer-chart-area {
+  fill: url(#transfer-scale-fill);
+  pointer-events: none;
 }
 .transfer-chart-series {
   fill: none;
   stroke: var(--transfer-series);
-  stroke-width: 2.5;
+  stroke-width: 3.5;
+  stroke-linecap: round;
   stroke-linejoin: round;
+  pointer-events: none;
+  transition: opacity 200ms;
 }
 .transfer-chart-series.is-dashed {
-  stroke-dasharray: 7 5;
+  stroke-dasharray: 8 6;
+}
+.transfer-chart-series.is-muted {
+  stroke-width: 2.5;
+  opacity: 0.8;
+}
+.transfer-checkpoint-line {
+  stroke: #7a8ea9;
+  stroke-width: 1.2;
+  stroke-dasharray: 4 5;
+  pointer-events: none;
 }
 .transfer-chart-marker {
   fill: var(--transfer-series);
-  stroke: var(--transfer-series);
+  stroke: #fff;
   stroke-width: 2;
+  pointer-events: none;
 }
 .transfer-chart-marker.is-hollow {
   fill: #fff;
+  stroke: var(--transfer-series);
+  stroke-width: 2.5;
+}
+.transfer-chart-point {
+  outline: none;
+  cursor: pointer;
+}
+.transfer-chart-hit {
+  fill: transparent;
+  stroke: transparent;
+}
+.transfer-chart-halo {
+  fill: var(--transfer-series);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms;
+}
+.transfer-chart-point.is-selected .transfer-chart-halo {
+  opacity: 0.15;
+}
+.transfer-chart-point:focus-visible .transfer-chart-hit {
+  stroke: #253b59;
+  stroke-width: 1.6;
+  stroke-dasharray: 2 3;
+}
+.transfer-chart-point:hover .transfer-chart-halo,
+.transfer-chart-point:focus-visible .transfer-chart-halo {
+  opacity: 0.22;
+}
+.transfer-chart-point.is-muted .transfer-chart-marker {
+  opacity: 0.8;
+}
+.transfer-scale-tooltip {
+  position: absolute;
+  z-index: 3;
+  min-width: 182px;
+  max-width: calc(100% - 16px);
+  padding: 12px 15px;
+  border-radius: 9px;
+  color: #fff;
+  background: #1c304d;
+  box-shadow: 0 6px 20px #14283d26;
+  pointer-events: none;
+}
+.transfer-scale-tooltip[hidden] {
+  display: none;
+}
+.transfer-scale-tooltip > span {
+  display: block;
+  color: #d1ddec;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.transfer-scale-tooltip strong {
+  font-size: 26px;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+}
+.transfer-scale-tooltip small {
+  margin-left: 5px;
+  color: #d1ddec;
+  font-size: 10px;
+  font-weight: 400;
 }
 .transfer-scale-figure figcaption {
-  max-width: 850px;
-  margin: 10px 0 0;
-  color: var(--transfer-muted);
-  font-size: 12px;
+  margin: 6px 0 0;
+  color: #63758e;
+  font-size: 11px;
   line-height: 1.75;
+  text-align: center;
+}
+.transfer-checkpoint-controls {
+  display: grid;
+  grid-template-columns: 205px minmax(0, 1fr);
+  gap: 38px;
+  align-items: center;
+  margin: 23px 28px 0;
+  padding: 20px 0 22px;
+  border-block: 1px solid #e4eaf3;
+}
+.transfer-checkpoint-label > span {
+  display: block;
+  color: #5b6d85;
+  font-size: 10px;
+}
+.transfer-checkpoint-label strong {
+  color: #253f63;
+  font-size: 24px;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+}
+.transfer-checkpoint-label small {
+  color: #5b6d85;
+  font-size: 11px;
+  font-weight: 400;
+}
+.transfer-budget-scrubber {
+  padding-top: 10px;
+}
+.transfer-budget-scrubber input {
+  display: block;
+  width: calc(100% - 24px);
+  height: 6px;
+  margin: 0 12px;
+  accent-color: var(--scale-main);
+  cursor: pointer;
+}
+.transfer-budget-scrubber input:focus-visible {
+  outline: 3px solid #2858c755;
+  outline-offset: 6px;
+}
+.transfer-budget-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px;
+}
+.transfer-budget-options button {
+  min-width: 36px;
+  min-height: 32px;
+  padding: 3px 9px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #53677f;
+  background: transparent;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.transfer-budget-options button[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--scale-main) 20%, white);
+  color: var(--scale-main);
+  background: color-mix(in srgb, var(--scale-main) 6%, white);
+  font-weight: 650;
+}
+.transfer-scale-insights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 28px 0;
+}
+.transfer-scale-insights article {
+  min-width: 0;
+  padding: 17px 18px 15px;
+  border: 1px solid #e0e8f2;
+  border-radius: 9px;
+  background: #f8fafc;
+}
+.transfer-scale-insights article.transfer-primary-insight {
+  border-color: color-mix(in srgb, var(--scale-main) 24%, white);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--scale-main) 7%, white),
+    #fbfcff
+  );
+}
+.transfer-scale-insights article > span {
+  display: block;
+  color: #526780;
+  font-size: 10px;
+  font-weight: 450;
+}
+.transfer-scale-insights strong {
+  display: block;
+  margin-top: 5px;
+  color: #273e5c;
+  font-size: 31px;
+  font-weight: 550;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.6;
+}
+.transfer-primary-insight strong {
+  color: var(--scale-main);
+}
+.transfer-scale-insights small {
+  margin-left: 3px;
+  color: #5b6d85;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.transfer-scale-insights p {
+  margin: 2px 0 0;
+  color: #5b6d85;
+  font-size: 10px;
+  line-height: 1.7;
+}
+.transfer-budget-scope {
+  margin: 17px 28px 23px;
+  color: #5b6d85;
+  font-size: 10px;
+  line-height: 1.8;
 }
 .transfer-study-note {
   padding: 15px 18px;
@@ -219,7 +497,7 @@
   align-items: end;
   gap: 48px;
 }
-.transfer-study-heading h2 {
+.transfer-study-heading :is(h2, h3) {
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(30px, 3vw, 38px);
@@ -572,5 +850,148 @@
   }
   .transfer-details summary {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .transfer-scale-toolbar {
+    padding: 20px;
+  }
+  .transfer-scale-chart-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 20px 0;
+  }
+  .transfer-scale-figure {
+    margin-inline: 20px;
+  }
+  .transfer-checkpoint-controls {
+    margin-inline: 20px;
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 25px;
+  }
+  .transfer-scale-insights {
+    margin-inline: 20px;
+    gap: 10px;
+  }
+  .transfer-scale-insights article {
+    padding-inline: 13px;
+  }
+  .transfer-budget-scope {
+    margin-inline: 20px;
+  }
+}
+@media (max-width: 700px) {
+  .transfer-scale-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 17px;
+    padding: 17px;
+  }
+  .transfer-model-choice > div {
+    width: 100%;
+  }
+  .transfer-model-choice button {
+    flex: 1;
+    min-width: 0;
+    padding-inline: 10px;
+    font-size: 12px;
+  }
+  .transfer-controller-choice select {
+    width: 100%;
+    min-height: 44px;
+  }
+  .transfer-scale-chart-heading {
+    padding-inline: 15px;
+  }
+  .transfer-task-controls {
+    gap: 5px;
+    width: 100%;
+  }
+  .transfer-task-controls button {
+    flex: 1;
+    gap: 5px;
+    padding-inline: 6px;
+    font-size: 10px;
+  }
+  .transfer-task-controls button i {
+    width: 11px;
+  }
+  .transfer-scale-figure {
+    margin-inline: 7px;
+  }
+  .transfer-chart-axis,
+  .transfer-chart-tick {
+    font-size: 20px;
+  }
+  .transfer-chart-note {
+    font-size: 17px;
+  }
+  .transfer-chart-point .transfer-chart-hit {
+    r: 28px;
+  }
+  .transfer-scale-figure figcaption {
+    margin-inline: 10px;
+    font-size: 10px;
+  }
+  .transfer-checkpoint-controls {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    margin-inline: 17px;
+    padding-top: 17px;
+  }
+  .transfer-checkpoint-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .transfer-checkpoint-label strong {
+    font-size: 21px;
+  }
+  .transfer-checkpoint-label small {
+    font-size: 10px;
+  }
+  .transfer-budget-scrubber {
+    padding-top: 7px;
+  }
+  .transfer-scale-insights {
+    grid-template-columns: minmax(0, 1fr);
+    margin-inline: 17px;
+    gap: 8px;
+  }
+  .transfer-scale-insights article {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 2px 12px;
+    padding: 13px 15px;
+  }
+  .transfer-scale-insights article > span {
+    font-size: 10px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .transfer-scale-insights strong {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    margin: 0;
+    font-size: 27px;
+  }
+  .transfer-scale-insights p {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 0;
+    font-size: 9px;
+  }
+  .transfer-budget-scope {
+    margin: 15px 17px 19px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .transfer-chart-series,
+  .transfer-chart-halo {
+    transition: none;
   }
 }

@@ -1,3 +1,4 @@
+import { enhanceMediaControls } from "./media-controls.js?v=20261017-unified";
 import { enhanceNavigation } from "./navigation.js?v=20261013-pages";
 import { enhanceRecordings } from "./recordings.js?v=20261014-success-replay";
 import { enhanceDatasetDR } from "./dataset-dr.js?v=20261013-generated";
@@ -12,7 +13,9 @@ import {
 import { enhancePageMotion } from "./motion.js?v=20261009-rhythm";
 import { enhanceOverview } from "./overview.js?v=20261014-live-overview";
 import { enhanceComposition } from "./composition.js?v=20261014-success-replay";
-import { enhanceSim2Real } from "./sim2real.js?v=20261013-generated";
+import { enhanceSim2Real } from "./sim2real.js?v=20261017-clean-trials";
+import { enhanceResultTables } from "./benchmark.js?v=20261017-home-studies";
+import { enhanceTransferStudies } from "./transfer-studies.js?v=20261017-home-studies";
 import { enhanceExecutionStack } from "./stack.js?v=20261009-stack-final";
 import {
   policyProfiles,
@@ -29,11 +32,7 @@ const resultAnchors = new Set([
   "#benchmark-results",
   "#benchmark-generalization",
   "#benchmark-robustness",
-  "#benchmark-sources",
   "#benchmark-controllers",
-  "#benchmark-scaling",
-  "#data-scaling-study",
-  "#open-space-study",
   "#controller-radar",
   "#policy-rollouts",
 ]);
@@ -303,6 +302,7 @@ reducedMotion.addEventListener("change", (event) => {
 document.addEventListener("visibilitychange", syncMotion);
 for (const type of [
   "policy-rollout-playback",
+  "open-space-playback",
   "dataset-recording-playback",
   "sim2real-playback",
   "composition-playback",
@@ -312,7 +312,7 @@ for (const type of [
     // Playback events can nest when one player pauses the other. Read their
     // current state instead of letting a nested pause restart the previews.
     foregroundRecordingPlaying = !!document.querySelector(
-      '#rollout-video[data-playing="true"], #episode-third-video[data-playing="true"], #sim2real-pair[data-playing="true"], #composition-pair[data-playing="true"], #generated-player[data-playing="true"]',
+      '#open-space-video[data-playing="true"], #rollout-video[data-playing="true"], #episode-third-video[data-playing="true"], #sim2real-pair[data-playing="true"], #composition-pair[data-playing="true"], #generated-player[data-playing="true"]',
     );
     syncMotion();
   });
@@ -345,6 +345,8 @@ enhanceReading();
 enhancePageMotion();
 enhanceOverview();
 enhanceSim2Real();
+enhanceResultTables(document.querySelector("#experiments"));
+enhanceTransferStudies();
 enhanceComposition();
 stabilizeText(
   $("#controller-affiliation"),
@@ -378,3 +380,5 @@ $("#copy-citation").addEventListener("click", async () => {
     $("#copy-citation").textContent = "Select & copy below";
   }
 });
+
+enhanceMediaControls();

@@ -79,6 +79,7 @@
       rel="stylesheet"
       href="./src/transfer-studies.css?v=20261017-results"
     />
+    <link rel="stylesheet" href="./src/media-controls.css?v=20261017-unified" />
   </head>
   <body class="secondary-page leaderboard-page" id="top">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -138,8 +139,8 @@
             <h1 id="results-title">Leaderboard</h1>
           </div>
           <p class="section-aside">
-            Policy success rates, domain randomization, data-source ablations,
-            controller measurements, and motion-generation studies.
+            Policy success rates, domain randomization, and controller
+            measurements.
             <a class="text-link" href="#policy-rollouts"
               >Policy rollouts <span aria-hidden="true">↗</span></a
             >
@@ -152,11 +153,8 @@
             href="./community.html#evaluation"
             >Request a simulation run</a
           >
-          <a class="text-link" href="#benchmark-scaling"
-            >Data scaling <span aria-hidden="true">↗</span></a
-          >
-          <a class="text-link" href="#open-space-study"
-            >Open-space transfer <span aria-hidden="true">↗</span></a
+          <a class="text-link" href="./index.html#experiments"
+            >Experimental studies <span aria-hidden="true">↗</span></a
           >
         </div>
         <p class="result-scope">
@@ -190,16 +188,6 @@
               Randomization
             </button>
             <button
-              id="result-tab-sources"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              aria-controls="benchmark-sources"
-              tabindex="-1"
-            >
-              Data sources
-            </button>
-            <button
               id="result-tab-controllers"
               type="button"
               role="tab"
@@ -208,16 +196,6 @@
               tabindex="-1"
             >
               Controllers
-            </button>
-            <button
-              id="result-tab-scaling"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              aria-controls="benchmark-scaling"
-              tabindex="-1"
-            >
-              Data scaling
             </button>
           </div>
           <div
@@ -260,26 +238,6 @@
             ></div>
           </div>
           <div
-            id="benchmark-sources"
-            class="benchmark-panel"
-            role="tabpanel"
-            aria-labelledby="result-tab-sources"
-            tabindex="0"
-            hidden
-          >
-            <div class="benchmark-panel-heading">
-              <div>
-                <span class="result-eyebrow">03 / DATA-SOURCE ABLATION</span>
-                <h3>Data-source ablation</h3>
-              </div>
-              <span class="result-unit">Success rate (%)</span>
-            </div>
-            <div
-              data-content-slot="data-source-results"
-              data-result-table="sources"
-            ></div>
-          </div>
-          <div
             id="benchmark-controllers"
             class="benchmark-panel"
             role="tabpanel"
@@ -289,7 +247,7 @@
           >
             <div class="benchmark-panel-heading">
               <div>
-                <span class="result-eyebrow">04 / CONTROLLER PROFILES</span>
+                <span class="result-eyebrow">03 / CONTROLLER PROFILES</span>
                 <h3>Controller comparison</h3>
               </div>
               <a
@@ -312,25 +270,6 @@
               </p></noscript
             >
           </div>
-          <div
-            id="benchmark-scaling"
-            class="benchmark-panel"
-            role="tabpanel"
-            aria-labelledby="result-tab-scaling"
-            tabindex="0"
-            hidden
-          >
-            <div class="benchmark-panel-heading">
-              <div>
-                <span class="result-eyebrow"
-                  >05 / DEMONSTRATION SCALE · FIG. 4</span
-                >
-                <h3>How demonstration scale changes policy success</h3>
-              </div>
-              <span class="result-unit">Success rate (%)</span>
-            </div>
-            <div id="data-scaling-study"></div>
-          </div>
           <noscript
             ><p>
               Enable JavaScript to sort the result tables.
@@ -341,11 +280,6 @@
             </p></noscript
           >
         </div>
-        <section
-          id="open-space-study"
-          class="transfer-study"
-          aria-labelledby="open-space-title"
-        ></section>
         <section
           id="policy-rollouts"
           class="policy-rollouts-section"
@@ -401,7 +335,7 @@
     >
     <script
       type="module"
-      src="./src/leaderboard.js?v=20261017-results"
+      src="./src/leaderboard.js?v=20261017-home-studies"
     ></script>
   </body>
 </html>
