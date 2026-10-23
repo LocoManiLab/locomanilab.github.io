@@ -1,0 +1,112 @@
+/* Publication details and project links form one quiet block below the byline. */
+.paper-resources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 28px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 24px;
+  padding: 18px 22px;
+  border: 1px solid #e0e5ed;
+  border-radius: 10px;
+  background: #f3f5f9;
+}
+.paper-resources .paper-metadata {
+  align-items: center;
+  gap: 16px 30px;
+  margin: 0;
+}
+.paper-resources .paper-metadata dt {
+  margin-bottom: 3px;
+  font-size: 11px;
+  color: #59677d;
+}
+.paper-resources .paper-metadata dd {
+  line-height: 1.5;
+}
+.paper-resources .hero-actions {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+.paper-resources .hero-actions .button {
+  min-height: 42px;
+  width: auto;
+  padding: 10px 17px;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink);
+  border: 1px solid #d8dfe9;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: none;
+}
+.paper-resources .hero-actions a.button:hover {
+  color: var(--accent);
+  border-color: #9aabc5;
+  background: #fff;
+}
+.paper-resources .hero-actions .resource-coming-soon {
+  color: #56647a;
+  cursor: default;
+}
+.paper-resources .resource-status {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #edf1f7;
+  color: #52627d;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.paper-resources .hero-actions .button img,
+.paper-resources .hero-actions .button svg {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+@media (max-width: 700px) {
+  .paper-resources {
+    width: 100%;
+    gap: 17px;
+    padding: 17px 16px;
+    margin-top: 20px;
+  }
+  .paper-resources .paper-metadata {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+  }
+  .paper-resources .paper-metadata > div {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .paper-resources .paper-metadata dd {
+    font-size: 12px;
+  }
+  .paper-resources .paper-metadata dt {
+    margin: 0;
+    font-size: 10px;
+  }
+  .paper-resources .hero-actions {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e5ed;
+  }
+  .paper-resources .hero-actions .button {
+    flex: 0 1 auto;
+    padding-inline: 12px;
+    font-size: 12px;
+  }
+}

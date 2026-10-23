@@ -1,0 +1,11 @@
+{
+  "name": "locomanilab.github.io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs --main-site"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

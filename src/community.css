@@ -1,0 +1,502 @@
+.community-page .community-content {
+  padding-top: 74px;
+  padding-bottom: 88px;
+}
+
+.community-page .page-heading {
+  max-width: 780px;
+  margin-bottom: 44px;
+}
+
+.community-page .page-heading h1 {
+  margin-bottom: 18px;
+  font-family: var(--serif);
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 450;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.community-page .page-heading p {
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.wechat-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
+  align-items: center;
+  gap: 40px;
+  margin-top: 58px;
+}
+
+.community-card {
+  min-width: 0;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.community-channel {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+}
+
+.community-card h2,
+.community-card h3 {
+  margin-bottom: 14px;
+  font-family: var(--sans);
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+
+.community-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.community-card p + p {
+  margin-top: 12px;
+}
+
+.community-card .button,
+.community-card .text-link {
+  margin-top: 22px;
+}
+
+.wechat-intro .text-link {
+  display: inline-flex;
+}
+
+.wechat-code-link {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  justify-self: center;
+}
+
+.community-card .wechat-code {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.community-page .contacts-section,
+.evaluation-section {
+  margin-top: 58px;
+  padding-top: 42px;
+  border-top: 1px solid var(--line);
+}
+
+.community-page .contacts-section > h2,
+.evaluation-section > h2,
+.evaluation-intro h2 {
+  margin-bottom: 12px;
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.5vw, 38px);
+  font-weight: 450;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.community-page .contacts-section > p,
+.evaluation-section > p,
+.evaluation-intro p {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.community-page .contacts-section {
+  margin-top: 40px;
+  padding-top: 24px;
+}
+
+.community-page .contacts-section > h2 {
+  margin-bottom: 0;
+  font-size: 26px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 24px;
+  margin-top: 18px;
+}
+
+.contact-grid > * {
+  min-width: 0;
+  padding: 0;
+}
+
+.contact-grid .name,
+.contact-grid h3 {
+  display: block;
+  margin: 0 0 3px;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.contact-grid h3 a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #b9c6d8;
+  text-underline-offset: 3px;
+}
+.contact-grid h3 a:hover,
+.contact-grid h3 a:focus-visible {
+  color: var(--accent, var(--green));
+  text-decoration-color: currentColor;
+}
+
+.contact-grid .email,
+.contact-grid a[href^="mailto:"] {
+  color: var(--accent, var(--green));
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.community-page a[href^="mailto:"]:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.evaluation-section {
+  scroll-margin-top: 112px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.6fr);
+  align-items: start;
+  gap: 64px;
+}
+
+.evaluation-scope-label {
+  display: block;
+  margin-bottom: 18px;
+  color: #365b95;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.evaluation-intro h2 {
+  max-width: 350px;
+  margin-bottom: 18px;
+}
+
+.evaluation-scope {
+  margin: 28px 0 20px;
+  padding: 22px;
+  border-left: 2px solid #6685be;
+  background: #edf2f9;
+}
+
+.evaluation-scope-status {
+  display: block;
+  color: #52657f;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.evaluation-scope > strong {
+  display: block;
+  margin: 4px 0 18px;
+  color: #294e89;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.evaluation-scope dl {
+  margin: 0;
+}
+
+.evaluation-scope dl > div {
+  padding: 10px 0;
+  border-top: 1px solid #d6e0ee;
+}
+
+.evaluation-scope dt {
+  margin-bottom: 3px;
+  color: #52657f;
+  font-size: 10px;
+}
+
+.evaluation-scope dd {
+  margin: 0;
+  color: #283b59;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.evaluation-results-link {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.community-page .page-heading + .evaluation-section {
+  margin-top: 0;
+}
+
+#evaluation-form {
+  min-width: 0;
+  padding-left: 34px;
+  border-left: 1px solid var(--line);
+}
+
+#evaluation-form fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#evaluation-form fieldset + fieldset {
+  margin-top: 32px;
+}
+
+#evaluation-form legend {
+  margin-bottom: 20px;
+  padding: 0;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#evaluation-form legend > span {
+  margin-right: 10px;
+  color: #5371a4;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.evaluation-draft-note {
+  margin-top: 26px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.evaluation-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+#evaluation-form label {
+  display: block;
+  min-width: 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+#evaluation-form label small,
+#evaluation-form .field-hint,
+#evaluation-form .field-optional {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+#evaluation-form input,
+#evaluation-form select,
+#evaluation-form textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin-top: 8px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink);
+  background: #fff;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+#evaluation-form input::placeholder,
+#evaluation-form textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+#evaluation-form textarea {
+  min-height: 116px;
+  resize: vertical;
+}
+
+#evaluation-form input:focus-visible,
+#evaluation-form select:focus-visible,
+#evaluation-form textarea:focus-visible {
+  border-color: var(--accent, var(--green));
+  outline: 2px solid var(--accent, var(--green));
+  outline-offset: 3px;
+}
+
+#evaluation-form .field-full {
+  grid-column: 1 / -1;
+}
+
+#evaluation-form .form-actions,
+#evaluation-form .evaluation-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+#evaluation-form .form-actions .button,
+#evaluation-form .evaluation-actions .button {
+  min-height: 44px;
+}
+
+#evaluation-mailto {
+  color: var(--accent, var(--green));
+  font-size: 13px;
+}
+
+#evaluation-status {
+  min-height: 24px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.evaluation-alternative {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 1050px) {
+  .evaluation-section {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+    gap: 32px;
+  }
+
+  #evaluation-form {
+    padding-left: 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .community-page .community-content {
+    padding-top: 42px;
+    padding-bottom: 56px;
+  }
+
+  .community-page .page-heading {
+    margin-bottom: 28px;
+  }
+
+  .community-page .page-heading h1 {
+    font-size: 40px;
+  }
+
+  .community-page .page-heading p {
+    font-size: 15px;
+  }
+
+  .wechat-section,
+  .contact-grid,
+  .evaluation-section,
+  .evaluation-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .wechat-section {
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .community-card {
+    padding: 24px;
+  }
+
+  .community-card h2,
+  .community-card h3 {
+    font-size: 21px;
+  }
+
+  .community-page .contacts-section,
+  .evaluation-section {
+    margin-top: 40px;
+    padding-top: 30px;
+  }
+
+  .evaluation-section {
+    gap: 32px;
+  }
+
+  .evaluation-scope {
+    margin-top: 22px;
+  }
+
+  #evaluation-form {
+    padding-top: 28px;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .community-page .contacts-section {
+    margin-top: 32px;
+    padding-top: 24px;
+  }
+
+  .contact-grid {
+    row-gap: 14px;
+  }
+
+  .contact-grid > * {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .contact-grid h3 {
+    margin: 0;
+  }
+
+  #evaluation-form input,
+  #evaluation-form select,
+  #evaluation-form textarea {
+    font-size: 16px;
+  }
+
+  #evaluation-form .form-actions,
+  #evaluation-form .evaluation-actions {
+    align-items: stretch;
+  }
+
+  #evaluation-form .form-actions .button,
+  #evaluation-form .evaluation-actions .button {
+    width: auto;
+    flex: 1 1 160px;
+  }
+}

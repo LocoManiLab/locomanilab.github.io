@@ -1,0 +1,7 @@
+training_data,gr00t_atomic,gr00t_compositional,gr00t_all,pi05_atomic,pi05_compositional,pi05_all
+Teleoperation only,88.4,56.2,82.0,92.5,76.2,89.2
+Motion synthesis only,40.9,22.5,37.2,46.9,20.0,41.5
+Data augmentation only,66.9,23.8,58.2,63.7,3.8,51.7
+Teleop. + synthesis,73.8,63.7,71.8,88.1,73.8,85.2
+Teleop. + augmentation,85.9,68.8,82.5,90.3,63.7,85.0
+All three,46.9,43.8,46.2,89.7,63.7,84.5
