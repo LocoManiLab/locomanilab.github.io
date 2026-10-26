@@ -124,6 +124,7 @@ body {
 }
 .paper-byline .authors > span {
   flex: 0 0 calc((100% - 110px) / 6);
+  min-width: 0;
   text-align: center;
 }
 .paper-byline .affiliations {
