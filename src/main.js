@@ -131,7 +131,7 @@ const citation = `@misc{wang2026locomanilabunifiedtestbeddata,
            Controllers, and Deployment in Humanoid Loco-Manipulation},
   author = {Dewei Wang and Jinrui Han and Jiyuan Shi and
             Chenyun Zhang and Xianbo Lu and Jiabao Wu and
-            Jiqin Feng and Jipeng Kong and Ping Luo and
+            Jiqin Feng and Jipeng Kong and Xinzhe Liu and Ping Luo and
             Chenjia Bai and Xuelong Li},
   year = {2026},
   eprint = {2610.30876},
