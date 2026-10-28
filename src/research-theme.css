@@ -114,16 +114,16 @@ body {
 .paper-byline .authors {
   display: flex;
   flex-wrap: wrap;
-  max-width: 900px;
+  max-width: 780px;
   margin-inline: auto;
-  gap: 3px 22px;
+  gap: 3px 14px;
   justify-content: center;
   font-size: 16px;
   line-height: 1.9;
   font-weight: 450;
 }
 .paper-byline .authors > span {
-  flex: 0 0 calc((100% - 110px) / 6);
+  flex: 0 0 calc((100% - 56px) / 5);
   min-width: 0;
   text-align: center;
 }
@@ -544,7 +544,7 @@ h2,
     padding-top: 40px;
   }
   .paper-byline .authors > span {
-    flex-basis: calc((100% - 66px) / 4);
+    flex-basis: calc((100% - 42px) / 4);
   }
   .section-top {
     gap: 32px;
