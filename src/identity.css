@@ -192,6 +192,18 @@
   top: 50%;
   transform: translateY(-52.2485%);
 }
+.paper-byline .institution-logos .organization-mark[data-organization="unitree"] {
+  /* The italic wordmark's T and I overhang the letters; size it by width. */
+  width: calc(var(--mark-size) * 2.5);
+  height: auto;
+}
+.paper-byline
+  .institution-logos
+  .organization-mark[data-organization="unitree"]
+  img {
+  width: 100%;
+  height: auto;
+}
 .paper-byline .affiliations .affiliation-label {
   max-width: 100%;
   font-size: 13px;
@@ -253,8 +265,14 @@
   }
   .paper-byline
     .institution-logos
-    .organization-mark[data-organization="gamma"] {
+    .organization-mark[data-organization="unitree"] {
     grid-column: span 2;
+  }
+  .paper-byline
+    .institution-logos
+    .organization-mark[data-organization="gamma"] {
+    /* The last row holds only this wordmark; keep it centered. */
+    grid-column: 2 / span 2;
   }
   .paper-byline .affiliations .affiliation-label {
     font-size: 12px;
