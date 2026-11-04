@@ -1,0 +1,283 @@
+/* Real recordings remain fully in frame, regardless of the source aspect ratio. */
+.deployment-section {
+  padding-block: var(--chapter-space, 72px) 64px;
+}
+#sim2real-root {
+  --sim2real-blue: #284db9;
+  min-width: 0;
+  margin-top: 36px;
+}
+.sim2real-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-block: 1px solid var(--line, #dce0e6);
+}
+.sim2real-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  min-width: 0;
+  min-height: 76px;
+  padding: 16px 19px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted, #626a78);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+}
+.sim2real-tabs button + button {
+  border-left: 1px solid var(--line, #dce0e6);
+}
+.sim2real-tabs button[aria-selected="true"] {
+  color: var(--sim2real-blue);
+  background: #edf2fc;
+  box-shadow: inset 0 -2px var(--sim2real-blue);
+}
+.sim2real-tabs button:hover {
+  background: #f0f3f9;
+  color: var(--sim2real-blue);
+}
+.sim2real-tab-number {
+  color: #586984;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.sim2real-task-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  min-height: 96px;
+  padding-block: 22px;
+}
+#sim2real-instruction {
+  max-width: 740px;
+  margin: 0;
+  color: var(--ink, #1d2330);
+  font-size: 17px;
+  font-weight: 450;
+  line-height: 1.65;
+}
+#sim2real-trial-count {
+  flex-shrink: 0;
+  color: var(--muted, #626a78);
+  font-size: 11px;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+}
+.sim2real-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.sim2real-recording {
+  min-width: 0;
+}
+.sim2real-recording-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+}
+.sim2real-recording-heading h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--ink, #1d2330);
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.6;
+}
+.sim2real-domain-dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5678cb;
+}
+.sim2real-domain-dot-real {
+  background: #ab785b;
+}
+.sim2real-duration {
+  color: var(--muted, #626a78);
+  font-size: 10px;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+}
+.sim2real-video-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border: 1px solid #dddfe4;
+  border-radius: 8px;
+  background: #16191e;
+}
+.sim2real-video-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  object-fit: contain;
+  background: #16191e;
+}
+.sim2real-clip-controls {
+  gap: 10px;
+  margin-top: 16px;
+}
+.sim2real-clip-controls .sim2real-individual-play {
+  min-width: 88px;
+}
+.sim2real-clip-controls .sim2real-seek {
+  flex: 1 1 120px;
+  height: 30px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+.sim2real-seek:disabled {
+  cursor: default;
+}
+.sim2real-time {
+  white-space: nowrap;
+}
+.sim2real-individual-play:hover {
+  background: #edf2fc;
+}
+.sim2real-clip-status {
+  min-height: 18px;
+  margin: 8px 0 0;
+  color: var(--muted, #626a78);
+  font-size: 11px;
+  line-height: 1.65;
+}
+.sim2real-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 16px 24px;
+  margin-top: 8px;
+}
+.sim2real-playback-controls,
+.sim2real-trial-selector,
+#sim2real-trials {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sim2real-playback-controls button,
+#sim2real-trials button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid #d8dfe9;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted, #626a78);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.sim2real-playback-controls .sim2real-play {
+  min-width: 110px;
+  border-color: var(--sim2real-blue);
+  background: var(--sim2real-blue);
+  color: #fff;
+}
+.sim2real-playback-controls .sim2real-play:hover {
+  background: #1f3f9b;
+}
+.sim2real-replay:hover,
+#sim2real-trials button:hover {
+  background: #edf2fc;
+  color: var(--sim2real-blue);
+}
+#sim2real-trials button[aria-pressed="true"] {
+  border-color: #b5c5e9;
+  background: #edf2fc;
+  color: var(--sim2real-blue);
+}
+.sim2real-trial-selector {
+  gap: 8px 13px;
+}
+.sim2real-trial-label {
+  color: var(--muted, #626a78);
+  font-size: 10px;
+  line-height: 1.6;
+}
+.sim2real-timeline-note {
+  margin-top: 18px;
+  color: var(--muted, #626a78);
+  font-size: 11px;
+  line-height: 1.75;
+}
+#sim2real-root button:focus-visible,
+#sim2real-root input:focus-visible,
+#sim2real-panel:focus-visible,
+#sim2real-root video:focus-visible {
+  outline: 2px solid var(--sim2real-blue);
+  outline-offset: 4px;
+}
+@media (max-width: 760px) {
+  #sim2real-root {
+    margin-top: 26px;
+  }
+  .sim2real-tabs button {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    min-height: 90px;
+    padding: 13px 10px;
+    font-size: 12px;
+  }
+  .sim2real-task-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+    padding-block: 21px;
+  }
+  #sim2real-instruction {
+    font-size: 15px;
+  }
+  .sim2real-pair {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+  }
+  .sim2real-video-frame {
+    aspect-ratio: 16 / 10;
+  }
+  .sim2real-clip-controls .sim2real-seek {
+    order: 1;
+    flex-basis: calc(100% - 100px);
+    margin: 0;
+  }
+  .sim2real-time {
+    order: 2;
+  }
+  .sim2real-clip-status:empty {
+    min-height: 0;
+    margin-top: 0;
+  }
+  .sim2real-controls {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 18px;
+    margin-top: 16px;
+  }
+  .sim2real-timeline-note {
+    max-width: 390px;
+    margin-top: 14px;
+  }
+}

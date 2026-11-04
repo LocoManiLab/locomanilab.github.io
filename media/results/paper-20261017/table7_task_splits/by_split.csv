@@ -1,0 +1,4 @@
+split,atomic_tasks,compositional_tasks,episodes_per_task
+Seen task,50,50,20
+Unseen task,46,77,10
+Unseen scene,6,5,10

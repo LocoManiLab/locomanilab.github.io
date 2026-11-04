@@ -1,0 +1,241 @@
+model,training_data,task_id,task_class,successes,episodes,success_rate
+GR00T N1.7,Teleoperation only,IThorBathroomApproachToilet_scene401,Atomic,14,20,70.0
+GR00T N1.7,Teleoperation only,IThorBathroomCloseShowerDoor_scene407,Atomic,19,20,95.0
+GR00T N1.7,Teleoperation only,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,0,20,0.0
+GR00T N1.7,Teleoperation only,IThorBathroomOpenShowerDoor_scene407,Atomic,20,20,100.0
+GR00T N1.7,Teleoperation only,IThorBedroomCloseDrawer_scene329,Atomic,20,20,100.0
+GR00T N1.7,Teleoperation only,IThorBedroomCloseTopDrawer_scene329,Atomic,18,20,90.0
+GR00T N1.7,Teleoperation only,IThorBedroomLiftBasket_scene329,Atomic,3,20,15.0
+GR00T N1.7,Teleoperation only,IThorKitchenApproachFridge_scene13,Atomic,20,20,100.0
+GR00T N1.7,Teleoperation only,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+GR00T N1.7,Teleoperation only,IThorKitchenCloseFridge_scene13,Atomic,18,20,90.0
+GR00T N1.7,Teleoperation only,IThorKitchenLiftSaltShaker_scene13,Atomic,18,20,90.0
+GR00T N1.7,Teleoperation only,IThorKitchenOpenFridge_scene13,Atomic,20,20,100.0
+GR00T N1.7,Teleoperation only,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,13,20,65.0
+GR00T N1.7,Teleoperation only,IThorLivingRoomApproachSofa_scene209,Atomic,20,20,100.0
+GR00T N1.7,Teleoperation only,IThorLivingRoomBasketToSofa_scene209,Compositional,17,20,85.0
+GR00T N1.7,Teleoperation only,IThorLivingRoomCloseDrawer_scene209,Atomic,18,20,90.0
+GR00T N1.7,Teleoperation only,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,17,20,85.0
+GR00T N1.7,Teleoperation only,IThorLivingRoomLiftStatue_scene209,Atomic,18,20,90.0
+GR00T N1.7,Teleoperation only,IThorLivingRoomPushBasketball_scene209,Atomic,20,20,100.0
+GR00T N1.7,Teleoperation only,IThorLivingRoomStatueToSofa_scene209,Compositional,15,20,75.0
+GR00T N1.7,Motion synthesis only,IThorBathroomApproachToilet_scene401,Atomic,0,20,0.0
+GR00T N1.7,Motion synthesis only,IThorBathroomCloseShowerDoor_scene407,Atomic,15,20,75.0
+GR00T N1.7,Motion synthesis only,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,18,20,90.0
+GR00T N1.7,Motion synthesis only,IThorBathroomOpenShowerDoor_scene407,Atomic,1,20,5.0
+GR00T N1.7,Motion synthesis only,IThorBedroomCloseDrawer_scene329,Atomic,18,20,90.0
+GR00T N1.7,Motion synthesis only,IThorBedroomCloseTopDrawer_scene329,Atomic,19,20,95.0
+GR00T N1.7,Motion synthesis only,IThorBedroomLiftBasket_scene329,Atomic,0,20,0.0
+GR00T N1.7,Motion synthesis only,IThorKitchenApproachFridge_scene13,Atomic,3,20,15.0
+GR00T N1.7,Motion synthesis only,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+GR00T N1.7,Motion synthesis only,IThorKitchenCloseFridge_scene13,Atomic,12,20,60.0
+GR00T N1.7,Motion synthesis only,IThorKitchenLiftSaltShaker_scene13,Atomic,0,20,0.0
+GR00T N1.7,Motion synthesis only,IThorKitchenOpenFridge_scene13,Atomic,6,20,30.0
+GR00T N1.7,Motion synthesis only,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,0,20,0.0
+GR00T N1.7,Motion synthesis only,IThorLivingRoomApproachSofa_scene209,Atomic,3,20,15.0
+GR00T N1.7,Motion synthesis only,IThorLivingRoomBasketToSofa_scene209,Compositional,0,20,0.0
+GR00T N1.7,Motion synthesis only,IThorLivingRoomCloseDrawer_scene209,Atomic,18,20,90.0
+GR00T N1.7,Motion synthesis only,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,0,20,0.0
+GR00T N1.7,Motion synthesis only,IThorLivingRoomLiftStatue_scene209,Atomic,0,20,0.0
+GR00T N1.7,Motion synthesis only,IThorLivingRoomPushBasketball_scene209,Atomic,16,20,80.0
+GR00T N1.7,Motion synthesis only,IThorLivingRoomStatueToSofa_scene209,Compositional,0,20,0.0
+GR00T N1.7,Data augmentation only,IThorBathroomApproachToilet_scene401,Atomic,20,20,100.0
+GR00T N1.7,Data augmentation only,IThorBathroomCloseShowerDoor_scene407,Atomic,16,20,80.0
+GR00T N1.7,Data augmentation only,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,19,20,95.0
+GR00T N1.7,Data augmentation only,IThorBathroomOpenShowerDoor_scene407,Atomic,0,20,0.0
+GR00T N1.7,Data augmentation only,IThorBedroomCloseDrawer_scene329,Atomic,20,20,100.0
+GR00T N1.7,Data augmentation only,IThorBedroomCloseTopDrawer_scene329,Atomic,20,20,100.0
+GR00T N1.7,Data augmentation only,IThorBedroomLiftBasket_scene329,Atomic,0,20,0.0
+GR00T N1.7,Data augmentation only,IThorKitchenApproachFridge_scene13,Atomic,20,20,100.0
+GR00T N1.7,Data augmentation only,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+GR00T N1.7,Data augmentation only,IThorKitchenCloseFridge_scene13,Atomic,20,20,100.0
+GR00T N1.7,Data augmentation only,IThorKitchenLiftSaltShaker_scene13,Atomic,0,20,0.0
+GR00T N1.7,Data augmentation only,IThorKitchenOpenFridge_scene13,Atomic,20,20,100.0
+GR00T N1.7,Data augmentation only,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,0,20,0.0
+GR00T N1.7,Data augmentation only,IThorLivingRoomApproachSofa_scene209,Atomic,20,20,100.0
+GR00T N1.7,Data augmentation only,IThorLivingRoomBasketToSofa_scene209,Compositional,0,20,0.0
+GR00T N1.7,Data augmentation only,IThorLivingRoomCloseDrawer_scene209,Atomic,18,20,90.0
+GR00T N1.7,Data augmentation only,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,0,20,0.0
+GR00T N1.7,Data augmentation only,IThorLivingRoomLiftStatue_scene209,Atomic,0,20,0.0
+GR00T N1.7,Data augmentation only,IThorLivingRoomPushBasketball_scene209,Atomic,20,20,100.0
+GR00T N1.7,Data augmentation only,IThorLivingRoomStatueToSofa_scene209,Compositional,0,20,0.0
+GR00T N1.7,Teleop. + synthesis,IThorBathroomApproachToilet_scene401,Atomic,8,20,40.0
+GR00T N1.7,Teleop. + synthesis,IThorBathroomCloseShowerDoor_scene407,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + synthesis,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,5,20,25.0
+GR00T N1.7,Teleop. + synthesis,IThorBathroomOpenShowerDoor_scene407,Atomic,18,20,90.0
+GR00T N1.7,Teleop. + synthesis,IThorBedroomCloseDrawer_scene329,Atomic,19,20,95.0
+GR00T N1.7,Teleop. + synthesis,IThorBedroomCloseTopDrawer_scene329,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + synthesis,IThorBedroomLiftBasket_scene329,Atomic,13,20,65.0
+GR00T N1.7,Teleop. + synthesis,IThorKitchenApproachFridge_scene13,Atomic,0,20,0.0
+GR00T N1.7,Teleop. + synthesis,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + synthesis,IThorKitchenCloseFridge_scene13,Atomic,18,20,90.0
+GR00T N1.7,Teleop. + synthesis,IThorKitchenLiftSaltShaker_scene13,Atomic,18,20,90.0
+GR00T N1.7,Teleop. + synthesis,IThorKitchenOpenFridge_scene13,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + synthesis,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,14,20,70.0
+GR00T N1.7,Teleop. + synthesis,IThorLivingRoomApproachSofa_scene209,Atomic,9,20,45.0
+GR00T N1.7,Teleop. + synthesis,IThorLivingRoomBasketToSofa_scene209,Compositional,14,20,70.0
+GR00T N1.7,Teleop. + synthesis,IThorLivingRoomCloseDrawer_scene209,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + synthesis,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,7,20,35.0
+GR00T N1.7,Teleop. + synthesis,IThorLivingRoomLiftStatue_scene209,Atomic,6,20,30.0
+GR00T N1.7,Teleop. + synthesis,IThorLivingRoomPushBasketball_scene209,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + synthesis,IThorLivingRoomStatueToSofa_scene209,Compositional,18,20,90.0
+GR00T N1.7,Teleop. + augmentation,IThorBathroomApproachToilet_scene401,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + augmentation,IThorBathroomCloseShowerDoor_scene407,Atomic,18,20,90.0
+GR00T N1.7,Teleop. + augmentation,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,11,20,55.0
+GR00T N1.7,Teleop. + augmentation,IThorBathroomOpenShowerDoor_scene407,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + augmentation,IThorBedroomCloseDrawer_scene329,Atomic,19,20,95.0
+GR00T N1.7,Teleop. + augmentation,IThorBedroomCloseTopDrawer_scene329,Atomic,16,20,80.0
+GR00T N1.7,Teleop. + augmentation,IThorBedroomLiftBasket_scene329,Atomic,14,20,70.0
+GR00T N1.7,Teleop. + augmentation,IThorKitchenApproachFridge_scene13,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + augmentation,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + augmentation,IThorKitchenCloseFridge_scene13,Atomic,17,20,85.0
+GR00T N1.7,Teleop. + augmentation,IThorKitchenLiftSaltShaker_scene13,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + augmentation,IThorKitchenOpenFridge_scene13,Atomic,19,20,95.0
+GR00T N1.7,Teleop. + augmentation,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,15,20,75.0
+GR00T N1.7,Teleop. + augmentation,IThorLivingRoomApproachSofa_scene209,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + augmentation,IThorLivingRoomBasketToSofa_scene209,Compositional,15,20,75.0
+GR00T N1.7,Teleop. + augmentation,IThorLivingRoomCloseDrawer_scene209,Atomic,19,20,95.0
+GR00T N1.7,Teleop. + augmentation,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,4,20,20.0
+GR00T N1.7,Teleop. + augmentation,IThorLivingRoomLiftStatue_scene209,Atomic,9,20,45.0
+GR00T N1.7,Teleop. + augmentation,IThorLivingRoomPushBasketball_scene209,Atomic,20,20,100.0
+GR00T N1.7,Teleop. + augmentation,IThorLivingRoomStatueToSofa_scene209,Compositional,14,20,70.0
+GR00T N1.7,All three,IThorBathroomApproachToilet_scene401,Atomic,0,20,0.0
+GR00T N1.7,All three,IThorBathroomCloseShowerDoor_scene407,Atomic,8,20,40.0
+GR00T N1.7,All three,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,20,20,100.0
+GR00T N1.7,All three,IThorBathroomOpenShowerDoor_scene407,Atomic,7,20,35.0
+GR00T N1.7,All three,IThorBedroomCloseDrawer_scene329,Atomic,18,20,90.0
+GR00T N1.7,All three,IThorBedroomCloseTopDrawer_scene329,Atomic,20,20,100.0
+GR00T N1.7,All three,IThorBedroomLiftBasket_scene329,Atomic,2,20,10.0
+GR00T N1.7,All three,IThorKitchenApproachFridge_scene13,Atomic,3,20,15.0
+GR00T N1.7,All three,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+GR00T N1.7,All three,IThorKitchenCloseFridge_scene13,Atomic,17,20,85.0
+GR00T N1.7,All three,IThorKitchenLiftSaltShaker_scene13,Atomic,0,20,0.0
+GR00T N1.7,All three,IThorKitchenOpenFridge_scene13,Atomic,19,20,95.0
+GR00T N1.7,All three,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,0,20,0.0
+GR00T N1.7,All three,IThorLivingRoomApproachSofa_scene209,Atomic,1,20,5.0
+GR00T N1.7,All three,IThorLivingRoomBasketToSofa_scene209,Compositional,5,20,25.0
+GR00T N1.7,All three,IThorLivingRoomCloseDrawer_scene209,Atomic,20,20,100.0
+GR00T N1.7,All three,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,1,20,5.0
+GR00T N1.7,All three,IThorLivingRoomLiftStatue_scene209,Atomic,0,20,0.0
+GR00T N1.7,All three,IThorLivingRoomPushBasketball_scene209,Atomic,14,20,70.0
+GR00T N1.7,All three,IThorLivingRoomStatueToSofa_scene209,Compositional,10,20,50.0
+π0.5,Teleoperation only,IThorBathroomApproachToilet_scene401,Atomic,19,20,95.0
+π0.5,Teleoperation only,IThorBathroomCloseShowerDoor_scene407,Atomic,20,20,100.0
+π0.5,Teleoperation only,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,16,20,80.0
+π0.5,Teleoperation only,IThorBathroomOpenShowerDoor_scene407,Atomic,20,20,100.0
+π0.5,Teleoperation only,IThorBedroomCloseDrawer_scene329,Atomic,20,20,100.0
+π0.5,Teleoperation only,IThorBedroomCloseTopDrawer_scene329,Atomic,20,20,100.0
+π0.5,Teleoperation only,IThorBedroomLiftBasket_scene329,Atomic,15,20,75.0
+π0.5,Teleoperation only,IThorKitchenApproachFridge_scene13,Atomic,20,20,100.0
+π0.5,Teleoperation only,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+π0.5,Teleoperation only,IThorKitchenCloseFridge_scene13,Atomic,20,20,100.0
+π0.5,Teleoperation only,IThorKitchenLiftSaltShaker_scene13,Atomic,18,20,90.0
+π0.5,Teleoperation only,IThorKitchenOpenFridge_scene13,Atomic,19,20,95.0
+π0.5,Teleoperation only,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,15,20,75.0
+π0.5,Teleoperation only,IThorLivingRoomApproachSofa_scene209,Atomic,20,20,100.0
+π0.5,Teleoperation only,IThorLivingRoomBasketToSofa_scene209,Compositional,15,20,75.0
+π0.5,Teleoperation only,IThorLivingRoomCloseDrawer_scene209,Atomic,20,20,100.0
+π0.5,Teleoperation only,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,12,20,60.0
+π0.5,Teleoperation only,IThorLivingRoomLiftStatue_scene209,Atomic,16,20,80.0
+π0.5,Teleoperation only,IThorLivingRoomPushBasketball_scene209,Atomic,17,20,85.0
+π0.5,Teleoperation only,IThorLivingRoomStatueToSofa_scene209,Compositional,15,20,75.0
+π0.5,Motion synthesis only,IThorBathroomApproachToilet_scene401,Atomic,4,20,20.0
+π0.5,Motion synthesis only,IThorBathroomCloseShowerDoor_scene407,Atomic,17,20,85.0
+π0.5,Motion synthesis only,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,16,20,80.0
+π0.5,Motion synthesis only,IThorBathroomOpenShowerDoor_scene407,Atomic,0,20,0.0
+π0.5,Motion synthesis only,IThorBedroomCloseDrawer_scene329,Atomic,19,20,95.0
+π0.5,Motion synthesis only,IThorBedroomCloseTopDrawer_scene329,Atomic,18,20,90.0
+π0.5,Motion synthesis only,IThorBedroomLiftBasket_scene329,Atomic,0,20,0.0
+π0.5,Motion synthesis only,IThorKitchenApproachFridge_scene13,Atomic,5,20,25.0
+π0.5,Motion synthesis only,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+π0.5,Motion synthesis only,IThorKitchenCloseFridge_scene13,Atomic,18,20,90.0
+π0.5,Motion synthesis only,IThorKitchenLiftSaltShaker_scene13,Atomic,0,20,0.0
+π0.5,Motion synthesis only,IThorKitchenOpenFridge_scene13,Atomic,16,20,80.0
+π0.5,Motion synthesis only,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,0,20,0.0
+π0.5,Motion synthesis only,IThorLivingRoomApproachSofa_scene209,Atomic,9,20,45.0
+π0.5,Motion synthesis only,IThorLivingRoomBasketToSofa_scene209,Compositional,0,20,0.0
+π0.5,Motion synthesis only,IThorLivingRoomCloseDrawer_scene209,Atomic,20,20,100.0
+π0.5,Motion synthesis only,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,0,20,0.0
+π0.5,Motion synthesis only,IThorLivingRoomLiftStatue_scene209,Atomic,0,20,0.0
+π0.5,Motion synthesis only,IThorLivingRoomPushBasketball_scene209,Atomic,4,20,20.0
+π0.5,Motion synthesis only,IThorLivingRoomStatueToSofa_scene209,Compositional,0,20,0.0
+π0.5,Data augmentation only,IThorBathroomApproachToilet_scene401,Atomic,16,20,80.0
+π0.5,Data augmentation only,IThorBathroomCloseShowerDoor_scene407,Atomic,15,20,75.0
+π0.5,Data augmentation only,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,3,20,15.0
+π0.5,Data augmentation only,IThorBathroomOpenShowerDoor_scene407,Atomic,0,20,0.0
+π0.5,Data augmentation only,IThorBedroomCloseDrawer_scene329,Atomic,20,20,100.0
+π0.5,Data augmentation only,IThorBedroomCloseTopDrawer_scene329,Atomic,20,20,100.0
+π0.5,Data augmentation only,IThorBedroomLiftBasket_scene329,Atomic,0,20,0.0
+π0.5,Data augmentation only,IThorKitchenApproachFridge_scene13,Atomic,20,20,100.0
+π0.5,Data augmentation only,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+π0.5,Data augmentation only,IThorKitchenCloseFridge_scene13,Atomic,16,20,80.0
+π0.5,Data augmentation only,IThorKitchenLiftSaltShaker_scene13,Atomic,0,20,0.0
+π0.5,Data augmentation only,IThorKitchenOpenFridge_scene13,Atomic,20,20,100.0
+π0.5,Data augmentation only,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,0,20,0.0
+π0.5,Data augmentation only,IThorLivingRoomApproachSofa_scene209,Atomic,20,20,100.0
+π0.5,Data augmentation only,IThorLivingRoomBasketToSofa_scene209,Compositional,0,20,0.0
+π0.5,Data augmentation only,IThorLivingRoomCloseDrawer_scene209,Atomic,17,20,85.0
+π0.5,Data augmentation only,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,0,20,0.0
+π0.5,Data augmentation only,IThorLivingRoomLiftStatue_scene209,Atomic,0,20,0.0
+π0.5,Data augmentation only,IThorLivingRoomPushBasketball_scene209,Atomic,20,20,100.0
+π0.5,Data augmentation only,IThorLivingRoomStatueToSofa_scene209,Compositional,0,20,0.0
+π0.5,Teleop. + synthesis,IThorBathroomApproachToilet_scene401,Atomic,20,20,100.0
+π0.5,Teleop. + synthesis,IThorBathroomCloseShowerDoor_scene407,Atomic,20,20,100.0
+π0.5,Teleop. + synthesis,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,19,20,95.0
+π0.5,Teleop. + synthesis,IThorBathroomOpenShowerDoor_scene407,Atomic,20,20,100.0
+π0.5,Teleop. + synthesis,IThorBedroomCloseDrawer_scene329,Atomic,20,20,100.0
+π0.5,Teleop. + synthesis,IThorBedroomCloseTopDrawer_scene329,Atomic,17,20,85.0
+π0.5,Teleop. + synthesis,IThorBedroomLiftBasket_scene329,Atomic,18,20,90.0
+π0.5,Teleop. + synthesis,IThorKitchenApproachFridge_scene13,Atomic,20,20,100.0
+π0.5,Teleop. + synthesis,IThorKitchenCloseCabinet_scene13,Atomic,19,20,95.0
+π0.5,Teleop. + synthesis,IThorKitchenCloseFridge_scene13,Atomic,19,20,95.0
+π0.5,Teleop. + synthesis,IThorKitchenLiftSaltShaker_scene13,Atomic,17,20,85.0
+π0.5,Teleop. + synthesis,IThorKitchenOpenFridge_scene13,Atomic,18,20,90.0
+π0.5,Teleop. + synthesis,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,9,20,45.0
+π0.5,Teleop. + synthesis,IThorLivingRoomApproachSofa_scene209,Atomic,20,20,100.0
+π0.5,Teleop. + synthesis,IThorLivingRoomBasketToSofa_scene209,Compositional,15,20,75.0
+π0.5,Teleop. + synthesis,IThorLivingRoomCloseDrawer_scene209,Atomic,20,20,100.0
+π0.5,Teleop. + synthesis,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,7,20,35.0
+π0.5,Teleop. + synthesis,IThorLivingRoomLiftStatue_scene209,Atomic,9,20,45.0
+π0.5,Teleop. + synthesis,IThorLivingRoomPushBasketball_scene209,Atomic,18,20,90.0
+π0.5,Teleop. + synthesis,IThorLivingRoomStatueToSofa_scene209,Compositional,16,20,80.0
+π0.5,Teleop. + augmentation,IThorBathroomApproachToilet_scene401,Atomic,20,20,100.0
+π0.5,Teleop. + augmentation,IThorBathroomCloseShowerDoor_scene407,Atomic,20,20,100.0
+π0.5,Teleop. + augmentation,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,19,20,95.0
+π0.5,Teleop. + augmentation,IThorBathroomOpenShowerDoor_scene407,Atomic,20,20,100.0
+π0.5,Teleop. + augmentation,IThorBedroomCloseDrawer_scene329,Atomic,20,20,100.0
+π0.5,Teleop. + augmentation,IThorBedroomCloseTopDrawer_scene329,Atomic,20,20,100.0
+π0.5,Teleop. + augmentation,IThorBedroomLiftBasket_scene329,Atomic,14,20,70.0
+π0.5,Teleop. + augmentation,IThorKitchenApproachFridge_scene13,Atomic,20,20,100.0
+π0.5,Teleop. + augmentation,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+π0.5,Teleop. + augmentation,IThorKitchenCloseFridge_scene13,Atomic,20,20,100.0
+π0.5,Teleop. + augmentation,IThorKitchenLiftSaltShaker_scene13,Atomic,17,20,85.0
+π0.5,Teleop. + augmentation,IThorKitchenOpenFridge_scene13,Atomic,17,20,85.0
+π0.5,Teleop. + augmentation,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,6,20,30.0
+π0.5,Teleop. + augmentation,IThorLivingRoomApproachSofa_scene209,Atomic,20,20,100.0
+π0.5,Teleop. + augmentation,IThorLivingRoomBasketToSofa_scene209,Compositional,15,20,75.0
+π0.5,Teleop. + augmentation,IThorLivingRoomCloseDrawer_scene209,Atomic,20,20,100.0
+π0.5,Teleop. + augmentation,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,9,20,45.0
+π0.5,Teleop. + augmentation,IThorLivingRoomLiftStatue_scene209,Atomic,14,20,70.0
+π0.5,Teleop. + augmentation,IThorLivingRoomPushBasketball_scene209,Atomic,18,20,90.0
+π0.5,Teleop. + augmentation,IThorLivingRoomStatueToSofa_scene209,Compositional,11,20,55.0
+π0.5,All three,IThorBathroomApproachToilet_scene401,Atomic,17,20,85.0
+π0.5,All three,IThorBathroomCloseShowerDoor_scene407,Atomic,20,20,100.0
+π0.5,All three,IThorBathroomNavigateToBathingAreaAndCloseShowerDoor_scene418,Compositional,17,20,85.0
+π0.5,All three,IThorBathroomOpenShowerDoor_scene407,Atomic,20,20,100.0
+π0.5,All three,IThorBedroomCloseDrawer_scene329,Atomic,19,20,95.0
+π0.5,All three,IThorBedroomCloseTopDrawer_scene329,Atomic,19,20,95.0
+π0.5,All three,IThorBedroomLiftBasket_scene329,Atomic,18,20,90.0
+π0.5,All three,IThorKitchenApproachFridge_scene13,Atomic,20,20,100.0
+π0.5,All three,IThorKitchenCloseCabinet_scene13,Atomic,20,20,100.0
+π0.5,All three,IThorKitchenCloseFridge_scene13,Atomic,20,20,100.0
+π0.5,All three,IThorKitchenLiftSaltShaker_scene13,Atomic,17,20,85.0
+π0.5,All three,IThorKitchenOpenFridge_scene13,Atomic,19,20,95.0
+π0.5,All three,IThorKitchenPickAppleAndTurnToTrash_scene13,Compositional,12,20,60.0
+π0.5,All three,IThorLivingRoomApproachSofa_scene209,Atomic,20,20,100.0
+π0.5,All three,IThorLivingRoomBasketToSofa_scene209,Compositional,8,20,40.0
+π0.5,All three,IThorLivingRoomCloseDrawer_scene209,Atomic,19,20,95.0
+π0.5,All three,IThorLivingRoomLiftCupAmongObjects_scene209,Atomic,12,20,60.0
+π0.5,All three,IThorLivingRoomLiftStatue_scene209,Atomic,9,20,45.0
+π0.5,All three,IThorLivingRoomPushBasketball_scene209,Atomic,18,20,90.0
+π0.5,All three,IThorLivingRoomStatueToSofa_scene209,Compositional,14,20,70.0

@@ -1,0 +1,51 @@
+.hero-wall-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  border-radius: 10px;
+  background: #f5f6f8;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #b7c2d7 #f1f3f7;
+}
+.hero-wall-viewport:focus-visible {
+  outline: 2px solid #4468d6;
+  outline-offset: 4px;
+}
+.hero-wall-stage {
+  position: relative;
+  width: 100%;
+}
+#hero-wall-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1942 / 552;
+  object-fit: contain;
+}
+.hero-wall-transition {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+.hero-wall-scroll-hint {
+  display: none;
+}
+@media (max-width: 700px) {
+  .hero-wall-stage {
+    min-width: 960px;
+  }
+  .hero-wall-scroll-hint {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 9px 0 0;
+    color: #626c7e;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+}

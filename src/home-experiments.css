@@ -1,0 +1,162 @@
+/* Research studies share the home page's white surfaces and blue accents. */
+.home-experiments {
+  background: #f8fafc;
+  border-top: 1px solid #e1e7f0;
+  border-bottom: 1px solid #e1e7f0;
+}
+.home-experiments > .wrap > .section-top {
+  align-items: end;
+  margin-bottom: 26px;
+}
+.home-experiments .section-aside p {
+  margin: 0 0 10px;
+}
+.home-experiments .section-aside .text-link {
+  font-size: 13px;
+}
+.experiment-jump-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin-bottom: 30px;
+  padding: 14px 0;
+  border-top: 1px solid #dce3ed;
+  border-bottom: 1px solid #dce3ed;
+}
+.experiment-jump-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 36px;
+  color: #365172;
+  font-size: 13px;
+  font-weight: 550;
+}
+.experiment-jump-links a:hover {
+  color: #2858c7;
+}
+.home-experiment-card,
+.home-experiments .transfer-study {
+  position: relative;
+  min-width: 0;
+  margin-top: 28px;
+  padding: 32px;
+  border: 1px solid #dce3ed;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 12px 36px -30px #16263d35;
+  scroll-margin-top: 94px;
+}
+.home-experiment-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 28px;
+}
+.home-experiment-heading .eyebrow {
+  margin-bottom: 10px;
+  color: #2858c7;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+.home-experiment-heading h3 {
+  margin: 0;
+  color: #16263d;
+  font-size: clamp(23px, 2.5vw, 29px);
+  font-weight: 550;
+  line-height: 1.3;
+  letter-spacing: -0.035em;
+}
+.home-experiment-heading > p {
+  margin: 0;
+  color: #58677b;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.home-study-anchor {
+  position: absolute;
+  top: 0;
+  scroll-margin-top: 94px;
+}
+.home-experiments .result-table-header {
+  align-items: start;
+}
+.home-experiments .result-context {
+  color: #344863;
+  font-size: 12px;
+}
+.home-experiments .result-scope {
+  line-height: 1.7;
+}
+.home-experiments .result-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 0 18px;
+}
+.home-experiments .benchmark-table {
+  color: #16263d;
+  font-size: 12px;
+}
+.home-experiments .benchmark-table th,
+.home-experiments .benchmark-table td {
+  padding-block: 14px;
+}
+.home-experiments .benchmark-table thead,
+.home-experiments .table-groups > th:first-child {
+  background: #f3f6fa;
+}
+.home-experiments .benchmark-table .sorted-column {
+  background: #f0f5ff;
+}
+.home-experiments .benchmark-table tbody tr:hover > * {
+  background: #eaf1fc;
+}
+/* Match the existing policy identities to the paired learning-curve headings. */
+#experiment-source-results .table-policy-group {
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+#experiment-source-results .table-policy-brand {
+  width: 34px;
+  flex-basis: 34px;
+  height: 32px;
+}
+#experiment-source-results .table-policy-brand .organization-mark {
+  --mark-size: 30px;
+}
+#experiment-source-results
+  .table-policy-brand
+  .organization-mark[data-organization="pi"] {
+  --mark-size: 26px;
+}
+@media (max-width: 700px) {
+  .home-experiment-card,
+  .home-experiments .transfer-study {
+    padding: 22px 16px;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  .home-experiment-heading {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .home-experiments .result-downloads {
+    justify-content: start;
+  }
+  .experiment-jump-links {
+    gap: 5px 18px;
+    margin-bottom: 18px;
+  }
+  .experiment-jump-links a {
+    gap: 8px;
+    font-size: 12px;
+  }
+  .paper-resources .hero-actions .dataset-resource {
+    flex-grow: 0;
+  }
+}

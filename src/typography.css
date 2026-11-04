@@ -1,0 +1,235 @@
+/* Type hierarchy: the paper and interface use Inter; research section titles
+   use Source Serif 4. Keep this after component styles, including breakpoints. */
+body {
+  font-optical-sizing: auto;
+  line-height: 1.7;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 3.15vw, 44px);
+  font-weight: 550;
+  line-height: 1.27;
+  letter-spacing: -0.035em;
+}
+.hero h1 > .project-name {
+  font-weight: 750;
+}
+
+h2,
+.section-top.compact h2,
+.results-section h2,
+.team-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 3.8vw, 52px);
+  font-weight: 450;
+  line-height: 1.13;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+h2 em,
+.system-section h2 em {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+.detail-body .section-top h2,
+.team-section h2 {
+  font-size: clamp(30px, 3vw, 40px);
+}
+h3,
+.room-story h3,
+.resource-card h3,
+.result-feature-heading h3,
+.experiment-study h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+}
+.study-title h3 {
+  font-size: 19px;
+}
+.benchmark-panel h3 {
+  letter-spacing: -0.025em;
+}
+.dialog-heading h2 {
+  font-family: var(--sans);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+.paper-byline .authors {
+  font-size: 15px;
+  font-weight: 500;
+}
+.paper-byline .affiliations {
+  font-size: 12px;
+}
+.paper-byline .author-notes {
+  font-size: 11px;
+}
+.section-lead,
+.section-aside,
+.section-top .section-aside,
+.overview-body > p {
+  font-size: 16px;
+  line-height: 1.75;
+}
+.overview-body .intro-paragraph {
+  font-size: 20px;
+  line-height: 1.65;
+}
+.contribution-card p,
+.room-story > p,
+.data-story-item p,
+.research-note > div > p:last-child,
+.resource-card > p,
+.reading-questions p,
+.experiment-intro,
+.experiment-panel-copy,
+.deployment-story > p,
+.contact-copy {
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.eyebrow,
+.eyebrow.light,
+.hero-kicker,
+.live-pill,
+.result-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+.site-header nav,
+.button,
+.text-link,
+.room-story-bottom .text-link,
+.room-tab,
+.controller-tab,
+.search-field input,
+.kind-select select,
+.benchmark-tabs > button {
+  font-size: 13px;
+}
+.media-note,
+.hero-media-note,
+.scope-note,
+.controller-result-figure figcaption,
+.result-table-footer,
+.experiment-footnote,
+.study-title small {
+  font-size: 12px;
+  line-height: 1.65;
+}
+.stats-row small {
+  font-size: 11px;
+}
+.stat-label {
+  font-size: 13px;
+}
+.stat-value,
+.corpus-number,
+.controller-facts strong {
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -0.04em;
+}
+.data-icon {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.future-media-canvas > p,
+.experiment-placeholder p {
+  font-family: var(--sans);
+  font-style: normal;
+}
+
+.benchmark-table {
+  font-size: 13px;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.benchmark-table th,
+.benchmark-table td {
+  padding-inline: 10px;
+}
+.table-groups th,
+.benchmark-table thead button {
+  font-size: 11px;
+}
+.benchmark-table thead button small,
+.table-rank {
+  font-size: 10px;
+}
+.result-context {
+  font-size: 13px;
+}
+.result-scope {
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .hero h1 {
+    font-size: clamp(26px, 5.2vw, 34px);
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+  }
+  .paper-byline .authors {
+    font-size: 13px;
+  }
+  .paper-byline .affiliations,
+  .paper-byline .author-notes {
+    font-size: 11px;
+  }
+  h2,
+  .section-top.compact h2,
+  .results-section h2 {
+    font-size: clamp(32px, 8.4vw, 38px);
+  }
+  .detail-body .section-top h2,
+  .team-section h2 {
+    font-size: 30px;
+  }
+  .dialog-heading h2 {
+    font-size: 25px;
+  }
+  .section-lead,
+  .section-aside,
+  .section-top .section-aside,
+  .overview-body > p {
+    font-size: 15px;
+  }
+  .overview-body .intro-paragraph {
+    font-size: 18px;
+  }
+  .hero-kicker {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+  }
+  .hero-actions .button {
+    font-size: 12px;
+  }
+  .benchmark-table tbody th {
+    font-size: 12px;
+  }
+  .benchmark-table th,
+  .benchmark-table td {
+    padding-inline: 10px;
+  }
+}
+
+@media print {
+  .benchmark-table {
+    font-size: 8px;
+  }
+  .benchmark-table th,
+  .benchmark-table td {
+    padding: 5px;
+  }
+}
